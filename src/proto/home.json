@@ -1,0 +1,80 @@
+{
+  "nested": {
+    "App": {
+      "nested": {
+        "Home": {
+          "nested": {
+            "Index": {
+              "options": {
+                "objc_class_prefix": "AppHomeIndex",
+                "java_package": "com.asiainno.hekka.proto.app.home"
+              },
+              "nested": {
+                "Request": {
+                  "fields": {}
+                },
+                "Response": {
+                  "fields": {
+                    "list": {
+                      "rule": "repeated",
+                      "type": "string",
+                      "id": 1
+                    }
+                  }
+                }
+              }
+            },
+            "MarqueeList": {
+              "options": {
+                "objc_class_prefix": "AppMarqueeList",
+                "java_package": "com.asiainno.hekka.proto.app.home"
+              },
+              "nested": {
+                "Request": {
+                  "fields": {}
+                },
+                "Response": {
+                  "fields": {
+                    "list": {
+                      "rule": "repeated",
+                      "type": "MagicBoxMarqueeInfo",
+                      "id": 1
+                    }
+                  }
+                },
+                "MagicBoxMarqueeInfo": {
+                  "fields": {
+                    "userId": {
+                      "type": "int64",
+                      "id": 1
+                    },
+                    "userName": {
+                      "type": "string",
+                      "id": 2
+                    },
+                    "userAvatar": {
+                      "type": "string",
+                      "id": 3
+                    },
+                    "productName": {
+                      "type": "string",
+                      "id": 4
+                    },
+                    "productImage": {
+                      "type": "string",
+                      "id": 5
+                    },
+                    "salePrice": {
+                      "type": "int64",
+                      "id": 6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
