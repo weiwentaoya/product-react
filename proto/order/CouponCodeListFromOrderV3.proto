@@ -1,0 +1,69 @@
+syntax = "proto3";
+package App.Order.CouponCodeListFromOrderV3;
+option objc_class_prefix = "CouponCodeListFromOrderV3";
+option java_package = "com.asiainno.hekka.proto.order";
+
+//url: https://****.com/order/couponCode/list/V3
+message Request{
+  int32 source      = 1; // SKU数据来源    1: 购物车  2: 商品详情页
+  int64 addressId   = 2; // 收货地址ID 可空
+  int32 hkcRatio    = 3; // hkc抵扣比例 可空
+  int64 spuId       = 4; // source=2时传
+  int64 saleSkuId   = 5; // source=2时传
+  int32 skuQuantity = 6; // 购买SKU的数量, source=2时传 默认是1
+}
+
+message Response{
+  repeated CodeInfo availableList    = 1; // 有效优惠券
+  repeated CodeInfo notAvailableList = 2; // 无效优惠券
+  SpecialOffer      specialOfferRes  = 3; //  specialOffer使用信息
+}
+
+
+message CodeInfo{
+  string                code                 = 1;// code
+  int64                 startTime            = 2; //开始时间
+  int64                 endTime              = 3; //结束时间
+  int32                 codeType             = 4; // 1 fixed discount amount , 2 Fixed discount percentage
+  int32                 codeValue            = 5;
+  int32                 restrictionRule      = 6;//1. 不做限制 ,2. 最小订单金额，订单内商品满足最小金额时可用计算时不包含邮费,3. 最小商品数量 订单内商品满足最小数量时可用
+  int32                 restrictionRuleValue = 7;  // 如果是钱 单位为分
+  string                desc                 = 8; // code 描述
+  int32                 claim                = 9; // 1 领取 2 未领取
+  int32                 isFirstOrder         = 10; //1 非首单使用，  2是首单使用
+  int32                 noEndTime            = 11;//1 有结束时间， 2 没有结束时间
+  int32                 dateSettingType      = 12;//code有效时长的类型,1:有起止时间 2: 动态有效期(比如3天）
+  int32                 duration             = 13;//有效期时长
+  /**
+      1, "全站使用 mall display,
+      2, "网红使用 Internet Celebrity,
+      3, "拉新使用 new Guest Welfare,
+      4, "Affiliate 网盟,
+      5, "站内券 inside code,
+      6, "定向券 Special Audience,
+      7, "客服券  Customer service"
+   */
+  int32                 accessChannel        = 14;
+  int64                 codeId               = 15;// codeid
+  repeated NotUseReason notUseReasonList     = 16;//  不可使用原因
+  repeated int32        excludeIdList        = 17; //  互斥规则 1:CouponCode 2:SpecialOffer 3:HKC
+  int64                 discountPrice        = 18; // 实际优惠金额
+}
+
+message NotUseReason{
+  int32 notUseReasonType = 1; // 1:未到使用时间; 2:不满足金额条件; 3. 不满足数量条件; 4:不能与HKC共享; 5:不能与SpecialOffer共享; 6:选择商品范围不在CouponCode的商品范围内 7:当前CouponCode只能首单使用 8:仅APP可用 9:仅WEB可用
+  int32 diffQuantity     = 2; // 与CouponCode配置相差数量
+  int64 diffPrice        = 3; // 与CouponCode配置相差金额
+}
+
+message SpecialOffer{
+  int64          id                = 1;
+  int32          type              = 2; // 当前specialOffer的优惠类型 1:根据数量打折扣 2:根据数量减金额 3:根据金额打折扣 4:根据金额减金额
+  int64          ladderId          = 3; //  满足的优惠阶段ID
+  int32          quantityThreshold = 4; // 已经满足优惠的阶梯中 满足的件数门槛
+  int64          priceThreshold    = 5; // 已经满足的优惠阶梯中 满足的金额门槛
+  int32          discountRate      = 6; // 已经满足的优惠阶梯中 优惠百分比
+  int64          discountPrice     = 7; // 已经满足的优惠阶梯中 优惠金额
+  repeated int32 excludeIdList     = 8; //  互斥规则 1:CouponCode 2:SpecialOffer 3:HKC
+  int64          actualPrice       = 9; //  实际优惠金额
+}

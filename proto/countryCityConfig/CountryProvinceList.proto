@@ -1,0 +1,12 @@
+syntax = "proto3";
+package CountryProvinceList;
+option objc_class_prefix="CountryProvinceList";
+option java_package = "com.asiainno.hekka.proto.user.country.config";
+
+//url: https://****.com/user/countryCityConfig/provinceList
+message Request {
+    string countryCode = 1;// 国家码
+}
+message Response {
+    repeated string provinceList =1;
+}

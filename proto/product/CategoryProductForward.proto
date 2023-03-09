@@ -1,0 +1,17 @@
+syntax = "proto3";
+package Product.Category.CategoryProductForward;
+option objc_class_prefix = "CategoryProductForward";
+option java_package = "com.asiainno.hekka.proto.product.category";
+
+//德国站新老类目跳转
+//url: https:****.com/product/product/getNewCategorySpuIds
+message Request {
+    string oldCategory = 5; //  老站中类目
+    string oldSpuIds = 6; //老站spuId  "," 分隔
+}
+
+message Response {
+    string navId = 1;  //对应新站的导航id
+    string newSpuIds = 2; //新站的spuId  "," 分隔
+    string newHandle = 3; //新站handle
+}

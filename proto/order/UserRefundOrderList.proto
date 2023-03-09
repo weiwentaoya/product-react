@@ -1,0 +1,20 @@
+syntax = "proto3";
+package App.Order.UserRefundOrderList;
+option objc_class_prefix="UserRefundOrderList";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+import "OrInfo.proto";
+
+//url: https://****.com/order/refund/refundOrderList
+//app退款单列表
+message Request {
+    int32 pageNum = 1;  //第几页, 从1开始
+    int32 pageSize = 2;  //每页展示数
+}
+
+message Response {
+    repeated OrInfo.RefundOrderInfo refundOrderInfoList = 1; // 退款单列表信息
+    int32 total = 2;
+    int32 pageNum = 3;
+    int32 pageSize = 4;
+}

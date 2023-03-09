@@ -1,0 +1,34 @@
+syntax = "proto3";
+package App.Product.PolicyAndAddrList;
+option objc_class_prefix = "PolicyAndAddrList";
+option java_package = "com.asiainno.hekka.proto.app.product";
+
+//policy 和 地址
+//url: https://****.com/product/policyAndAddr/list
+message Request {
+}
+
+message Response {
+    repeated Policy policyList  = 1;
+    FooterAddr addr             = 2;
+}
+
+message Policy {
+    int64 id            = 1; //
+    int32 type          = 3; // 类别 1-about 2-general 3-help & contact
+    string policyTitle  = 4; // 标题
+    string path         = 5; // 跳转path
+    string url          = 6; // 跳转url
+    int32 sort          = 7; // 排序
+}
+
+message FooterAddr {
+    string title        = 1; // 标题
+    string companyName  = 2; // 公司名
+    string companyAddr  = 3; // 公司地址
+    string phone        = 4; // 电话
+    string note         = 5; // 备注
+    int32 disabled      = 6; // 是不禁用（1-禁用 2-正常）
+}
+
+

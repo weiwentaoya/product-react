@@ -1,0 +1,14 @@
+syntax = "proto3";
+package CheckUpdate;
+option objc_class_prefix="CheckUpdate";
+option java_package = "com.asiainno.hekka.proto.user";
+//url /user/app/checkUpdate
+message Request {
+}
+
+message Response {
+    string description  =1; // 英文描述
+    string version = 2;// 版本号
+    int32 isForce = 3; //是否强制更新 1 不强制更新，2 强制更新
+}
+

@@ -1,0 +1,16 @@
+syntax = "proto3";
+package App.Account.UserAccount;
+option objc_class_prefix="UserAccount";
+option java_package = "com.asiainno.hekka.proto.app.account";
+
+//app用户HKC账户
+//url: https://****.com/user/account/accountInfo
+message Request {
+    int32 assetType = 1;//账户类型 1:hkc
+}
+message Response {
+    int64  amount                            = 1;// 账户余额
+    double exchangeRate                      = 2;// hkc 兑换 美元汇率
+    string currencyExchangeRate              = 3;// hkc 兑换 指定币种汇率
+    int64  blackFridayRemainingEffectiveTime = 4; //  HKC剩余有效期, 黑五活动用
+}

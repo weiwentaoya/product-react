@@ -1,0 +1,31 @@
+syntax = "proto3";
+option objc_class_prefix = "UserType";
+option java_package = "com.asiainno.hekka.proto.user";
+package UserType;
+
+enum BindType{
+    DEFAULT_TYPE = 0;//不可用
+    WEIXIN = 3; //微信
+    FACEBOOK = 4; //facebook
+    FACEBOOK_H5 = 5; //facebook_H5
+    EMAIL = 7; //邮箱
+    GOOGLE = 15; //google
+    TWITTER = 16; //twitter
+    APPLE_ID = 17; // appleId
+    PAYPAL = 18; // paypal 登录
+
+}
+
+enum PushType{
+    DEFAULT_PUSHTYPE = 0;//不可用 默认值
+    IOS = 2; //ios
+    JPUSH = 3; //极光
+    XIAOMI = 4; //小米
+    GETUI = 5;
+    GOOGLE_PUSH = 6;
+    GOOGLE_FCM = 10;
+}
+
+
+
+

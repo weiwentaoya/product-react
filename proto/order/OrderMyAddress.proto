@@ -1,0 +1,35 @@
+syntax = "proto3";
+package App.Order.OrderMyAddress;
+option objc_class_prefix = "OrderMyAddress";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+
+//url: https://****.com/order/myAddress
+message Request {
+
+    string    orderNo   = 1; //订单编号
+}
+
+
+message Response {
+    repeated AddressInfo  availableAddress = 1;//可用列表
+    repeated AddressInfo  notAvailableAddress = 2;//不可用列表
+}
+
+message AddressInfo {
+  int64  id          = 1; //
+  string countryCode = 2;// 国家码
+  string province    = 3;// 省
+  string city        = 4;//城市
+  string zoneCode    = 5;//手机号区号码
+  string phone       = 6;//手机号
+  string address1    = 7;
+  string address2    = 8;
+  int32  isDefault   = 9; // 1 为默认地址
+  string zipCode     = 10;
+  int64  userId      = 11;
+  string fullName    = 12;
+  string taxNum      = 13; //税号
+  int32  taxType     = 14;//类型1 CPF 2 CNPJ 3 RUT
+  int32  marketingStatus = 15; //  手机号营销状态 1-允许 2-不允许
+}

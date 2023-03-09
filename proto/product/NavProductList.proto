@@ -1,0 +1,22 @@
+syntax = "proto3";
+package App.Product.NavProductList;
+option objc_class_prefix = "NavProductList";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+
+//活动导航列表
+//url: https://****.com/product/list/navProductList
+
+message Request {
+    int64  navId    = 1;  //导航Id
+    string sortId   = 11; // 排序Id 分页使用
+    int32  pageSize = 12; // 每页数据条数
+}
+
+message Response {
+    repeated Component.SpuInfo list = 1;//商品信息List
+}
+
+
+
+

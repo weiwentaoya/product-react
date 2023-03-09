@@ -1,0 +1,27 @@
+syntax = "proto3";
+package App.Acitivity.CommonPopup;
+option objc_class_prefix="CommonPopup";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+import "ActivityCodeInfo.proto";
+
+// 用户的领取的券列表
+//url: https://****.com/activity/common/popup
+message Request {
+    int32 platform = 1;
+}
+
+message Response {
+    CouponPopup couponPopup = 1; // 首页弹窗
+    repeated ActivityCodeInfo.ActivityCodeInfo newUserZoneList = 2;
+}
+
+message CouponPopup {
+  repeated ActivityCodeInfo.ActivityCodeInfo list = 1;
+  string claimText = 2; // 未领取说明
+  string claimedText =3; // 已领取说明
+  bool hasNewUserZone = 4; //是否包含newUserZone
+  string linkUrl = 5;
+}
+
+
+

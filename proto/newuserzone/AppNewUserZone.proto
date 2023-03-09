@@ -1,0 +1,49 @@
+syntax = "proto3";
+package App.Acitivity.AppNewUserZone;
+option objc_class_prefix="AppNewUserZone";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+import "Component.proto";
+// 获取推荐类目和just for you 第一列的
+//url: https://****.com/activity/newUserZone/list
+message Request {
+  string sortId = 1; // 排序Id 分页使用,Response.spuInfoList最后一条数据的sortId 透传
+  bool hasZoneInfo = 2;// 是否包含zone优惠信息
+  /**
+  1 app 2 pc 3 h5
+   */
+  int32 platform = 3;
+  string countryCode = 4; // 此字段作废
+  int64 spuId  =5; // spuId 在商品详情页使用，根据spuId获取 所在集合列表和最小集类目
+
+  int32 pageSize = 10;
+  /**
+    用户配置商品集支持的平台 0 全部 2 pc 3 h5
+  */
+  int32 dataSetPlatform = 11;
+}
+
+message Response {
+  CodeInfo codeInfo = 1;
+  repeated Component.SpuInfo spuInfoList =2;
+  string imgUrl = 3;// new user zone 配置图片， 根据平台和语言筛选图片
+}
+
+
+message ZoneInfo {
+  int64 id=1; // 活动id
+  int64 startTime = 2;// 开始时间
+  int64 endTime = 3 ; // 结束时间
+}
+
+message CodeInfo {
+  string code= 1;// code
+  int64 startTime = 2; //开始时间
+  int64 endTime = 3; //结束时间
+  int32 codeType = 4; // 1 fixed discount amount , 2 Fixed discount percentage
+  int32 codeValue = 5;
+  int32 restrictionRule = 6;//1. 不做限制 ,2. 最小订单金额，订单内商品满足最小金额时可用计算时不包含邮费,3. 最小商品数量 订单内商品满足最小数量时可用
+  int32 restrictionRuleValue = 7;  // 如果是钱 单位为分
+  int32                 dateSettingType      = 8;//code有效时长的类型,1:有起止时间 2: 动态有效期(比如3天）
+  int32                 duration             = 9;//有效期时长
+}
+

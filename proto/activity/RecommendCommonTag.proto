@@ -1,0 +1,31 @@
+syntax = "proto3";
+package App.Acitivity.RecommendCommonTag;
+option objc_class_prefix="RecommendCommonTag";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+import "Component.proto";
+//url: https://****.com/activity/recommendCommon/tagList
+message Request {
+    string sortId = 1; // 排序Id 分页使用,Response.spuInfoList最后一条数据的sortId 透传
+    int64 tagId = 2; // 获取某个tab下面的数据（可以为空，进入app 不传入就是获取第一个分类的数据)
+    bool hasTag = 3;// 是否获取tag
+    int32 platform = 4; // 平台id
+
+    /**
+   FASHION(1, "fashion"),
+ ELECTRONIC(2,"electronic");
+  */
+    int32 position = 5; // 位置
+    int32 pageSize = 6; //一页条目数量，最多20条，服务端判断超过20条设置为20条
+}
+
+message Response {
+    repeated Tag tagList = 1;
+    repeated Component.SpuInfo spuInfoList =2;
+}
+
+message Tag {
+    int64 tagId = 1;
+    string tagName = 2;
+    string traceName = 3;
+}
+

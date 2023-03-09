@@ -1,0 +1,89 @@
+syntax = "proto3";
+package Component;
+option objc_class_prefix = "Component";
+option java_package = "com.asiainno.hekka.proto.common";
+
+message SpuInfo {
+    int64  spuId               = 1; //spuId
+    int64  productId           = 2; //商品id
+    string title               = 3; //商品标题
+    string enTitle             = 4; //
+    string systemTitle         = 5; //
+    string enSystemTitle       = 6; //
+    Image  mainPhoto           = 7; //主图图片
+    string videoUrl            = 8; //视频Url
+    Image  videoCover = 9; //视频封面
+    int64  skuId = 10; //
+    int64  salePrice = 11; //商品售价
+    int64  marketPrice = 12; //商品市场价
+    int32  spuDiscount = 13; //商品折扣
+    NavRankInfo  rankInfo = 14; //排名信息
+    string sortId = 15; // 排序Id 分页使用
+    int32 categoryType = 16; // 产品类型
+    int64 categoryId = 17; // 类目id
+    string categoryName = 18; // 类目名称
+    //商品SPU 7天累计销量
+    int64 sevenDaySales = 19;
+    //商品SPU的上架时间
+    int64 onSaleTime = 20;
+    string handle = 21; //固定格式的title
+    SaleTestInfo saleTestInfo = 22; //测款信息
+    repeated Image mainPhotoList = 31; //商品主图列表
+    FlashSaleInfo flashSaleInfo = 32; // 闪购信息
+    ProductTrendsInfo proTrendsInfo   = 35; //商品趋势信息(展示排名还是趋势信息,展示逻辑由客户端决定)
+}
+
+message Image {
+    string url      = 1; //图片地址
+    int32  width    = 2; //宽度
+    int32  height   = 3; //高度
+    int32  showType = 4; //展示类型 1-商品原图 2-商品拍图
+}
+
+message NavRankInfo {
+    int32  rank         = 1; //排名
+    int64  navId        = 2; //所属navigation名称
+    string navName      = 3; //所属navigation名称
+    string enNavName    = 4; //所属navigation英文名
+
+    //--------------int64字符串---------------------
+    string navIdString = 21; //所属navigation名称
+}
+
+message CountryInfo{
+    int64 id = 1;//国家id
+    int64 parentId = 2; //父id
+    string countryCode = 3;//国家编码
+    string countryName = 4;//国家名称
+
+    repeated CountryInfo childCountry = 8; //子国家
+}
+
+//测款信息
+message SaleTestInfo {
+    int32  position = 1; //位置
+    string protocol = 2; //协议
+    Image  photo    = 3; //图片
+    bool   isSpu    = 4; //是不是spu商品
+    string traceTitle = 5;  //打点上报标题
+}
+
+message ProductTrendsInfo {
+    int64  id           = 1;  //趋势ID
+    string title        = 2;  //title
+    string enName       = 3;  //英文下的名称
+    string name         = 4; //对应语言下的名称(如果没有, 也会返回英文名称)
+    string desc         = 5;  //对应语言下的描述(如果没有, 也会返回英文描述)
+    int64  collectionId = 6;  //对应国家站下的集合
+
+    //--------------int64字符串---------------------
+    string idString             = 21;  //趋势ID
+    string collectionIdString   = 22;  //对应国家站下的集合
+}
+
+message FlashSaleInfo {
+    string id = 1;// 闪购活动id
+    string salePrice = 2; // 活动价
+    int32 discount = 3; // 折扣
+    int32 flashStatus = 4;   // 活动状态 1-进行中 2-停止 3-未开始
+}

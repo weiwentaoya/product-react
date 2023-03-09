@@ -1,0 +1,20 @@
+syntax = "proto3";
+package App.Magicbox.MyMagicBoxList;
+option objc_class_prefix = "MyMagicBoxList";
+option java_package = "com.asiainno.hekka.proto.app.magicbox";
+import "MagicBoxAppModuleInfo.proto";
+
+//url: /product/myMagicBox/getMagicBoxInfoList
+message Request {
+    int32 pageNum = 1;  //第几页, 从1开始
+    int32 pageSize = 2;  //每页展示数
+}
+
+message Response {
+    int32   pageNum     = 1;//页数
+    int32   pageSize    = 2;//分页大小
+    int32   totalPage   = 3;//总页数
+    int64   total       = 4;//总条数
+    int32 magicBoxCount = 5 ; //我的盲盒数量
+    repeated App.Magicbox.MagicBoxAppModuleInfo.MyMagicBoxInfo myMagicBoxList = 6; // 我的盲盒列表
+}

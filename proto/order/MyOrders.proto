@@ -1,0 +1,17 @@
+syntax = "proto3";
+package App.Order.MyOrders;
+option objc_class_prefix="AppMyOrders";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/myOrders
+//我的各种订单数量 url:
+message Request {
+
+}
+message Response {
+    int32 all           = 1;//all
+    int32 unpaid        = 2;//Unpaid
+    int32 processing    = 3;//Processing
+    int32 shipped       = 4;//Shipped
+    int32 returns       = 5;//Returns
+}

@@ -1,0 +1,24 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-03-30 14:32
+ * @Description    Best Sellers页面一级分类下的热销类目
+ */
+syntax = "proto3";
+package Activity.BestSellers.BestSellersHotSecondaryCategory;
+option objc_class_prefix = "BestSellersHotSecondaryCategory";
+option java_package = "com.asiainno.hekka.proto.activity.bestsellers";
+import "Component.proto";
+
+message BestSellersHotSecondaryCategory {
+  int64 baseCategoryId = 1;
+  string baseCategoryName = 2;
+  int64 secondaryCategoryId = 3;
+  string secondaryCategoryName = 4;
+  //二级类目的类型(electronic/fashion)
+  string secondaryCategoryType = 5;
+
+  //二级热销分类下的商品订单总计
+  int64 orderCount = 6;
+  repeated Component.SpuInfo topNProducts = 7;
+}

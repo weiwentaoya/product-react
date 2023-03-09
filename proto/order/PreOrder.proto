@@ -1,0 +1,30 @@
+syntax = "proto3";
+package App.Order.PreOrder;
+option objc_class_prefix = "PreOrder";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+
+//url: https://****.com/order/confirm/preOrder
+message Request {
+  int32  source               = 1; // SKU数据来源    1: 购物车  2: 商品详情页
+  int64  addressId            = 2; // 收货地址ID 可空
+  int32  shippingMethodId     = 3; // 邮寄方式ID
+  int32  paymentMethodId      = 4; // 支付方式ID
+  string couponCode           = 5; // CouponCode码 可空
+  int32  hkcRatio             = 6; // hkc抵扣比例 可空
+  int64  spuId                = 7; // source=2时传
+  int64  saleSkuId            = 8; // source=2时传
+  int32  skuQuantity          = 9; // 购买SKU的数量, source=2时传 默认是1
+  int64  specialOfferId       = 10; // specialOffer活动ID
+  int64  specialOfferLadderId = 11; //  specialOffer阶梯ID
+  int32  platform             = 12; // 平台 1:APP 2:PC 3:H5, 可空,如果为空从当前请求的Header取
+  string orderNo              = 13; // 订单号, 可传空
+}
+
+message Response {
+  string preFlowNo   = 1; // 支付单编号
+  string payUrl      = 2; // 支付URL
+  string voucher     = 3; // SDK支付凭据
+  string clientToken = 4; //  klarna 预下单token
+  string sessionId   = 5; // klarna sessionId
+}

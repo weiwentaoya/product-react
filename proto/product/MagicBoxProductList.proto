@@ -1,0 +1,22 @@
+syntax = "proto3";
+package App.Product.MagicBoxProductList;
+option objc_class_prefix = "MagicBoxProductList";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "MagicBoxProductInfo.proto";
+
+//app 魔盒手机端app商品列表
+//url: https://****.com/product/product/getMagicBoxProductList
+
+message Request {
+    int64 boxId = 1; // 盲盒Id
+    int32 type = 2;  //type的值  1: Legend  2:Excellent  3: good  4: Normal
+    int32 pageNum = 3;  //第几页, 从1开始
+    int32 pageSize = 4;  //每页展示数
+}
+
+message Response {
+    int32 total = 10;
+    int32 pageNum = 12;
+    int32 pageSize = 13;
+    repeated App.Product.MagicBoxProductInfo.ProductInfo productInfoList = 20;
+}

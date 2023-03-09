@@ -1,0 +1,18 @@
+syntax = "proto3";
+package App.Language.LanguageList;
+option objc_class_prefix="AppLanguageList";
+option java_package = "com.asiainno.hekka.proto.app.language";
+
+//url: /user/language/list
+message Request {
+    string countryCode = 1;// 国家码
+}
+message Response {
+    repeated LanguageInfo list = 1;
+}
+
+//语言信息
+message LanguageInfo {
+    string code     = 1; //语言码
+    string language = 2; //语言
+}

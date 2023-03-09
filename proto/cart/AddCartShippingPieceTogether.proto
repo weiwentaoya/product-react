@@ -1,0 +1,24 @@
+syntax = "proto3";
+package App.Cart.AddCartShippingPieceTogether;
+option objc_class_prefix = "AddCartShippingPieceTogether";
+option java_package = "com.asiainno.hekka.proto.app.cart";
+//url: https://****.com/order/cart/addCartShippingPieceTogether
+message Request {
+    int64 saleSkuId = 1;
+    int32 quantity = 2; // 数量, 要加购的数量
+    string path = 3; // 加购路径(埋点用)
+}
+
+message Response {
+    int64 freeShippingThreshold = 1; // 免运费门槛
+    int64 freeShippingAmountDifference = 2; // 当前总金额与免运费门槛的差额
+    bool freeShippingFlag = 3; // 是否免运费
+    int64 total = 4; // 购物车商品总金额
+    int32 quantity = 5; // 购物车商品数量
+    int64 saleSkuId = 6; // 埋点用
+    string usProName = 7; // 商品标题 埋点用
+    int64 usdSkuTotalPrice = 8; // 本次加购的商品单价 * 数量  美元  埋点用
+    int64 categoryIdOne = 9; // 一级类目
+    int64 categoryIdTwo = 10; // 二级类目
+    int64 categoryIdThree = 11; // 三级类目
+}

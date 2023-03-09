@@ -1,0 +1,22 @@
+syntax = "proto3";
+package Activity.AppFlashSaleSpuList;
+option objc_class_prefix = "AppFlashSaleSpuList";
+option java_package = "com.asiainno.hekka.proto.activity.flashSale";
+import "Component.proto";
+
+//url: https://****.com/activity/flashSale/spuList
+message Request {
+  int64 navId = 1;
+  int64 flashSaleId = 2;
+  int32 pageNum = 3;
+  int32 pageSize = 4;// 最多五十条
+}
+
+message Response {
+  /**
+    spu 列表
+   */
+  repeated Component.SpuInfo spuList = 1;
+
+
+}

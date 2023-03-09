@@ -1,0 +1,13 @@
+syntax = "proto3";
+package Site.NationalStoreLanguageList;
+option objc_class_prefix="NationalStoreLanguageList";
+option java_package = "com.asiainno.hekka.proto.app.site";
+
+//url: https://****.com/product/site/nationalStoreLanguageList
+message Request {
+
+}
+
+message Response {
+    repeated string list = 1;
+}

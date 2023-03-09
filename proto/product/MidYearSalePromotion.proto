@@ -1,0 +1,28 @@
+syntax = "proto3";
+package App.Product.MidYearSalePromotion;
+option objc_class_prefix = "MidYearSalePromotion";
+option java_package = "com.asiainno.hekka.proto.app.product";
+
+import "Component.proto";
+
+//年中促销活动
+//url: https://****.com/product/getSalePromotionInfo
+message Request {
+    int32 tagId = 1; //类型 1：头部   3：fashion  4:3c
+    string sortId = 2; // 排序Id 分页使用
+    string sortType = 3; // 排序类型 Recommend/Latest/Price/TopSales
+    string sortOrder = 4; // 排序方式 asc/desc
+    int32 size = 5; //展示条数 默认传20
+}
+
+message Response {
+    repeated SalePromotion promotionInfo = 1; //活动信息
+    repeated Component.SpuInfo spuInfoList = 2;//商品信息List
+}
+
+message SalePromotion{
+    string imageUrl = 1; //图片地址  按顺序取
+    int64 collectionId = 2; //集合id
+    string collectionName = 3;//集合名称
+
+}

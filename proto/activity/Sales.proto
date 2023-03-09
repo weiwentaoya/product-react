@@ -1,0 +1,30 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-04-08 14:04
+ * @Description    Sales页面
+ */
+syntax = "proto3";
+package Activity.Sales.Sales;
+option objc_class_prefix = "Sales";
+option java_package = "com.asiainno.hekka.proto.activity.sales";
+import "SalesBaseCategory.proto";
+import "Component.proto";
+
+//url: https://****.com/activity/sales/index
+message Request {
+  //一级分类ID(可选值)
+  int64 baseCategoryId = 1;
+  //分页Id(用于获取下一页数据)
+  string sortId = 2;
+  //每页显示条数(可选值，若不传递此参数，则默认按一页20条处理)
+  int32 pageSize = 3;
+  //是否需要返回顶部的一级类目列表
+  bool requiredBaseCates = 4;
+}
+
+message Response {
+  repeated SalesBaseCategory.SalesBaseCategory baseCategoryList = 1;
+  //折扣力度前N位的商品
+  repeated Component.SpuInfo topNDiscountProductList = 2;
+}

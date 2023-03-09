@@ -1,0 +1,30 @@
+syntax = "proto3";
+package App.Activity.SpuListByDataSet;
+option objc_class_prefix="SpuListByDataSet";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+import "Component.proto";
+
+/**
+  banner 模块跳转 type =1  data = banner id
+  pdp (其它人也买)模块跳转 type = 2, data = spuId
+  pdp (低价购买)模块跳转 type = 3, data = spuId
+ */
+//url: https://****.com/activity/spuList/byDataSet
+message Request {
+  int32 type = 1; // 那个模块过来的数据
+  string data = 2; // 对应模块的数据
+  string sortId = 3; // 排序Id 分页使用
+  int32 sortByRecommend = 4; // 按照7天销量排序  1高到低  2 低到高
+  int32 sortByTopSale = 5;// 按照全部销量  1高到低  2 低到高
+  int32 sortByPrice = 6; // 按照价格从 1高到低  2 低到高
+  int32 size = 10; // 每页数据条数
+
+}
+
+message Response {
+  repeated Component.SpuInfo spuInfoList =1;
+}
+
+
+
+

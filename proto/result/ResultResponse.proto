@@ -1,0 +1,129 @@
+syntax = "proto3";
+option objc_class_prefix = "ResultResponse";
+option java_package = "com.asiainno.hekka.proto";
+import "google/protobuf/any.proto";
+
+enum Code {
+    DEFAULT = 0; //默认值  不能使用
+    SUCCESS = 1; //接口成功返回数据
+    // 系统错误  1开头
+    SYSTEM_ERROR = 10001; //系统异常
+    PARAMETER_INVALID= 10002; //系统异常
+    AUTH_ERROR = 10003 ; // 认证错误
+    PARAMS_ERROR = 10004 ; // 参数错误
+    NO_DATA = 10005; // 没有数据
+    DATA_ERROR = 10006; //数据错误
+    REQUEST_FREQUENCE = 10007; //接口请求频繁
+    DATA_EXCEEDS_LIMIT = 10008; //数据超过限制
+    DATA_PARSING_ERROR = 10009; //  请求数据解析异常
+
+
+    //订单业务错误码  2开头
+    ORDER_ERROR =  20001; //系统异常
+    //用户业务错误码  3开头
+
+    //支付业务错误码  4开头.
+    PAY_ERROR =   40001; //系统异常
+    //活动业务错误码  5开头
+    ACTIVE_ERROR = 50001; //系统异常
+    //搜索业务错误码  6开头
+    SEARCH_ERROR = 60001; //系统异常
+    //购物车业务错误吗 7开头
+    CART_ERROR = 70001; // 系统异常
+
+//####################商品的以 9100001 递增##############
+    PRODUCT_MAGIC_BOX_EXPIRED = 9100002;  //盲盒过期或者下架不可以购买
+    MY_MAGIC_BOX_EXPIRED = 9100003;       //我的盲盒，后台置为失效，不可以开启
+    OPEN_MAGIC_BOX_CONCURRENT_OPERATION_ERROR = 9100004; //开盲盒，其他设备正在开盒，请稍后再试
+
+//####################用户的以 9200001 递增##############
+
+    USER_ERROR =  9200001; //系统异常
+    USER_ACCOUNT_EXISTS =  9200002; //用户已经存在
+    USER_TOKEN_EXPIRE =  9200003; // userToken 过期
+    USER_REFRESH_TOKEN_EXPIRE =  9200004; //refreshToken 过期
+    USER_PASSWORD_NAME_ERROR =  9200005; //用户名或者密码错误
+    USER_ACCOUNT_NOT_EXIST =  9200006; //账号不存在
+    USER_ORIGIN_PASSWORD_ERROR =  9200007; //账号原始密码错误
+    USER_FORGET_PASSWORD_VALID_TOKEN_ERROR =  9200008; //通过邮箱找回密码，token失效
+    USER_EMAIL_EXIST = 9200009; // 用户邮箱已经存在
+    USER_EMAIL_NOT_EXIST = 9200010; // 用户邮箱不存在
+    USER_REGISTER_REQUEST_FREQUENCE = 9200011; // 当前ip访问请求频繁
+    USER_STATUS_DELETED = 9200012;// 用户已经被删除了
+    USER_VERIFICATION_ERROR = 9200013; // 用户校验码错误
+    USER_ASSET_EXIST = 9200014; // 用户存在资产
+    USER_ORIGIN_PASSWORD_CANNOT_SAME_ERROR = 9200015; //密码不能使用原始密码错误
+
+//####################订单的以 9300001 递增##############
+
+    ORDER_NOT_FOUND =  9300001; //订单查询失败
+    ORDER_CANCEL_STATUS_WRONG  =  9300002; //当前订单状态不允许取消操作
+    ORDER_SAVE_UPDATE_STOCK_ERROR = 9300003; //创建订单扣减库存失败
+    ORDER_SAVE_SPU_OFF_SALE_ERROR = 9300004; //商品已下架
+    ORDER_EXCHANGE_PRODUCT_BOX_STATUS_ERROR = 9300005; //兑换商品，盲盒状态不是待兑换，请刷新重试
+    ORDER_EXCHANGE_PRODUCT_CONCURRENT_OPERATION_ERROR = 9300006; //兑换商品，其他设备正在操作盲盒兑换，请稍后再试
+    ORDER_EXCHANGE_HKC_BOX_STATUS_ERROR = 9300007; //兑换HKC，盲盒状态不是待兑换，请刷新重试
+    ORDER_EXCHANGE_HKC_CONCURRENT_OPERATION_ERROR = 9300008; //兑换HKC，其他设备正在操作盲盒兑换，请稍后再试
+    ORDER_SAVE_LOCK_HCK_ERROR = 9300009;  // 下单 扣减HKC异常
+    ORDER_PLACE_ACTIVITY_NOT_SAME = 9300101;//下单活动不一致
+    ORDER_PLACE_PRICE_NOT_SAME = 9300102;//下单金额不一致
+    ORDER_PLACE_ADDRESS_NOT_AVAILABLE = 9300103; //下单地址不可使用
+    UNFINISHED_ORDER_EXIST = 9300104; // 存在未完成的订单
+    PLACE_ORDER_ADDRESS_NOT_TAX_NUM = 9300105;//下单地址税号不可以为空（巴西、智利）
+
+
+    REFUND_ERROR = 9310004;//退款失败
+    REFUND_NOT_FOUND = 9310001; //退款单查询失败
+    REFUND_CREATE_STATUS_WRONG = 9310002;//当前状态不允许发起退款
+    REFUND_CREATE_PRICE_ERROR = 9310003;//退款金额不正确
+    COUPON_CODE_DO_NOT_USE = 9310005; // COUPON_CODE 不可用
+    SKU_IS_INVALID = 9310006; // 无效SKU
+    COUPON_CODE_INVALID = 9310007; // COUPON_CODE 过期
+    COUPON_CODE_NOT_EXIST = 9310008; // COUPON_CODE 不存在
+    COUPON_CODE_NOT_REUSE = 9310009; // COUPON_CODE 只能使用一次/不能重复使用
+    COUPON_CODE_ONLY_FIRST_ORDER = 9310010; // COUPON_CODE 只能首单使用
+    COUPON_CODE_NON_CONFORMITY_PRODUCT = 9310011; // 不满足code设置的商品
+    COUPON_CODE_CLAIM_LIMITED = 9310012; // 领取code 超过了领取达到领取总次数限制，不能领取le
+    COUPON_CODE_CLAIM_REPEATED = 9310013;// 重复领取code
+    PLACE_ORDER_USER_IN_BLACK_LIST = 9310014; // 用户属于黑名单用户
+    SPECIAL_OFFER_TIME_INVALID = 9310015; //  SPECIAL_OFFER已经过期
+    COUPON_CODE_TIME_INVALID = 9310016; // COUPON CODE 已过期
+    PLACE_ORDER_USER_COUNTRY_IN_BLACK_LIST = 9310017; // 用户国家属于黑名单国家
+    PLACE_ORDER_PAYMENT_METHOD_INVALID = 9310018; //  下单、支付方式无效
+    PLACE_ORDER_FLASH_SALE_PRODUCT_UPPER_LIMIT = 9310019; // Flash Sale商品购买数量已到上限
+    PRE_ORDER_NEED_ADDRESS = 9310020; //  预下单需要填写地址
+
+    //####################支付的以 9400001 递增##############
+    PAY_ORDER_ERROR = 9400001;  //支付订单失败
+    PAY_ORDER_EXISTS = 9400002;  //支付订单已存在
+
+    PAYMENT_ERROR = 9410001;  //支付方式发起失败
+    PAYMENT_CAPTURE_ERROR = 9410400;  //支付方式捕获异常
+    PAYMENT_CAPTURE_AMOUNT_INSUFFICIENT = 9410422;  //支付方式捕获异常(金额不足)
+
+    PAYMENT_HKC_ERROR = 9420001;  //支付订单 HKC抵扣失败
+
+
+    //####################搜索的以 9500001 递增##############
+
+    //####################购物车的以 9600001 递增##############
+    ADD_CART_SKU_SOLD_OUT = 9600001; // SKU售罄
+    PRODUCT_ADDED_TO_UPPER_LIMIT = 9600002; // 商品已经添加到上限了
+    FLASH_SALE_PRODUCT_ADDED_TO_UPPER_LIMIT = 9600003; // FLASH SALE商品已经添加到上限了
+
+    //####################活动的以 9700001 递增##############
+    ACTIVITY_NO_DATA = 9700001;  //接口无数据
+    ACTIVITY_PARAMETER_INVALID = 9700002;  //接口请求参数不合法
+    DATA_REPEATED = 9700003;  //数据重复
+    CATEGORY_EMPTY = 9700004;  //页面+国家站+性别下的类目配置为空
+    COUPON_CHANGE_CLAIM_NUM_INVALID = 9700005;  //修改coupon 可领取数量不合法
+}
+
+message Result {
+    Code code = 1;
+    string msg = 2;
+    google.protobuf.Any data = 3;
+    double currencyRate = 4;
+}
+
+

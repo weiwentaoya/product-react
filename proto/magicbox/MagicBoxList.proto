@@ -1,0 +1,14 @@
+syntax = "proto3";
+package App.Magicbox.MagicBoxList;
+option objc_class_prefix = "MagicBoxList";
+option java_package = "com.asiainno.hekka.proto.app.magicbox";
+import "MagicBoxAppModuleInfo.proto";
+
+//url: /product/magicBox/getMagicBoxInfoList
+message Request {
+    int64 id = 1; // Id
+}
+
+message Response {
+    repeated App.Magicbox.MagicBoxAppModuleInfo.MagicBoxInfo magicBoxList = 1;
+}

@@ -1,0 +1,134 @@
+syntax = "proto3";
+package App.Order.ConfirmOrderQuery;
+option objc_class_prefix = "ConfirmOrderQuery";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/confirm/query
+message Request {
+  int32  source               = 1; // SKU数据来源    1: 购物车  2: 商品详情页
+  int64  addressId            = 2; // 收货地址ID 可空
+  int32  shippingMethodId     = 3; // 邮寄方式ID
+  int32  paymentMethodId      = 4; // 支付方式ID
+  string couponCode           = 5; // CouponCode码 可空
+  int32  hkcRatio             = 6; // hkc抵扣比例 可空
+  int64  spuId                = 7; // source=2时传
+  int64  saleSkuId            = 8; // source=2时传
+  int32  skuQuantity          = 9; // 购买SKU的数量, source=2时传 默认是1
+  int64  specialOfferId       = 10; // specialOffer活动ID 【商品详情页过来必传，没有值传-1】
+  int64  specialOfferLadderId = 11; //  specialOffer阶梯ID
+  int32  joinSpecialOfferFlag = 12; //  是否让SpecialOffer参与到计算逻辑中来 1:是 2:否 默认值:1
+  int32  autoSelectCouponCodeFlag = 13; //  是否自动选中CouponCode 默认自动选中 0:自动选中 1:不自动选中
+}
+
+message Response {
+  AddressInfo                     address              = 1;
+  repeated SkuInfo                skuList              = 3; // 商品列表
+  CouponCode                      couponCode           = 4; // 优惠券
+  HkcDetail                       hkcInfo              = 5; // 可用hkc抵扣的档位
+  Amount                          amount               = 6; // 当前币种金额
+  Amount                          usdAmount            = 7; // 默认币种金额
+  repeated SkuInfo                notShippingSkuList   = 8; // 不支持配送的SKU列表
+  SpecialOffer                    specialOfferRes      = 9; //  specialOffer使用信息
+  int64                           scribeShippingAmount = 10;// 免运费后，当时使用的运费金额
+  int32                           discountNotUseReason = 11;// 优惠信息不可用标识 1: SpecialOffer过期  2: CouponCode过期
+  repeated CouponCodeNotUseReason couponCodeNotReasonList  = 12; // CouponCode不可用原因
+}
+
+message SkuInfo {
+  int64  productId            = 1;
+  int64  spuId                = 2;
+  int64  saleSkuId            = 3;
+  string proName              = 4; // 商品标题
+  string image                = 5; // 图片地址
+  string discountStr          = 6; // 优惠百分比
+  bool   discountStrShow      = 7; // 是否展示优惠百分比
+  int64  salePrice            = 8; // 销售价
+  int32  inventory            = 9; // 库存
+  bool   onlyShow             = 10; // 是否展示仅剩几件
+  string optionFormat         = 11; // 商品规格格式化
+  int32  quantity             = 12; // 商品数量
+  int64  usdSalePrice         = 13; //  美元销售价 埋点用
+  string path                 = 14; // 加购路径 埋点用
+  bool   invalidFlag          = 15; // 失效状态
+  string handle               = 16; // 商品handle
+  int64  firstCategoryId      = 17; //  一级类目ID  埋点用
+  string enFirstCategoryName  = 18; //  一级类目名称-英文  埋点用
+  int64  secondCategoryId     = 19; //  二级类目ID  埋点用
+  string enSecondCategoryName = 20; //  二级类目名称-英文  埋点用
+  int64  thirdCategoryId      = 21; //  三级类目ID  埋点用
+  string enThirdCategoryName  = 22; //  三级类目名称-英文  埋点用
+  int64  flashSaleId          = 23; // FLASH SALE活动ID
+}
+
+message AddressInfo {
+  int64  id          = 1; //地址主键 有为更新，没有就新增
+  string countryCode = 2;// 国家码
+  string province    = 3;// 省
+  string city        = 4;//城市
+  string zoneCode    = 5;//手机号区号码
+  string phone       = 6;//手机号
+  string address1    = 7;
+  string address2    = 8;
+  int32  isDefault   = 9; // 1 为默认地址
+  string zipCode     = 10;
+  int64  userId      = 11;
+  string fullName    = 12;
+  int32  isEnable    = 13;  // 1-可用 0-不可用
+
+  string taxNum      = 14; //税号
+  int32  taxType     = 15;//类型1 CPF 2 CNPJ 3 RUT
+}
+
+message CouponCode {
+  bool   useCouponCodeFlag        = 1; // 是否使用 Code
+  int32  availableCouponCodeCount = 2; // 可用Code的数量 useCouponCodeFlag=fale时返回
+  int64  couponCodeId             = 3;
+  string couponCode               = 4; // Code码  useCouponCodeFlag=true 时返回
+  int64  currencyAmount           = 5; // 选中的Code优惠金额 (当前币种) useCouponCodeFlag=true 时返回
+  bool   rejectHkcFlag            = 6; // 和HKC是否排斥 useCouponCodeFlag=true 时返回
+}
+
+
+message HkcDetail {
+  string            currency          = 1;//币种
+  int64             amount            = 2;//账户额度
+  string            exchangeNum       = 3;//币种兑换比例
+  repeated HkcRatio deductibleHkcList = 4;//抵扣可使用档位
+  bool              canUseFlag        = 5;// 是否可用标志，如果不可用代表其他优惠可能和HKC有互斥逻辑
+  int32             notUseReasonType  = 6;//  不能使用原因  1:SpecialOffer和HKC互斥  2:CouponCode和HKC互斥
+}
+
+message HkcRatio {
+  int32 hkcRatio               = 1;//抵扣比例当前25，50，75, 100
+  int64 amount                 = 2;//抵扣比例对应的HKC
+  int64 discountCurrencyAmount = 3;//抵扣币种金额
+}
+
+message Amount {
+  int64 subtotal                  = 1; // 总金额
+  int64 discount                  = 2; // 优惠金额
+  int64 shipping                  = 3; // 运费
+  int64 hkc                       = 4; // hkc抵扣金额
+  int64 total                     = 5; // 实付金额 = 总金额 - 优惠金额
+  int64 specialOfferDiscountPrice = 6; // SpecialOffer 已经满足的优惠阶梯中 优惠金额
+  int64 couponCodeDiscountPrice   = 7;// couponCode 选中的Code优惠金额 (当前币种)
+  int64 ownSpecialOfferDiscountPrice = 8; // 如果有不能送达的商品，所有商品计算后，SpecialOffer  优惠金额
+}
+
+message SpecialOffer{
+  int64          id                = 1;
+  int32          type              = 2; // 当前specialOffer的优惠类型 1:根据数量打折扣 2:根据数量减金额 3:根据金额打折扣 4:根据金额减金额
+  int64          ladderId          = 3; //  满足的优惠阶段ID
+  int32          quantityThreshold = 4; // 已经满足优惠的阶梯中 满足的件数门槛
+  int64          priceThreshold    = 5; // 已经满足的优惠阶梯中 满足的金额门槛
+  int32          discountRate      = 6; // 已经满足的优惠阶梯中 优惠百分比
+  int64          discountPrice     = 7; // 已经满足的优惠阶梯中 优惠金额
+  bool           canUseFlag        = 8; // 是否可使用
+  repeated int32 excludeIdList     = 9; //  互斥规则 1:CouponCode 2:SpecialOffer 3:HKC
+}
+
+message CouponCodeNotUseReason{
+  int32 notUseReasonType = 1; // 1:未到使用时间; 2:不满足金额条件; 3. 不满足数量条件; 4:不能与HKC共享; 5:不能与SpecialOffer共享; 6:选择商品范围不在CouponCode的商品范围内 7:当前CouponCode只能首单使用 8:仅APP可用 9:仅WEB可用
+  int32 diffQuantity     = 2; // 与CouponCode配置相差数量
+  int64 diffPrice        = 3; // 与CouponCode配置相差金额
+}

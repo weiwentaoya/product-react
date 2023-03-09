@@ -1,0 +1,58 @@
+syntax = "proto3";
+package UserPreload;
+option objc_class_prefix="UserPreload";
+option java_package = "com.asiainno.hekka.proto.user";
+
+//url: https://****.com/user/preload
+message Request {
+    string clientIp = 1;// 客户端原始Ip
+
+}
+message Response {
+    H5Config h5Config = 1;
+    int32 firstPageType = 2;// 非登录用户进入app，入口页page  1 登录 2 注册
+    repeated CurrencyInfo list = 3;
+    string  cdnUrl = 4; // cdn地址
+    bool    isShowBox = 5; // 是否显示盲盒
+    map<string,ActivityNavInfo> activityNavMap = 6; //活动导航信息映射表
+    string nationalStoreId = 7;// 国家站Id
+    string ipCountry = 8;// 根据ip获取的国家码
+    repeated string invalidCountryList = 9;// 无效国家列表
+    SettingInfo settingInfo = 10; //设置信息
+}
+
+message H5Config {
+    string privacyUrl = 1; // 隐私协议
+    string termUrl = 2;// 用户条款
+    string feedbackUrl = 3;//反馈页面
+    string aboutUsUrl = 4;//关于我们
+    string payDescUrl = 5;//支付说明页
+    string howToPlay = 6;//Magic Box Rules
+    string refundUrl = 7;//退款说明
+    string contactUsUrl = 8; // 联系我们连接
+    string mysteryBoxUrl = 9; // 盲盒视频链接
+    string nationalStoreHost = 10; // 国家站host
+    string shippingUrl = 11; // 运费模板
+    string addressUrl=12;// 编辑地址url
+}
+
+//语言信息
+message CurrencyInfo {
+    string currency     = 1; //货币名称
+    string symbol = 2; //货币符号
+}
+
+
+//活动导航信息
+message ActivityNavInfo {
+    int64  navId = 1; //导航Id
+    string name  = 2; //导航名称
+    string title = 3; //埋点用
+}
+
+
+//设置信息
+message SettingInfo {
+    string skinTemplate     = 2; //皮肤模板
+    int32 trustpolitSwitch  = 3; //trustpolit开关 1:启用 2:不启用
+}

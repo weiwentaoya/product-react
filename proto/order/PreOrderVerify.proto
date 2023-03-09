@@ -1,0 +1,13 @@
+syntax = "proto3";
+package App.Order.PreOrderVerify;
+option objc_class_prefix="PreOrderVerify";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/magicBox/buyNowVerify
+//魔盒app下单 url:
+message Request {
+    int64 magicBoxTplId = 1;//魔盒模板ID
+}
+message Response {
+    int32 id = 1; // Id
+}

@@ -1,0 +1,52 @@
+syntax = "proto3";
+package App.Order.OrderListV3;
+option objc_class_prefix="OrderListV3";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/orderList/v3
+message Request {
+  int32  pageNum       = 1;
+  int32  pageSize      = 2;
+  string searchName    = 3;//搜索名称
+  int32  appOrderState = 4;//app订单状态  1未支付/2处理中/3货品交付/4退款/5取消
+}
+
+message Response {
+  int32              total   = 1; // 总条数
+  int32              size    = 2; // 页大小
+  int32              current = 3; // 当前页
+  int32              pages   = 4; // 总页数
+  repeated OrderInfo records = 5; //  数据列表
+}
+
+message OrderInfo {
+  string             orderNo                = 1; // 订单编号
+  int32              appOrderState          = 2; //app订单状态  1未支付/2处理中/3货品交付/4退款/5取消
+  int64              remainingTimeOfPayment = 3; // 支付剩余时间
+  string             currencyCode           = 4; //  订单支付币种
+  int32              payWay                 = 5; // 支付方式 2-Paypal 3-stripe
+  repeated OrderItem orderItemList          = 6;
+  int64              createTime             = 7; // 订单创建时间
+  int64              paymentCurrencyPrice   = 8; //  应付金额
+  PaymentInfo        paymentInfo            = 9; // 快捷支付信息
+}
+
+message OrderItem {
+  int64  skuId        = 1;
+  string proName      = 2; // 商品标题
+  string skuPhoto     = 3; //  商品图片
+  string optionFormat = 4; // 商品规格格式化
+  int32  quantity     = 5;
+  int64  salePrice    = 6; // 销售价
+  string handle       = 7; // 商品handle
+  int64  flashSaleId  = 8; // FlashSale活动ID
+}
+
+message PaymentInfo{
+  int32  paymentMethodId = 1; // 支付方式ID
+  string payUrl          = 2;//H5支付url
+  string flowNo          = 3; // 支付单编号
+  string voucher         = 4; // SDK支付凭据
+  string clientToken     = 5; //  klarna 预下单token
+  string sessionId       = 6; // klarna sessionId
+}

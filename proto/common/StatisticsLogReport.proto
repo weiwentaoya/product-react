@@ -1,0 +1,24 @@
+syntax = "proto3";
+package Common.StatisticsLogReport;
+option objc_class_prefix = "StatisticsLogReport";
+option java_package = "com.asiainno.hekka.proto.common";
+
+//url: https://****.com/common/statistics/logReport
+message Request {
+  repeated ReportData list = 1;
+}
+
+message ReportData {
+  string eventId = 1; // 统计事件id
+  string params = 2; // 上报参数 json
+  int64 logTime = 3;//触发事件是的客户端时间点
+  string dt =4;//20210201
+  string countryCode = 5;//国家码
+  int64 nationStoreId = 6;// 国家站id
+  string language = 7;// 用户使用的语言
+  string webUrl=8; // h5 埋点时间时的地址
+  string utm=9; // 推广时推广参数
+  string grayVersion=10; // 灰度版本
+}
+
+message Response {}

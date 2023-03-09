@@ -1,0 +1,16 @@
+syntax = "proto3";
+package CityList;
+option objc_class_prefix="CityList";
+option java_package = "com.asiainno.hekka.proto.user.country.config";
+import "AddrModelInfo.proto";
+
+//城市列表
+//url: https://****.com/user/countryCityConfig/city/list
+message Request {
+    string countryCode = 1; // 国家码
+    int64 stateId = 2;      // 州/省 id
+}
+
+message Response {
+    repeated AddrModelInfo.AddrInfo addr = 1;
+}

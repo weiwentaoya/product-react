@@ -1,0 +1,20 @@
+syntax = "proto3";
+package App.Acitivity.DiscountForProductDetail;
+option objc_class_prefix="DiscountForProductDetail";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+
+import "ActivityCodeInfo.proto";
+import "SpecialOfferInfo.proto";
+
+//获取(站点)单个spu下可用活动列表
+//url: https://****.com/activity/productDetail/discount
+message Request {
+  int64 spuId = 1;
+}
+
+message Response {
+  // 优惠券列表
+  repeated ActivityCodeInfo.ActivityCodeInfo couponList = 1;
+  // specialList
+  repeated SpecialOfferInfo.SpecialOfferInfo specialOfferList = 2;
+}

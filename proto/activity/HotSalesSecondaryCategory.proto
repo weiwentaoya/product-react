@@ -1,0 +1,25 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-03-30 12:04
+ * @Description    热销首页Hot Sales的热卖二级分类(包含二级分类的名称、销量最高商品的图片link，当前分类下的7天总销量)
+ */
+syntax = "proto3";
+package Activity.HotSales.HotSalesSecondaryCategory;
+option objc_class_prefix="HotSalesSecondaryCategory";
+option java_package = "com.asiainno.hekka.proto.activity.hotsales";
+
+message HotSalesSecondaryCategory {
+  //当前二级分类下商品的图片链接
+  string imgLink = 1;
+  //当前二级分类ID
+  int64 secondaryCategoryId = 2;
+  //当前二级分类的名称
+  string secondaryCategory = 3;
+  //当前二级分类的一级分类ID
+  int64 baseCategoryId = 4;
+  //当前二级分类下商品的7天销量总计
+  int64 orderCount = 5;
+  //7天销量最高的商品Id
+  int64 productId = 6;
+}

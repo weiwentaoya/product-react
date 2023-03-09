@@ -1,0 +1,18 @@
+syntax = "proto3";
+package App.Acitivity.CouponPopupIndex;
+option objc_class_prefix="CouponPopupIndex";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+import "ActivityCodeInfo.proto";
+
+// 用户的领取的券列表
+//url: https://****.com/activity/couponPopup/codeList
+message Request {
+}
+
+message Response {
+  repeated ActivityCodeInfo.ActivityCodeInfo list = 1;
+  string claimText = 2; // 未领取说明
+  string claimedText =3; // 已领取说明
+  bool hasNewUserZone = 4; //是否包含newUserZone
+}
+

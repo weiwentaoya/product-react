@@ -1,0 +1,24 @@
+syntax = "proto3";
+package App.Account.AssetFlowList;
+option objc_class_prefix="AssetFlowList";
+option java_package = "com.asiainno.hekka.proto.app.account";
+
+//用户HKC流水表
+//url: https://****.com/user/account/assetFlowList
+message Request {
+    int64 id = 1; //最后一条发生id
+    int32 assetType= 2;// 账户类型 1HKC
+}
+
+message Response {
+    repeated AssetFlowInfo assetFlowList = 1; // 流水列表
+}
+
+//用户资产流水
+message AssetFlowInfo{
+    int64 amount = 1;//改变的值
+    int32 assetType= 2;// 账户类型 1HKC
+    int32 type= 3;// 1流入/2流出
+    int64 id= 4;// 主键
+    int64 createTime= 5;// 创建时间
+}

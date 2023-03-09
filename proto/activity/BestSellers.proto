@@ -1,0 +1,25 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-03-30 15:45
+ * @Description    Best Sellers页面
+ */
+syntax = "proto3";
+package Activity.BestSellers.BestSellers;
+option objc_class_prefix = "BestSellers";
+option java_package = "com.asiainno.hekka.proto.activity.bestsellers";
+import "BestSellersBaseCategory.proto";
+import "BestSellersHotSecondaryCategory.proto";
+
+//url: https://****.com/activity/hotsales/more
+message Request {
+  //一级分类ID(可选值)
+  int64 baseCategoryId = 1;
+  //是否需要返回顶部的一级类目列表
+  bool requiredBaseCates = 2;
+}
+
+message Response {
+  repeated BestSellersBaseCategory.BestSellersBaseCategory baseCategoryList = 1;
+  repeated BestSellersHotSecondaryCategory.BestSellersHotSecondaryCategory secondaryCategoryList = 2;
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+package App.Product.AppProductCommentDefaultList;
+option objc_class_prefix = "AppProductCommentDefaultList";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "AppProductCommentInfo.proto";
+
+//app商城 商品详情默认评论列表  2条记录
+//url: https://****.com/product/comment/getDefaultList
+message Request {
+    int64 spuId = 1; //SPU ID
+}
+
+message Response {
+    int32 total = 1; //评论总数
+    repeated AppProductCommentInfo.AppCommentInfo commentList = 2;//商品评论List
+}
+
+
+
+

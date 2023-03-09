@@ -1,0 +1,26 @@
+syntax = "proto3";
+package App.Order.OrderPackageDetail;
+option objc_class_prefix="OrderPackageDetail";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/orderPackage
+message Request {
+  string orderNo = 1; //  订单号
+}
+
+message Response {
+  repeated Package packageList = 1; // 包裹列表
+}
+
+message Package {
+  string trackNumber = 1; // 物流单号
+  string trackUrl = 2; // 物流查询链接
+  string companyName = 3; // 物流公司名称
+  repeated string skuPhotoList = 4; // 包裹下的SKU图片
+  repeated LogisticsDetail logisticsDetailList = 5; // 物流详情
+}
+
+message LogisticsDetail {
+  int64 timestamp = 1;
+  string message = 2;
+}

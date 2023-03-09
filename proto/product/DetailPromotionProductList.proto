@@ -1,0 +1,23 @@
+syntax = "proto3";
+package App.Product.DetailPromotionProductList;
+option objc_class_prefix = "DetailPromotionProductList";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+
+//商品详情页推荐商品列表
+//url: https://****.com/product/list/detailPromotionProductList
+message Request {
+    int64  spuId    = 1; //商品spuId
+    string sortId   = 2; // 排序Id 分页使用
+    int32  pageNum  = 3; //第几页
+    int32 pageSize = 6; //
+}
+
+message Response {
+    repeated Component.SpuInfo list = 1;//商品信息List
+    repeated Component.SpuInfo saleTestList = 2;//测款商品信息List
+}
+
+
+
+

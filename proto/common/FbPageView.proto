@@ -1,0 +1,13 @@
+syntax = "proto3";
+package Common.FbPageView;
+option objc_class_prefix = "FbPageView";
+option java_package = "com.asiainno.hekka.proto.common";
+
+//url: https://****.com/common/pageview
+message Request {
+  string eventId = 1;  // 事件请求id
+}
+
+message Response {
+
+}

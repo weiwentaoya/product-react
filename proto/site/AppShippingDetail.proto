@@ -1,0 +1,21 @@
+syntax = "proto3";
+package App.Site.AppShippingDetail;
+option objc_class_prefix = "AppShippingDetail";
+option java_package = "com.asiainno.hekka.proto.app.site";
+import "ShippingDetailModuleInfo.proto";
+
+//url: https://****.com/product/shipping/getShippingInfo
+message Request {
+    string country = 1;
+    int64 spuId = 8; //spuId
+}
+
+message Response {
+    ShippingDetailModuleInfo.ShippingDetailInfo freeShippingInfo = 1; //包邮
+    int64 templateId = 2;  //模版ID
+    int64 collectionId = 3; //商品集合ID
+    repeated ShippingDetailModuleInfo.ShippingDetailInfo shippingInfoList = 4;//运费信息多条
+
+}
+
+

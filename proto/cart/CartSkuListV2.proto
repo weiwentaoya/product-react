@@ -1,0 +1,88 @@
+syntax = "proto3";
+package App.Cart.CartSkuListV2;
+option objc_class_prefix = "CartSkuListV2";
+option java_package = "com.asiainno.hekka.proto.app.cart";
+
+
+//url: https://****.com/order/cart/list
+message Request {
+}
+
+message Response {
+  repeated SkuInfo skuList             = 1; // 商品列表
+  Shipping         shipping            = 2; // 运费模板
+  Amount           amount              = 3; // 购物车金额
+  Amount           usdAmount           = 4; // 美元对应的金额
+  int32            quantity            = 5; // 购物车总数量
+  SpecialOffer     specialOfferRes     = 6; // specialOffer
+  CouponCodeInfo   recommendCouponCode = 7; // 购物车推荐Code
+}
+
+message SkuInfo {
+  int64  productId       = 1;
+  int64  spuId           = 2;
+  int64  saleSkuId       = 3;
+  string proName         = 4; // 商品标题
+  string usProName       = 5; // 默认语言标题
+  string image           = 6; // 图片地址
+  string discountStr     = 7; // 优惠百分比
+  bool   discountStrShow = 8; // 是否展示优惠百分比
+  int64  salePrice       = 9; // 销售价
+  int32  inventory       = 10; // 库存
+  bool   onlyShow        = 11; // 是否展示仅剩几件
+  string optionFormat    = 12; // 商品规格格式化
+  int32  quantity        = 13; // 商品数量
+  bool   invalidFlag     = 14; // 失效状态
+  int32  selected        = 15; // 是否选中 1: 选中  2:未选中
+  string path            = 16; // 加购路径(path)
+  int64  categoryIdOne   = 17; // 一级类目就
+  int64  categoryIdTwo   = 18; // 二级类目
+  int64  categoryIdThree = 19; // 三级类目
+  string handle          = 20; // 商品handle
+  int64  flashSaleId     = 21; // FLASH SALE活动ID
+  int64  marketPrice     = 22; // 市场价
+}
+
+message Shipping {
+  int64 freeShippingThreshold        = 1; // 免运费门槛
+  int64 freeShippingAmountDifference = 2; // 当前总金额与免运费门槛的差额
+  int64 pieceTogetherCollectionId    = 3; // 凑单集合ID
+  bool  freeShippingFlag             = 4; // 是否免运费
+  bool  showFlag                     = 5; // 是否展示免运费提示框
+}
+
+message Amount {
+  int64 subtotal                 = 1; // 商品总价
+  int64 discount                 = 2; // 优惠金额
+  int64 total                    = 3; // 商品实际支付总价
+  int64 totalMarketDiscountPrice = 4; //  基于市场价计算的优惠金额总和
+  int64 totalMarketPrice         = 5; //  基于市场价计算总金额(优惠前)
+  int64 totalMarketPayPrice      = 6; // 基于市场价计算的实付金额(基于市场价优惠后)
+}
+
+
+message SpecialOffer {
+  int64 id                             = 1;
+  int32 type                           = 2; // 当前specialOffer的优惠类型 1:根据数量打折扣 2:根据数量减金额 3:根据金额打折扣 4:根据金额减金额
+  int64 currentLadderId                = 3; //  满足的优惠阶段ID
+  int32 currentLadderQuantityThreshold = 4; // 已经满足优惠的阶梯中 满足的件数门槛
+  int64 currentLadderPriceThreshold    = 5; // 已经满足的优惠阶梯中 满足的金额门槛
+  int32 currentLadderDiscountRate      = 6; // 已经满足的优惠阶梯中 优惠百分比
+  int64 currentLadderDiscountPrice     = 7; // 已经满足的优惠阶梯中 优惠金额
+  int64 nextLadderId                   = 8; // 未满足的special offer阶段ID
+  int32 nextLadderDiffQuantity         = 9; // 距离满足条件还差的件数
+  int64 nextLadderDiffPrice            = 10; // 距离满足条件还差的金额
+  int32 nextLadderDiscountRate         = 11; // 满足后优惠的百分比
+  int64 nextLadderDiscountPrice        = 12; // 满足后优惠的金额
+}
+
+message CouponCodeInfo {
+  int32  codeType             = 1; // 1:优惠金额 2:优惠百分比
+  int32  codeValue            = 2; // 优惠值
+  int32  restrictionRule      = 3; // 使用限制类型 1. 不做限制 ,2. 最小订单金额，订单内商品满足最小金额时可用计算时不包含邮费,3. 最小商品数量 订单内商品满足最小数量时可用
+  int32  restrictionRuleValue = 4; // 限制类型对应的值
+  string code                 = 5; // code值
+  int64  startTime            = 6; // 开始时间
+  int64  endTime              = 7; // 结束时间
+  int64  discountPrice        = 8; // 实际优惠金额
+}

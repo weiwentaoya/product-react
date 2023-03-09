@@ -1,0 +1,20 @@
+syntax = "proto3";
+package App.Pages.PagesNavProducts;
+option objc_class_prefix="PagesNavProducts";
+option java_package = "com.asiainno.hekka.proto.app.pages";
+import "Component.proto";
+
+//获取pages下 tab 数据
+//url: https://****.com/activity/pages/products
+message Request {
+    string sortId    = 1; // 排序Id 分页使用,Response.spuInfoList最后一条数据的sortId 透传
+    int64  detailId  = 2; // 自定义页面配置项id
+    string sortType  = 3; // 排序类型 Recommend/Latest/Price
+    string sortOrder = 4; // 排序方式 asc/desc
+    int32  size      = 10; // 每页数据条数
+    repeated int64 topSpuIds = 11; // 置顶spuId
+}
+
+message Response {
+    repeated Component.SpuInfo spuInfoList =2;
+}

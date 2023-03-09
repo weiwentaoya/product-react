@@ -1,0 +1,38 @@
+syntax = "proto3";
+package App.Pages.PagesNav;
+option objc_class_prefix="PagesNav";
+option java_package = "com.asiainno.hekka.proto.app.pages";
+
+//url: https://****.com/activity/pages/nav
+message Request {
+    int32 pageCode = 1;             // 页面编码
+    int32 preview = 2;              // 是否预览
+}
+
+message Response {
+    int32 pageCode = 1;             // 页面编码
+    string title = 2;               // 页面标题
+    string dataTag = 7;             // 打点上报（废除22/0527）
+    int32 tabType = 8;              // 1-list 2-tab list
+    string traceTitle = 10;         // 打点上报
+
+    repeated PagesBanner imgs = 3;  // banner
+    repeated PagesTab tabs = 4;     // tab 列表（ ProductList 时数据也放在 tabs 里，取第一个就行）
+}
+
+message PagesTab {
+    int64 detailId = 1;     // 自定义页面配置项id
+    string tabName = 2;     // tab 名称
+    string traceTitle = 3;  // 打点上报
+    int32 dataType = 4;     // 数据类别 参考readme
+    string dataSet = 5;     // 数据集id
+}
+
+//banner 图片
+message PagesBanner {
+    int64 detailId = 1;     // 自定义页面配置项id
+    string img = 2;         // banner 图片
+    string traceTitle = 3;  // 打点上报
+    int32 dataType = 4;     // 数据类别 参考readme
+    string dataSet = 5;     // 数据集id
+}

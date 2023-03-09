@@ -1,0 +1,19 @@
+syntax = "proto3";
+package App.Order.GetBoxPlaceOrderInfo;
+option objc_class_prefix="GetBoxPlaceOrderInfo";
+option java_package = "com.asiainno.hekka.proto.app.order";
+import "OrInfo.proto";
+
+//url: https://****.com/order/magicBox/getBoxPlaceOrderInfo
+message Request {
+    int64 magicBoxTplId = 1; //魔盒模板ID
+    int32 quantity = 2; //数量
+    int32 hkcRatio = 3; //hkc抵扣比例
+
+}
+message Response {
+    OrInfo.PlaceOrderInfo placeOrderInfo = 1; //订单确认页信息
+    OrInfo.OrderBoxInfo orderBoxInfo = 2; //订单确认页盒子信息
+
+}
+

@@ -1,0 +1,10 @@
+syntax = "proto3";
+package Common.CommonInfo;
+option objc_class_prefix = "Info";
+option java_package = "com.asiainno.hekka.proto.common";
+
+//通用字典信息
+message CommonDictInfo {
+    string  key = 1; //字典key
+    string  val = 2; //字典值
+}

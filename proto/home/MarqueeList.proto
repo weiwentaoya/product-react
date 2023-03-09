@@ -1,0 +1,24 @@
+syntax = "proto3";
+package App.Home.MarqueeList;
+option objc_class_prefix = "AppMarqueeList";
+option java_package = "com.asiainno.hekka.proto.app.home";
+
+//跑马灯列表
+//url: /product/marquee/list
+message Request {
+
+}
+
+message Response {
+    repeated MagicBoxMarqueeInfo list  = 1;
+}
+
+//抽取盲盒跑马灯信息
+message MagicBoxMarqueeInfo {
+    int64  userId       = 1; //用户Id
+    string userName     = 2; //用户名
+    string userAvatar   = 3; //用户头像
+    string productName  = 4; //用户名
+    string productImage = 5; //商品列表页主图
+    int64 salePrice     = 6; //商品价格
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+package CheckAddress;
+option objc_class_prefix="CheckAddress";
+option java_package = "com.asiainno.hekka.proto.user.address";
+
+//url: https://****.com/user/address/check
+message Request {
+    string countryCode = 4;// 国家码
+    string province = 5;// 省
+    string city = 6;//城市
+    string zoneCode = 7;//手机号区号码
+    string phone = 8;//手机号
+    string address1 = 9;
+    string address2 = 10;
+    string zipCode = 13; //
+}
+message Response {
+
+}

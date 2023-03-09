@@ -1,0 +1,16 @@
+syntax = "proto3";
+package App.Currency.CurrencyList;
+option objc_class_prefix="CurrencyList";
+option java_package = "com.asiainno.hekka.proto.app.currency";
+
+//url: /user/currency/list
+message Request {}
+message Response {
+    repeated CurrencyInfo list = 1;
+}
+
+//语言信息
+message CurrencyInfo {
+    string currency     = 1; //货币名称
+    string symbol = 2; //货币符号
+}

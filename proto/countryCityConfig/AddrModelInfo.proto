@@ -1,0 +1,19 @@
+syntax = "proto3";
+package AddrModelInfo;
+option objc_class_prefix="AddrModelInfo";
+option java_package = "com.asiainno.hekka.proto.user.country.config";
+
+message AddrInfo {
+    int64 id = 1;               // 国家时为 0
+    string name = 2;            // 国家/州/城市名称
+    string postCode = 3;        // 邮编(只有城市时存在，返回单个)
+    string countryCode = 4;     // 国家码
+    string code = 6;            // 州/城市 简码
+    string postCodes = 10;      // 邮编（只有城市时存在，多个中间,分隔）
+}
+
+//谷歌地址
+message GoogleAddr {
+    string placeId = 2;
+    string description = 3;
+}

@@ -1,0 +1,30 @@
+syntax = "proto3";
+package UserRegister;
+option objc_class_prefix="UserRegister";
+option java_package = "com.asiainno.hekka.proto.user";
+import "UserType.proto";
+import "UserProfileInfo.proto";
+//import "ProfileInfo.proto";
+
+//url: https://****.com/user/register
+message Request {
+    UserType.BindType bindType=1;//第三方类型
+    string countryCode = 2;
+    string email = 3;//注册邮箱
+    string password = 4;//密码
+    string tongdunId = 5;//同盾id
+    string adjustId = 6;
+    int32 registerFrom=7; // 注册来源：1-登录页注册 2-侧边栏 3-用户地址
+    int32 emailSubscribe = 9; // 1-邮件订阅状态 2-取消订阅状态 （默认为订阅）
+
+    string zoneCode = 10;   //手机号区号码
+    string phone = 11;      //手机号
+}
+
+message Response {
+    string token = 1;// 登录token
+    string refreshToken = 2;
+    UserProfileInfo.UserProfileInfo userProfileInfo = 3;
+    bool hasSwitchNationalStore  = 4; //是否切换了国家站
+}
+

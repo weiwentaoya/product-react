@@ -1,0 +1,12 @@
+syntax = "proto3";
+package App.Acitivity.UserCouponCodeNum;
+option objc_class_prefix="UserCouponCodeNum";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+
+// 用户有效的coupon 数量
+//url: https://****.com/activity/user/couponCodeNum
+message Request {}
+message Response {
+  int32 num = 1; // 有效code 数量
+}
+

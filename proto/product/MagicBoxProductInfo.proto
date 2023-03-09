@@ -1,0 +1,21 @@
+syntax = "proto3";
+package App.Product.MagicBoxProductInfo;
+option objc_class_prefix = "MagicBoxProductInfo";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+
+//app 魔盒手机端app商品列表
+message ProductInfo {
+    int64  productId    = 1; //商品id
+    int64  spuId        = 5; //spuId
+    string title        = 10; //商品名称
+    string systemTitle  = 11; //商品系统名称
+    string productImage = 15; //商品列表页主图
+    int64  marketPrice  = 20; //商品市场价
+    int64  salePrice    = 25; //商品销售价
+    int32  type         = 30; // 1: Legend  2:Excellent  3: good  4: Normal
+    int64  boxId        = 35; //盒子Id
+    int64  skuId        =38;//skuId
+    Component.Image productImageInfo = 40; //带宽高的图片信息
+    string handle = 45; //固定格式handle
+}

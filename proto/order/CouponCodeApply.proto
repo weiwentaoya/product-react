@@ -1,0 +1,24 @@
+syntax = "proto3";
+package App.Order.CouponCodeApply;
+option objc_class_prefix="CouponCodeApply";
+option java_package = "com.asiainno.hekka.proto.app.order";
+import "CouponCodeDetail.proto";
+
+//url: https://****.com/order/couponCode/apply
+message Request {
+  int32 source = 1; // SKU数据来源    1: 购物车  2: 商品详情页
+  string couponCode = 2; // CouponCode码
+  int64 spuId = 3; // source=2时传
+  int64 saleSkuId = 4; // source=2时传
+  int32 skuQuantity = 5; // 购买SKU的数量, source=2时传 默认是1
+  int32 hkcRatio = 6; // hkc抵扣比例 可空
+  int64 addressId = 7; // 收货地址ID 可空
+}
+
+message Response {
+  CouponCodeDetail.Detail detail = 1;
+  bool availableFlag = 2; // 是否能使用，true:能使用 false:不能使用
+  int64 diffValue = 3; // 距离使用CouponCode还差多少钱 或 距离使用CouponCode还差多少件商品
+  int32 restrictionRule = 4; // 2: 当前CouponCode限制金额 3: 当前CouponCode限制数量
+}
+

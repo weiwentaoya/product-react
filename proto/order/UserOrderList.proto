@@ -1,0 +1,18 @@
+syntax = "proto3";
+package App.Order.UserOrderList;
+option objc_class_prefix="UserOrderList";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+import "OrInfo.proto";
+
+//url: https://****.com/order/orderList
+//app订单列表 url:
+message Request {
+    string  searchName      = 1;//搜索名称
+    int32   appOrderState   = 2;//app订单状态  1未支付/2处理中/3货品交付/4退款/5取消
+    int64   createTime      = 3;//最后一个下单时间
+}
+
+message Response {
+    repeated OrInfo.OrderInfo orderList = 1; // 订单列表
+}

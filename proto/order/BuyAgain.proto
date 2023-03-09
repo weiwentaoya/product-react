@@ -1,0 +1,13 @@
+syntax = "proto3";
+package App.Order.BuyAgain;
+option objc_class_prefix="BuyAgain";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/buyAgain
+message Request{
+  string orderNo = 1; // 国家站ID
+}
+
+message Response {
+  int32 cartSkuNum = 1; // 购物车SKU数量
+}

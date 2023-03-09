@@ -1,0 +1,16 @@
+syntax = "proto3";
+package App.Magicbox.MyMagicBoxExchange;
+option objc_class_prefix = "MyMagicBoxExchange";
+option java_package = "com.asiainno.hekka.proto.app.magicbox";
+
+//墨盒兑换hkc或者提货 url:/order/magicBox/magicBoxExchange
+message Request {
+    int64 userBoxId     = 1; // 盲盒id
+    int32 exchangeType  = 2; // 兑换类型/1兑换HKC /2提取货物
+    int32 addressId     = 3; // 收货地址
+}
+
+message Response {
+    int32 hkcAmount = 1; // 兑换hkc数量
+    string orderNo  = 2; // 提货订单号
+}

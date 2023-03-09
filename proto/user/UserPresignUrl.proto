@@ -1,0 +1,19 @@
+syntax = "proto3";
+package UserPresignUrl;
+option objc_class_prefix="UserPresignUrl";
+option java_package = "com.asiainno.hekka.proto.user";
+
+// doc https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html
+
+// response url https://hekkamall-upload.s3-accelerate.amazonaws.com/2022/01/08/9ac12a1fdff54c4eb7e7de13731a0c92?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220108T135337Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=AKIAWYN7BAUXKVHALK6A%2F20220108%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=d779cdd3e94595a0ff7be28e71a680238e076d406419770014650e237773c164
+// httpMethod put
+//url: https://****.com/user/preSignUrl
+//url: https://****.com/user/getAppOpLogUrl
+message Request {
+    string fileType = 1; // 文件类型 png, jpg, jpeg 等等 对服务端没影响
+}
+
+message Response {
+    string url  = 1; // 预签名文件地址
+}
+

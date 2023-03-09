@@ -1,0 +1,15 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-03-30 15:02
+ * @Description    Ranking页面顶部的二级分类
+ */
+syntax = "proto3";
+package Activity.Ranking.RankingSecondaryCategory;
+option objc_class_prefix = "RankingSecondaryCategory";
+option java_package = "com.asiainno.hekka.proto.activity.ranking";
+
+message RankingSecondaryCategory {
+  int64 secondaryCategoryId = 1;
+  string secondaryCategoryName = 2;
+}

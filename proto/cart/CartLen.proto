@@ -1,0 +1,13 @@
+syntax = "proto3";
+package App.Cart.CartLen;
+option objc_class_prefix = "CartLen";
+option java_package = "com.asiainno.hekka.proto.app.cart";
+
+//url: https://****.com/order/cart/cartLen
+message Request {
+}
+
+message Response {
+  int32 quantity         = 1; // 购物车数量
+  bool  freeShippingFlag = 2; // 是否免运费
+}

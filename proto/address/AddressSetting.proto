@@ -1,0 +1,27 @@
+syntax = "proto3";
+package AddressSetting;
+option objc_class_prefix="AddressSetting";
+option java_package = "com.asiainno.hekka.proto.user.address";
+
+//url: https://****.com/user/address/setting
+message Request {
+    int64 id=1; //地址主键 有为更新，没有就新增
+    string firstName = 2;
+    string lastName = 3;
+    string countryCode = 4;// 国家码
+    string province = 5;// 省
+    string city = 6;//城市
+    string zoneCode = 7;//手机号区号码
+    string phone = 8;//手机号
+    string address1 = 9;
+    string address2 = 10;
+    int32 isDefault = 12; // 1 为默认地址
+    string zipCode = 13; //
+    string fullName = 14; //
+    string taxNum = 15;// 税号
+    int32 taxType = 16;// 1 CPF 2 CNPJ 3 RUT
+    int32 marketingStatus = 20;  // 手机号营销状态 1-允许 2-不允许
+}
+message Response {
+    int64 id= 1;// 保存或者更新的id
+}

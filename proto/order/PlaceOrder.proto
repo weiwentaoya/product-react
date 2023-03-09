@@ -1,0 +1,16 @@
+syntax = "proto3";
+package App.Order.PlaceOrder;
+option objc_class_prefix="PlaceOrder";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/placeOrder
+//app下单 url:
+import "OrInfo.proto";
+
+message Request {
+    int64 skuId     = 1; //skuId
+    int32 quantity  = 2; //购买数量
+}
+message Response {
+    OrInfo.OrderInfo orderInfo = 1; //
+}

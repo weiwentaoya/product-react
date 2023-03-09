@@ -1,0 +1,151 @@
+syntax = "proto3";
+package App.Order.OrInfo;
+option objc_class_prefix="OrInfo";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+message OrderInfo{
+    string  orderNo             = 1; //订单编号
+    int32   appOrderState       = 2; //app订单状态  1未支付/2处理中/3货品交付/4退款/5取消
+    int64   salePrice           = 3; //支付币种的商品金额
+    string  skuPhoto            = 4; //商品图片
+    string  productName         = 5; //商品名称
+    int32   quantity            = 6; //数量
+    int64   magicBoxId          = 7; //盲盒模板ID
+    int64   createTime          = 8; //下单时间
+    string  payOrderNo          = 9; //三方支付流水号
+    string  payCurrency         = 10; //支付币种
+    int64   payAmount           = 11; //支付币种的支付金额
+    int64   payWay              = 12; //支付方式 1-Paypal 2-stripe
+    string  transportNo         = 13; //物流单号
+    AppStateInfo appStateInfo   = 14; //订单状态信息
+    string  trackingUrl         = 15; //物流追踪地址
+}
+
+//订单状态信息
+message AppStateInfo{
+    int64   processTime       = 1;//流转时间
+    int64   processEndTime    = 2;//流转最晚时间
+    repeated ProcessInfo list = 3;//物流信息
+}
+
+//商品流转信息
+message ProcessInfo{
+    int32 processType   = 1;//运输阶段 1订单确认/2处理货品/3货品交付/4申请退款/5退款处理中/6已退款
+    int64 processTime   = 2;//时间
+    bool isCurrent      = 3;
+}
+
+//收货地址
+message AddressInfo{
+    string addressee    = 1;//收货人
+    string address      = 2;//收货地址
+    string phone        = 3;//联系电话
+}
+
+//商品信息
+message ItemInfo{
+    int64 skuId         = 1;//商品ID
+    string productName  = 2;//商品名称
+    string skuPhoto     = 3;//商品图片
+    int32 quantity      = 4;//商品个数
+    int64 salePrice     = 5;//支付币种的商品单价
+    string currency     = 6;//支付币种
+    string path         = 7;//商品归因
+}
+
+//支付信息
+message PaymentDetail{
+    int64   subtotal      = 1;//支付币种的原价
+    int64   useHkc        = 2;//支付币种的使用HKC抵扣
+    int64   totalAmount   = 3;//支付币种的实际付款金额
+    string  payment       = 4;//支付方式 pp/stripe
+    string  currency      = 5;//支付币种
+    int64   discount      = 6;//优惠金额
+
+}
+//订单支付界面信息
+message PlaceOrderInfo{
+    string currency = 1;//币种
+    double exchangeRate = 2;//币种汇率
+    int32 quantity = 3;//购买数量
+    int64 currencyOriginalTotalPrice = 4;//币种原总价
+    int64 currencyDiscountPrice = 5;//币种活动优惠抵扣
+    int64 currencyTotalPrice = 6;//币种应付
+    int64 currencyHkc = 7;//币种HKC资产抵扣
+    int64 currencyPaymentTotalPrice = 8;//币种资产抵扣后的应付
+    bool newUserBenefit = 9;//是否新手优惠
+    int64 currencyPrice = 10;//币种单价
+}
+
+//订单应付资产抵扣
+message OrderHkcDetail{
+    string  currency = 1;//币种
+    int64   amount = 2;//账户额度
+    string  exchangeNum = 3;//币种兑换比例
+    repeated DiscountAmount discountAmountList=4;//抵扣可使用档位
+}
+//订单资产抵扣档位
+message DiscountAmount{
+    int32  hkcRatio = 1;//抵扣比例当前25，50，75
+    int64   amount = 2;//抵扣比例对应的HKC
+    int64   discountCurrencyAmount = 3;//抵扣币种金额
+}
+//订单确认页盒子信息
+message OrderBoxInfo{
+    int64 magicBoxID = 1;      //盲盒模版id
+    string magicBoxTitle = 2;  //盲盒名称名称
+    string magicBoxImage =3;   //盲盒图片
+}
+
+message OrderPriceInfo{
+    string paymentCurrencyCode = 1;//币种
+    int64 paymentCurrencyPrice = 2;//币种支付金额
+    int64 taxPrice = 3;//税费(美元)
+    int64 shippingPrice = 4;//运费(美元)
+    int64 paymentTotalPrice = 5;//支付金额(美元)
+    int64 totalDiscountPrice = 6;//优惠金额(美元)
+    int64 systemCurrencyPrice = 7;//资产抵扣金额(美元)
+}
+//退款单信息
+message RefundOrderInfo{
+    string orderNo                                      = 1;//订单号
+    string refundNo                                     = 2;//退款单号
+    int32 refundType                                    = 3;//退款单类型 1退款 2退货退款
+    int32 refundStatus                                  = 4;//退款单状态 1:Processing 2:Refunded 3:Closed
+    int64 refundCurrencyPrice                           = 5;//申请退款金额
+    PaymentDetail paymentDetail                         = 6;//支付信息
+    repeated RefundOrderItemInfo refundOrderItemList    = 7;//退款单退款项
+    int64 createTime                                    = 8;//发起时间 & 处理时间
+    int64 reviewerTime                                  = 9;//审核通过或拒绝时间
+    int64 refundSuccessTime                             = 10;//中台退款成功时间
+    repeated RefundProcessInfo refundProcessInfo        = 11;//退款进度流转信息
+    int64 refundHkc                                     = 12;//退HKC数量
+}
+//退款单 退款项
+message RefundOrderItemInfo{
+    int64  skuId                 = 1;//商品ID
+    string productName           = 2;//商品名称
+    string skuPhoto              = 3;//商品图片
+    int32  refundQuantity        = 4;//退款数量
+    int64  refundPrice           = 5;//退款金额
+    string optionFormat          = 6; // 商品规格格式化
+}
+//退款单流转信息
+message RefundProcessInfo{
+    int32 processType   = 1;//退款阶段 1申请退款/2申请退货退款/3申请处理中/4退款申请通过/5退款申请拒绝
+    int64 processTime   = 2;//时间
+    bool isCurrent      = 3;
+}
+//打点收货地址
+message ReportAddressInfo{
+    string countryCode      = 1;//国家码
+    string province         = 2;//省
+    string city             = 3;//城市
+    string zoneCode         = 4;//手机区号
+    string phone            = 5;//手机号
+    string address1         = 6;//
+    string address2         = 7;//
+    string zipCode          = 8;//
+    string fullName         = 9;//姓名
+}
+

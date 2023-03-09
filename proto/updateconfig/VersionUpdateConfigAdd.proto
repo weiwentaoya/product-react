@@ -1,0 +1,15 @@
+syntax = "proto3";
+package VersionUpdateConfigAdd;
+option objc_class_prefix="VersionUpdateConfigAdd";
+option java_package = "com.asiainno.hekka.proto.user";
+//url /admin/version-update-config/add
+message Request {
+    int32 platform = 1;// 1安卓 2 ios
+    string description  =2; // 描述
+    string version = 3;// 版本号
+    int32 isForce = 4; //是否强制更新 1 不强制更新，2 强制更新
+    int64 id  = 5; // id > 0 更新
+}
+
+message Response {}
+

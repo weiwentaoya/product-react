@@ -1,0 +1,19 @@
+syntax = "proto3";
+package Feedback;
+option objc_class_prefix="Feedback";
+option java_package = "com.asiainno.hekka.proto.user";
+
+//url: https://****.com/user/feedback
+message Request {
+    int32 type = 1;// 问题类型
+    string description  =2; // 问题描述
+    repeated string photoList = 3;// 图片列表
+    int32 site = 4; // 站点 目前只有美国站， 可以不传
+    string errorDesc = 5; //档位other error是的描述
+    string userAgent = 7; //档位other error是的描述
+    int64 feedbackTime = 9; //反馈时间
+}
+
+message Response {
+}
+

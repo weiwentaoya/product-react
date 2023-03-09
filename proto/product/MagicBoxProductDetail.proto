@@ -1,0 +1,43 @@
+syntax = "proto3";
+package App.Product.MagicBoxProductDetail;
+option objc_class_prefix = "MagicBoxProductDetail";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+
+
+//app 魔盒手机端app商品详情
+//url: https://****.com/product/product/getMagicBoxProductDetail
+
+message Request {
+    int64 boxId = 1; //盲盒ID
+    int64 spuId = 5; // spuId
+    int64 skuId = 8; //skuId
+}
+
+message Response {
+    int64   productId           = 1; //商品id
+    int64   spuId               = 5; //spuId
+    string  title               = 10; //商品标题
+    string  systemTitle         = 11; //商品系统标题
+    int64   marketPrice         = 15; //商品市场价
+    int64   salePrice           = 20; //商品销售价
+    int32   type                = 25; // 1: Legend  2:Excellent  3: good  4: Normal
+    repeated string mainPhotos  = 30; //主题地址列表
+    repeated string detailPhotos= 35; //详情图地址
+    repeated string skuPhotos   = 36; //sku图地址
+    string  videoUrl            = 40; //视频地址
+    Component.Image videoCoverImage  = 41; //视频封面地址
+    string  description         = 45; // 商品描述
+    repeated string descDetailPhotos= 46; //描述详情图地址
+    repeated Option optionList  = 50; //description 有值, 展示这个, 没有值, 展示 optionList
+    repeated Component.Image mainImageInfos = 51; //主图地址列表带宽高
+    repeated Component.Image detailImageInfos = 52; //详情图地址 宽高
+    repeated Component.Image skuImageInfos = 53; //sku图地址 宽高
+    repeated Component.Image descDetailImages = 55; //描述详情图地址 宽高
+    string handle = 60; //固定格式handle
+}
+
+message Option{
+    string optionName = 1;
+    repeated string optionValNameList = 2;
+}

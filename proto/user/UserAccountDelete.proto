@@ -1,0 +1,15 @@
+syntax = "proto3";
+package UserAccountDelete;
+option objc_class_prefix="UserAccountDelete";
+option java_package = "com.asiainno.hekka.proto.user";
+
+//url: https://****.com/user/delete
+message Request {
+  int32 code = 1; // 删除码
+  string reason = 2; // 删除原因
+  string verification = 3; // 校验码
+}
+
+message Response {
+
+}

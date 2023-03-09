@@ -1,0 +1,20 @@
+syntax = "proto3";
+package App.Order.AppOrderDetail;
+option objc_class_prefix="AppOrderDetail";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+import "OrInfo.proto";
+
+//url: https://****.com/order/orderDetail
+// app订单详情
+message Request {
+    string orderNo = 1;//订单编号
+}
+
+message Response {
+    OrInfo.OrderInfo          orderInfo       = 1;
+    OrInfo.AppStateInfo       stateInfo       = 2;
+    OrInfo.AddressInfo        addressInfo     = 3; // 地址信息
+    OrInfo.PaymentDetail      paymentDetail   = 4; // 支付信息
+    repeated OrInfo.ItemInfo  items            = 5; // 商品信息集合
+}

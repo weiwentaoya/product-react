@@ -1,0 +1,14 @@
+syntax = "proto3";
+package App.Order.KlarnaOrderCommit;
+option objc_class_prefix="KlarnaOrderCommit";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/klarnaOrderCommit
+//klarna提交订单 url:
+message Request {
+    string preFlowNo =1;//预下单号---快捷支付必传
+    string authorizationToken =2;//授权token
+}
+message Response {
+    string  flowNo = 1;//支付单单号
+}

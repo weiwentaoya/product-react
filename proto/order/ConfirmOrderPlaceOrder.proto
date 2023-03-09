@@ -1,0 +1,52 @@
+syntax = "proto3";
+package App.Order.ConfirmOrderPlaceOrder;
+option objc_class_prefix = "ConfirmOrderPlaceOrder";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+
+//url: https://****.com/order/confirm/placeOrder
+message Request {
+  int32  source               = 1; // SKU数据来源    1: 购物车  2: 商品详情页
+  int64  addressId            = 2; // 收货地址ID 可空
+  int32  shippingMethodId     = 3; // 邮寄方式ID
+  int32  paymentMethodId      = 4; // 支付方式ID
+  string couponCode           = 5; // CouponCode码 可空
+  int32  hkcRatio             = 6; // hkc抵扣比例 可空
+  int64  spuId                = 7; // source=2时传
+  int64  saleSkuId            = 8; // source=2时传
+  int32  skuQuantity          = 9; // 购买SKU的数量, source=2时传 默认是1
+  int32  version              = 10; // 版本 默认1
+  string signStr              = 11; // 加密后的串  token={}source={}couponCode={为空的话就填空字符串}hkcRatio={为空的话填0}timestamp={}
+  string path                 = 12; //  末位归因， source=2时传 可空
+  int64  timestamp            = 13; // 时间戳
+  int64  specialOfferId       = 14; // specialOffer活动ID
+  int64  specialOfferLadderId = 15; //  specialOffer阶梯ID
+  int32  platform             = 16; // 平台 1:APP 2:PC 3:H5, 可空,如果为空从当前请求的Header取
+  string preFlowNo            = 17; // 预下单支付编号
+  string recaptchaToken       = 18; // recaptchaToken
+  string recaptchaAction      = 19; // recaptchaAction
+}
+
+message Response {
+  repeated SkuInfo invalidSkuList = 1; // 失效商品列表, 如果这个列表有数据 则下面的返回参数都为空
+  int32            status         = 2; // 当前订单支付状态(主要为0元单准备)  1:未付款  2:已支付
+  string           orderNo        = 3; // 订单编号
+}
+
+
+
+message SkuInfo {
+  int64  productId       = 1;
+  int64  spuId           = 2;
+  int64  saleSkuId       = 3;
+  string proName         = 4; // 商品标题
+  string image           = 5; // 图片地址
+  string discountStr     = 6; // 优惠百分比
+  bool   discountStrShow = 7; // 是否展示优惠百分比
+  int64  salePrice       = 8; // 销售价
+  int32  inventory       = 9; // 库存
+  bool   onlyShow        = 10; // 是否展示仅剩几件
+  string optionFormat    = 11; // 商品规格格式化
+  int32  quantity        = 12; // 商品数量
+  string handle          = 13; // 商品handle
+}

@@ -1,0 +1,29 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-03-30 15:00
+ * @Description    点击Best Sellers里的二级分类进入Ranking页面
+ */
+syntax = "proto3";
+package Activity.Ranking.Ranking;
+option objc_class_prefix = "Ranking";
+option java_package = "com.asiainno.hekka.proto.activity.ranking";
+import "RankingSecondaryCategory.proto";
+import "Component.proto";
+
+//url: https://****.com/activity/bestsellers/index
+message Request {
+  //类目的类型{electronic / fashion},cateType为空则表示electronic+fashion即All
+  string cateType = 1;
+  //二级分类ID(可选值)
+  int64 secondaryCategoryId = 2;
+  //是否需要返回顶部的二级热销类目
+  bool requiredSubCates = 3;
+}
+
+message Response {
+  repeated RankingSecondaryCategory.RankingSecondaryCategory categoryList = 1;
+  repeated Component.SpuInfo productList = 2;
+  //3c / fashion
+  string cateType = 3;
+}

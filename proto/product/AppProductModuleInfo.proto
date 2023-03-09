@@ -1,0 +1,129 @@
+syntax = "proto3";
+package App.Product.AppProductModuleInfo;
+option objc_class_prefix = "AppProductModuleInfo";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+
+message SkuDetail{
+    int64 skuId                 = 1;
+    Component.Image skuPhoto    = 2;             //sku图片
+    int32 saleState             = 3;    // 1: 上架  2: 下架
+
+    int64  marketPrice          = 5; //商品市场价
+    int64  salePrice            = 6; //商品销售价
+    int32 discount              = 8;  //折扣,比如 返回 30, 前端展示 -30%
+    int64 usdSalePrice          = 9;  //美元销售价
+    repeated OptionAndValue skuOptionList = 10;    //sku的 属性/属性值
+
+    bool    canUseKlarna            = 11; //是否可以使用Klarna
+    int64   klarnaSalePrice         = 12; //Klarna商品销售价
+
+    //--------------int64字符串---------------------
+    string  skuIdString             = 51;
+    string  marketPriceString       = 52; //商品市场价
+    string  salePriceString         = 53; //商品销售价
+    string  usdSalePriceString      = 54; //美元销售价
+    string  klarnaSalePriceString   = 55; //Klarna商品销售价
+
+}
+
+message SaleOption{
+    string optionName                   = 1;
+    repeated string optionValueNameList = 2;
+}
+
+message Option {
+    int64 optionId                          = 1;
+    string optionName                       = 2;
+    repeated OptionValue optionValueList    = 3;
+    int32 sizeIconView                      = 4;   //size icon是否展示  1: 展示 0: 不展示
+
+    //--------------int64字符串---------------------
+    string optionIdString                   = 21;
+}
+
+message OptionValue{
+    int64 optionValueId         = 1;
+    string optionValueName      = 2;
+
+    //--------------int64字符串---------------------
+    string optionValueIdString  = 21;
+}
+
+message OptionAndValue {
+    int64 optionId              = 1;
+    int64 optionValueId         = 2;
+    string optionValueName      = 3;
+
+    //--------------int64字符串---------------------
+    string optionIdString       = 21;
+    string optionValueIdString  = 22;
+}
+
+
+message SpecificationInfo {
+    repeated Measurements measurementsList = 1;
+    repeated Size sizeList = 2;
+    repeated SpecTplTableValue specTplTableValueList =  20;
+}
+
+message SpecTplTableValue{
+
+    string measValueId = 2 ; // 测量围度id
+    string sizeValId = 3 ; //size的id
+    string fitUsSize = 4 ;
+    string fitUkSize = 5 ;
+    string fitEuSize = 6 ;
+    string cmLength = 7 ;  //cm值
+    string inchLength = 8 ; // 英寸值
+}
+
+message Size {
+    int64 sizeValId = 1;
+    string sizeValName = 2;
+
+    //--------------int64字符串---------------------
+    string sizeValIdString = 21;
+}
+
+message Measurements {
+    int64 measurementValId = 1;     //测量值的ID
+    string measurementsValName = 2;  //测量值的名称
+
+    //--------------int64字符串---------------------
+    string measurementValIdString = 21;     //测量值的ID
+
+}
+
+message SpuNationalStoreRelationInfo {
+
+    //该商品是否在本站中  0: 不在  1:在
+    int32 productIsInThisNationalStore = 1;
+
+    //参数中spu是否在本站中  0: 不在, 1: 在 (productIsInThisNationalStore = 1时, 有效)
+    int32 spuParamIsInThisNationalStore = 2; //
+
+    //该商品在本站中对应的spuId
+    int64 spuIdInThisNationalStore = 3;
+
+    //该商品在本站中对应的skuId
+    int64 skuIdInThisNationalStore = 4;
+
+    //productIsInThisNationalStore = 1, 参数spu在本站, 返回参数spu的, spu不在本站, 返回要跳转spuB的handle
+    //该商品在本站中的 handle
+    string handleInThisNationalStore = 5;
+
+    //--------------int64字符串---------------------
+    string spuIdInThisNationalStoreString = 21; //该商品在本站中对应的spuId
+    string skuIdInThisNationalStoreString = 22; //该商品在本站中对应的skuId
+
+}
+
+message SpuFlashSaleInfo {
+    string id               = 1; //活动Id
+    string salePrice        = 2; // 活动价
+    int32  discount         = 3; // 折扣
+    string saveSalePrice    = 4; // 节省的钱
+    int64  endTime          = 5; // 结束时间
+    string endTimeString    = 6; // 结束时间
+}

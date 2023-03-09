@@ -1,0 +1,26 @@
+syntax = "proto3";
+package App.SpecialOffer.SpecialOfferDetail;
+option objc_class_prefix="SpecialOfferDetail";
+option java_package = "com.asiainno.hekka.proto.app.specialoffer";
+
+//获取单个spu折扣明细信息
+//url: https://****.com/activity/specialOffer/info
+message Request {
+    int64 offerId = 1;
+}
+
+message Response {
+    int64 id = 1;                       //
+    string type = 2;                    // 折扣类别 参考Readme
+    string title = 5;                   //
+    repeated SpecialOfferDiscount discountList = 12;  //折扣AppJudgeSpuInNationalStore明细
+}
+
+//优惠明细配置
+message SpecialOfferDiscount {
+    int64 offerDiscountId = 1;  //
+    int32 quantity = 4;         // 满xx数量
+    int32 totalPrice = 6;       // 满xx金额
+    int32 reduce = 8;           // 减少金额
+    int32 discount = 10;        // 折扣（%比）
+}

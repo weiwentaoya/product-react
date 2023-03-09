@@ -1,0 +1,15 @@
+syntax = "proto3";
+package App.Cart.GetCartShippingPieceTogetherPrice;
+option objc_class_prefix = "GetCartShippingPieceTogetherPrice";
+option java_package = "com.asiainno.hekka.proto.app.cart";
+//url: https://****.com/order/cart/getCartShippingPieceTogetherPrice
+message Request {
+}
+
+message Response {
+    int64 freeShippingThreshold = 1; // 免运费门槛
+    int64 freeShippingAmountDifference = 2; // 当前总金额与免运费门槛的差额
+    bool freeShippingFlag = 3; // 是否免运费
+    int64 total = 4; // 购物车商品总金额
+    int32 quantity = 5; // 购物车商品数量
+}

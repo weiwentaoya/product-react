@@ -1,0 +1,16 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-04-08 14:12
+ * @Description    New Arrivals页面顶部的一级类目
+ */
+syntax = "proto3";
+package Activity.NewArrivals.NewArrivalsBaseCategory;
+option objc_class_prefix = "NewArrivalsBaseCategory";
+option java_package = "com.asiainno.hekka.proto.activity.newarrivals";
+
+message NewArrivalsBaseCategory {
+  int64 baseCategoryId = 1;
+  string baseCategoryName = 2;
+  string traceName = 3; // 埋点用
+}

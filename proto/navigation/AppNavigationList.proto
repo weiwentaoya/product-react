@@ -1,0 +1,46 @@
+syntax = "proto3";
+package App.navigation.AppNavigationList;
+option objc_class_prefix = "AppNavigationList";
+option java_package = "com.asiainno.hekka.proto.app.navigation";
+import "AppNavigationModuleInfo.proto";
+
+//导航列表(对应页面 category-1 )
+//url: https:****.com/product/navigation/list
+message Request {
+
+}
+
+
+message Response {
+
+    repeated  NavigationMenuCascade menuList = 1;  //原来的导航树, 从1级开始
+
+    repeated NavigationMenuCascade homeMenuList = 2;  //选中home的导航树, 从2级开始
+}
+
+
+message NavigationMenuCascade{
+    int64 menuId = 1;          //备注: 为了推广唯一性,这里返回navKey的值
+    int64 navKey = 2;
+    int64 parentMenuId = 5;    //父类菜单ID
+    string name = 7;          //菜单名称
+    string enName = 8;        //英文菜单名称
+    int32 type = 9;           //菜单类型, 5: link  1: collection  2:category
+    string content = 11;       //内容, type =5, content为 连接路径;
+    string picUrl = 13;        //图片地址
+    int32 level = 15;          //等级, 1/2/3级
+    string handle = 18;   //固定格式handle
+    string traceTitle = 19;  //tranceTitle
+
+    repeated NavigationMenuCascade sonMenuList = 20;   //子菜单
+
+    //2022-11-27日新增
+    int32 viewStatus = 22;  //是否隐藏 1:展示 2:隐藏
+    int32 bannerSwitch = 24; //是否是banner  1:不是  2:是
+    string color = 28;  // 颜色
+    int32 bold = 30;   //是否粗体 1:不加粗 2: 加粗
+    int32 italic = 32;  //是否斜体 1:不斜 2: 斜
+    string iconImage = 34; //icon图片地址
+    repeated AppNavigationModuleInfo.MenuBannerPositionItem position = 36; //banner的position(是个列表)
+
+}

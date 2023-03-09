@@ -1,0 +1,31 @@
+syntax = "proto3";
+package App.Cart.OrderPayment;
+option objc_class_prefix = "OrderPayment";
+option java_package = "com.asiainno.hekka.proto.app.cart";
+
+//url: https://****.com/order/paymentList
+//url: https://****.com/order/boxPaymentList
+message Request {
+  string country = 1; // 国家code
+  string language = 2; // 语言(不传取头里的)
+  string currency = 3; // 币种(不传取头里的)
+  int32 paymentPosition = 4; // 支付方式存在的位置  1：支付方式列表 2：游客购买支付列表(不传默认支付方式列表)
+}
+
+message Response {
+  repeated Payment paymentList = 1; // 支付方式列表
+}
+
+message Payment {
+  int32 id = 1;// 2:payple / 3:stripe /4:pingpongpay / 5:ecp / 6:pix /7:wordpay
+  string name = 2;//英语描述
+  string currencies = 3;//支持的货币 null表示支持所有
+  string paymentIcon = 4;
+  string paymentLogo = 5;
+  string languageTitle = 6;//对应语言描述
+  int32 accessType = 7;//接入类型 1h5 2sdk
+  string pcPaymentIcon = 8;//pcIcon
+  int32 minAmount = 9;//最小金额(美分)
+  int32 currencyMinAmount = 10;//币种最小金额(分)
+
+}

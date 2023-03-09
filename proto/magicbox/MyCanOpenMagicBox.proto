@@ -1,0 +1,16 @@
+syntax = "proto3";
+package App.Magicbox.MyMagicBoxDetailById;
+option objc_class_prefix = "MyMagicBoxDetailById";
+option java_package = "com.asiainno.hekka.proto.app.magicbox";
+import "MagicBoxAppModuleInfo.proto";
+
+//url: /order/myMagicBox/getCanOpenMagicBox
+//查看用户购买未开启盲盒，只返回一个盲盒信息即可（用于play again功能）
+
+message Request {
+
+}
+
+message Response {
+    MagicBoxAppModuleInfo.MyMagicBoxInfo magicBoxInfo = 1;
+}

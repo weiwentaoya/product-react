@@ -1,0 +1,41 @@
+syntax = "proto3";
+package App.Acitivity.BannerPosition;
+option objc_class_prefix="BannerPosotion";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+
+//url: https://****.com/activity/bannerPosition/list
+message Request {
+  /**
+     FASHION(1, "fashion"),
+    ELECTRONIC(2,"electronic"),
+    Home(3,"home");
+   */
+  int32 position = 1;
+  /**
+  1 app 2 pc 3 h5
+   */
+  int32 platform = 2;
+}
+
+message Response {
+    repeated Banner topBannerList = 1;
+    repeated Banner bottomBannerList = 2;
+    repeated MainPosition mainPositionList = 3;
+}
+
+message Banner {
+   int64 id = 1;
+   string imgUrl = 2;
+   string protocol =  3;
+   string title = 4;// banner title
+}
+
+message MainPosition {
+    int64 id = 1;
+    string imgUrl = 2;
+    string title = 3;
+    string protocol = 4;// 1 数据集页面 2 h5
+    string traceName = 5;
+}
+
+

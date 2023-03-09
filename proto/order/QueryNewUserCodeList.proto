@@ -1,0 +1,18 @@
+syntax = "proto3";
+package App.Order.QueryNewUserCodeList;
+option objc_class_prefix = "QueryNewUserCodeList";
+option java_package = "com.asiainno.hekka.proto.app.order";
+import "CouponCodeDetail.proto";
+
+//url: https://****.com/order/couponCode/queryNewUserCodeList
+message Request {
+  int32 source      = 1; // SKU数据来源    1: 购物车  2: 商品详情页
+  int64 spuId       = 2; // source=2时传
+  int64 saleSkuId   = 3; // source=2时传
+  int32 skuQuantity = 4; // 购买SKU的数量, source=2时传 默认是1
+}
+
+message Response {
+  repeated CouponCodeDetail.Detail codeList = 1;
+}
+

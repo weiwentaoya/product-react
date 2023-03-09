@@ -1,0 +1,13 @@
+
+syntax = "proto3";
+package Activity.Ranking.RankingModuleInfo;
+option objc_class_prefix = "RankingModuleInfo";
+option java_package = "com.asiainno.hekka.proto.activity.ranking";
+
+message NavInfo {
+  int64   id       = 1; //导航Id
+  string  name     = 2; //导航名称
+  int64   parentId = 3; //导航父Id
+  string  title    = 4; //导航埋点名称
+
+}

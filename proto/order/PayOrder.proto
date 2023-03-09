@@ -1,0 +1,23 @@
+syntax = "proto3";
+package App.Order.PayOrder;
+option objc_class_prefix="PayOrder";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/payOrder
+//app下单 url:
+message Request {
+    string  orderNo = 1;//订单编号
+    int64   hkc     = 2;//hkc数量
+    int32   payWay  = 3;//支付方式 2:payple / 3:stripe /4:pingpongpay / 5:ecp / 6:pix
+    string paramStr = 4;//扩展参数JSON字符串
+    string backUrl  = 5;//结果地址
+    string preFlowNo =6;//预下单号---快捷支付必传
+}
+message Response {
+    string  payOrderNo  = 1; //三方支付流水号
+    int64   userBoxId   = 2;//用户盲盒ID
+    string  payUrl   = 3;//H5支付url
+    int32   payWay  = 4;//支付方式 2:payple / 3:stripe /4:pingpongpay / 5:ecp / 6:pix
+    string  flowNo = 5;//支付单单号
+    string  authorizeContent = 6;//klarna支付方式 内容信息
+}

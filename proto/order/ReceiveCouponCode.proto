@@ -1,0 +1,68 @@
+syntax = "proto3";
+package App.Order.ReceiveCouponCode;
+option objc_class_prefix = "ReceiveCouponCode";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/couponCode/receive
+message Request{
+  int32               source              = 1; // 1:商品详情页面领取  2:CouponCode页面领取
+  string              couponCode          = 2;
+  ConfirmOrderRequest confirmOrderRequest = 3; // 下单页面领取时需要传的参数
+}
+
+
+message Response{
+  int32                 receiveStatus    = 1; //  领取状态 1:成功 3:Code不存在 4: Code停止使用 5:不能重复领取 6:仅首单可领取 7:CouponCode库存不足 8:CouponCode已经领取并且已使用 50:其他异常(兜底提示)
+  repeated NotUseReason notUseReasonList = 2;//  不可使用原因
+  CodeInfo              codeInfo         = 3;
+  int32                 codeCanUseTime   = 4; //  Code领取后可使用几次 receiveStatus=8时返回
+}
+
+message NotUseReason{
+  int32 notUseReasonType = 1; // 1:未到使用时间; 2:不满足金额条件; 3. 不满足数量条件; 4:不能与HKC共享; 5:不能与SpecialOffer共享; 6:选择商品范围不在CouponCode的商品范围内 7:当前CouponCode只能首单使用 8:仅APP可用 9:仅WEB可用
+  int32 diffQuantity     = 2; // 与CouponCode配置相差数量
+  int64 diffPrice        = 3; // 与CouponCode配置相差金额
+}
+
+
+message ConfirmOrderRequest{
+  int32 source               = 1; //  1:购物车下单 2:商品详情页面下单
+  int32 hkcRatio             = 6; // hkc抵扣比例 可空
+  int64 spuId                = 7; // source=2时传
+  int64 saleSkuId            = 8; // source=2时传
+  int32 skuQuantity          = 9; // 购买SKU的数量, source=2时传 默认是1
+  int64 specialOfferId       = 14; // specialOffer活动ID
+  int64 specialOfferLadderId = 15; //  specialOffer阶梯ID
+  int64 addressId            = 16; //  用户选择地址ID
+}
+
+
+message CodeInfo{
+  string                code                 = 1;// code
+  int64                 startTime            = 2; //开始时间
+  int64                 endTime              = 3; //结束时间
+  int32                 codeType             = 4; // 1 fixed discount amount , 2 Fixed discount percentage
+  int32                 codeValue            = 5;
+  int32                 restrictionRule      = 6;//1. 不做限制 ,2. 最小订单金额，订单内商品满足最小金额时可用计算时不包含邮费,3. 最小商品数量 订单内商品满足最小数量时可用
+  int32                 restrictionRuleValue = 7;  // 如果是钱 单位为分
+  string                desc                 = 8; // code 描述
+  int32                 claim                = 9; // 1 领取 2 未领取
+  int32                 isFirstOrder         = 10; //1 非首单使用，  2是首单使用
+  int32                 noEndTime            = 11;//1 有结束时间， 2 没有结束时间
+  int32                 dateSettingType      = 12;//code有效时长的类型,1:有起止时间 2: 动态有效期(比如3天）
+  int32                 duration             = 13;//有效期时长
+  /**
+      1, "全站使用 mall display,
+      2, "网红使用 Internet Celebrity,
+      3, "拉新使用 new Guest Welfare,
+      4, "Affiliate 网盟,
+      5, "站内券 inside code,
+      6, "定向券 Special Audience,
+      7, "客服券  Customer service"
+   */
+  int32                 accessChannel        = 14;
+  int64                 codeId               = 15;// codeid
+  repeated NotUseReason notUseReasonList     = 16;//  不可使用原因
+  repeated int32        excludeIdList        = 17; //  互斥规则 1:CouponCode 2:SpecialOffer 3:HKC
+  int64                 discountPrice        = 19; //  Code优惠金额
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+package Activity.AppFlashSaleList;
+option objc_class_prefix = "AppFlashSaleList";
+option java_package = "com.asiainno.hekka.proto.activity.flashSale";
+
+import "AppFlashSale.proto";
+//url: https://****.com/activity/flashSale/list
+message Request {
+}
+
+message Response {
+  /**
+    flash sale 列表
+   */
+  repeated AppFlashSale.AppFlashSale flashSaleList = 2;
+
+
+
+}

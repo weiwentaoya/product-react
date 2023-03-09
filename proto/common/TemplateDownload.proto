@@ -1,0 +1,16 @@
+syntax = "proto3";
+package Common.TemplateDownload;
+option objc_class_prefix = "CommonTemplateDownload";
+option java_package = "com.asiainno.hekka.proto.common";
+import "File.proto";
+
+//下载模板
+//url: /admin/excel/template
+message Request {
+    int32 type = 1; //模板类型 参见Type.TemplateType
+    int64 categoryId = 2;    //分类ID
+}
+
+message Response {
+    Common.CommonFile.FileInfo fileInfo = 1;
+}

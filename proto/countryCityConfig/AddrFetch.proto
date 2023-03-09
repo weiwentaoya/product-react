@@ -1,0 +1,21 @@
+syntax = "proto3";
+package AddrFetch;
+option objc_class_prefix="AddrFetch";
+option java_package = "com.asiainno.hekka.proto.user.country.config";
+
+//从谷歌查询地址解析
+//url: https://****.com/user/countryCityConfig/address/fetch
+message Request {
+    string id = 1;
+}
+
+message Response {
+    string country = 1;
+    string countryCode = 2;
+    string state = 3;
+    string stateCode = 4;
+    string city = 5;
+    string addressLine1 = 6;
+    string addressLine2 = 7;
+    string zipCode = 8;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+package App.Cart.CartSkuSelectedV2;
+option objc_class_prefix = "CartSkuSelectedV2";
+option java_package = "com.asiainno.hekka.proto.app.cart";
+import "CartSkuListV2.proto";
+
+//url: https://****.com/order/cart/cartSkuSelected
+message Request {
+    bool allSelectedFlag = 1; // 是否对全部生效(全选用)
+    int64 saleSkuId = 2; // 可空
+    int32 selectedType = 3; // 勾选类型 1:勾选 2:取消勾选
+}
+
+message Response {
+    repeated CartSkuListV2.SkuInfo skuList             = 1; // 商品列表
+    CartSkuListV2.Shipping         shipping            = 2; // 运费模板
+    CartSkuListV2.Amount           amount              = 3; // 购物车金额
+    int32                          quantity            = 4; // 购物车总数量
+    CartSkuListV2.Amount           usdAmount           = 5; // 购物车金额
+    CartSkuListV2.SpecialOffer     specialOfferRes     = 6;
+    CartSkuListV2.CouponCodeInfo   recommendCouponCode = 7; // 购物车推荐Code
+}

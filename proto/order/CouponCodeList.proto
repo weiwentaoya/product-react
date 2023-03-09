@@ -1,0 +1,21 @@
+syntax = "proto3";
+package App.Order.CouponCodeList;
+option objc_class_prefix="CouponCodeList";
+option java_package = "com.asiainno.hekka.proto.app.order";
+import "CouponCodeDetail.proto";
+
+//url: https://****.com/order/couponCode/list
+message Request {
+  int32 source = 1; // SKU数据来源    1: 购物车  2: 商品详情页
+  int64 spuId = 2; // source=2时传
+  int64 saleSkuId = 3; // source=2时传
+  repeated string couponCodeList = 4;
+  int32 skuQuantity = 5; // 购买SKU的数量, source=2时传 默认是1
+  int32 hkcRatio = 6; // hkc抵扣比例 可空
+  int64 addressId = 7; // 收货地址ID 可空
+}
+
+message Response {
+  repeated CouponCodeDetail.Detail codeList = 1;
+}
+

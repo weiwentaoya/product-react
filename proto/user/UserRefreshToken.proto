@@ -1,0 +1,16 @@
+syntax = "proto3";
+package UserRefreshToken;
+option objc_class_prefix="UserRefreshToken";
+option java_package = "com.asiainno.hekka.proto.user";
+
+//url: https://****.com/user/refreshToken
+message Request {
+    int64 userId = 1;
+    string refreshToken=2;//
+}
+
+message Response {
+    string token = 1;// 登录token
+    string refreshToken = 2;
+}
+

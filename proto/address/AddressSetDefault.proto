@@ -1,0 +1,10 @@
+syntax = "proto3";
+package AddressSetDefault;
+option objc_class_prefix="AddressSetDefault";
+option java_package = "com.asiainno.hekka.proto.user.address";
+
+//url: https://****.com/user/address/setDefault
+message Request {
+    int64 id=1; //地址主键
+}
+message Response {}

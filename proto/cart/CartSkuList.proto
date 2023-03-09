@@ -1,0 +1,53 @@
+syntax = "proto3";
+package App.Cart.CartSkuList;
+option objc_class_prefix = "CartSkuList";
+option java_package = "com.asiainno.hekka.proto.app.cart";
+
+//url: https://****.com/order/cart/list
+message Request {
+}
+
+message Response {
+  repeated SkuInfo skuList   = 1; // 商品列表
+  Shipping         shipping  = 2; // 运费模板
+  Amount           amount    = 3; // 购物车金额
+  Amount           usdAmount = 4; // 美元对应的金额
+  int32            quantity  = 5; // 购物车总数量
+}
+
+message SkuInfo {
+  int64  productId       = 1;
+  int64  spuId           = 2;
+  int64  saleSkuId       = 3;
+  string proName         = 4; // 商品标题
+  string usProName       = 5; // 默认语言标题
+  string image           = 6; // 图片地址
+  string discountStr     = 7; // 优惠百分比
+  bool   discountStrShow = 8; // 是否展示优惠百分比
+  int64  salePrice       = 9; // 销售价
+  int32  inventory       = 10; // 库存
+  bool   onlyShow        = 11; // 是否展示仅剩几件
+  string optionFormat    = 12; // 商品规格格式化
+  int32  quantity        = 13; // 商品数量
+  bool   invalidFlag     = 14; // 失效状态
+  int32  selected        = 15; // 是否选中 1: 选中  2:未选中
+  string path            = 16; // 加购路径(path)
+  int64  categoryIdOne   = 17; // 一级类目就
+  int64  categoryIdTwo   = 18; // 二级类目
+  int64  categoryIdThree = 19; // 三级类目
+  string handle          = 20; // 商品handle
+}
+
+message Shipping {
+  int64 freeShippingThreshold        = 1; // 免运费门槛
+  int64 freeShippingAmountDifference = 2; // 当前总金额与免运费门槛的差额
+  int64 pieceTogetherCollectionId    = 3; // 凑单集合ID
+  bool  freeShippingFlag             = 4; // 是否免运费
+  bool  showFlag                     = 5; // 是否展示免运费提示框
+}
+
+message Amount {
+  int64 subtotal = 1; // 商品总价
+  int64 discount = 2; // 优惠金额
+  int64 total    = 3; // 商品实际支付总价
+}

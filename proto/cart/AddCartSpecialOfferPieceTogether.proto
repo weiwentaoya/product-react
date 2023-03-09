@@ -1,0 +1,38 @@
+syntax = "proto3";
+package App.Cart.AddCartSpecialOfferPieceTogether;
+option objc_class_prefix = "AddCartSpecialOfferPieceTogether";
+option java_package = "com.asiainno.hekka.proto.app.cart";
+
+//url: https://****.com/order/cart/addCartSpecialOfferPieceTogether
+message Request {
+  int64  saleSkuId = 1;
+  int32  quantity  = 2; // 数量, 要加购的数量
+  string path      = 3; // 埋点用
+}
+
+message Response {
+  SpecialOffer specialOfferRes  = 1; //  Special Offer信息
+  int64        total            = 2; // 购物车商品总金额
+  int32        quantity         = 3; // 购物车商品数量(不是当前加购的商品的数量)
+  int64        saleSkuId        = 4; // 埋点用
+  string       usProName        = 5; // 商品标题 埋点用
+  int64        usdSkuTotalPrice = 6; // 本次加购的商品单价 * 数量  美元  埋点用
+  int64        categoryIdOne    = 7; // 一级类目
+  int64        categoryIdTwo    = 8; // 二级类目
+  int64        categoryIdThree  = 9; // 三级类目
+}
+
+message SpecialOffer{
+  int64 id                             = 1;
+  int32 type                           = 2; // 当前specialOffer的优惠类型 1:根据数量打折扣 2:根据数量减金额 3:根据金额打折扣 4:根据金额减金额
+  int64 currentLadderId                = 3; //  满足的优惠阶段ID
+  int32 currentLadderQuantityThreshold = 4; // 已经满足优惠的阶梯中 满足的件数门槛
+  int64 currentLadderPriceThreshold    = 5; // 已经满足的优惠阶梯中 满足的金额门槛
+  int32 currentLadderDiscountRate      = 6; // 已经满足的优惠阶梯中 优惠百分比
+  int64 currentLadderDiscountPrice     = 7; // 已经满足的优惠阶梯中 优惠金额
+  int64 nextLadderId                   = 8; // 未满足的special offer阶段ID
+  int32 nextLadderDiffQuantity         = 9; // 距离满足条件还差的件数
+  int64 nextLadderDiffPrice            = 10; // 距离满足条件还差的金额
+  int32 nextLadderDiscountRate         = 11; // 满足后优惠的百分比
+  int64 nextLadderDiscountPrice        = 12; // 满足后优惠的金额
+}

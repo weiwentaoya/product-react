@@ -1,0 +1,83 @@
+syntax = "proto3";
+package App.Order.OrderDetailV2;
+option objc_class_prefix = "OrderDetailV2";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+
+//url: https://****.com/order/orderDetail/v2
+message Request {
+  string orderNo = 1; //  订单编号
+}
+
+message Response {
+  string               orderNo                  = 1; //订单编号
+  int32                appOrderState            = 2; //app订单状态  1未支付/2处理中/3货品交付/4退款/5取消/6关闭
+  int64                processTime              = 3;//流转时间
+  int64                processEndTime           = 4;//流转最晚时间
+  repeated ProcessInfo processList              = 5;
+  AddressInfo          address                  = 6; // 配送地址
+  repeated OrderItem   orderItemList            = 7;
+  string               payWay                   = 8;//支付方式 字符串展示 2-Paypal 3-stripe
+  Amount               amount                   = 9; // 金额字段
+  int64                remainingTimeOfPayment   = 10; // 支付剩余时间
+  bool                 multiPackageLogisticFlag = 11; //  是否多包裹
+  string               trackingUrl              = 12; //  multipleParcelFlag=false时候返回
+  int32                orderSource              = 13; // 订单来源 1: 售卖订单  2:盲盒订单
+  int32                paymentMethodId          = 14; //支付方式id
+  string               userCountry              = 15; //  下单时用户选择国家
+  string               language                 = 16; //  订单对应的语言
+  repeated PaymentInfo paymentInfoList          = 17; // 支付方式信息
+}
+
+message Amount {
+  int64  subTotal     = 1;
+  int64  discount     = 2;
+  int64  shipping     = 3;
+  int64  hkc          = 4;
+  int64  totalAmount  = 5;
+  string currencyCode = 6;//币种
+}
+
+message OrderItem {
+  int64  skuId        = 1;
+  string proName      = 2; // 商品标题
+  string skuPhoto     = 3; //  商品图片
+  string optionFormat = 4; // 商品规格格式化
+  int32  quantity     = 5;
+  int64  salePrice    = 6; // 销售价
+  string handle       = 7; //  商品handle
+  int64  flashSaleId  = 8; //  flashSale活动ID
+}
+
+//商品流转信息
+message ProcessInfo{
+  int32 processType = 1;//运输阶段 1订单确认/2处理货品/3货品交付/4申请退款/5退款处理中/6已退款
+  int64 processTime = 2;//时间
+  bool  isCurrent   = 3;
+}
+
+//收货地址
+message AddressInfo{
+  string addressee   = 1;//收货人
+  string address     = 2;//收货地址
+  string phone       = 3;//联系电话
+  string zoneCode    = 4; // 手机区号
+  string address2    = 5;
+  string countryCode = 6;// 国家码
+  string province    = 7;// 省
+  string city        = 8;//城市
+  string taxNum      = 9; //税号
+  int32  taxType     = 10;//类型1 CPF 2 CNPJ 3 RUT
+  string zipCode     = 11; //  邮编
+  string fullName    = 12; // 收货人
+  string address1    = 13; // 收货地址
+}
+
+message PaymentInfo{
+  int32  paymentMethodId = 1; // 支付方式ID
+  string payUrl          = 2;//H5支付url
+  string flowNo          = 3; // 支付单编号
+  string voucher         = 4; // SDK支付凭据
+  string clientToken     = 5; //  klarna 预下单token
+  string sessionId       = 6; // klarna sessionId
+}

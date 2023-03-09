@@ -1,0 +1,26 @@
+syntax = "proto3";
+package App.Product.HotSearchKeywordList;
+option objc_class_prefix = "HotSearchKeywordList";
+option java_package = "com.asiainno.hekka.proto.app.product";
+
+//热搜词列表
+//url: https://****.com/product/search/hotKeywordList
+message Request {
+
+}
+
+message Response {
+ repeated HotKeyword hotKeywordList = 1;//热搜词列表
+}
+
+message HotKeyword{
+    string keyword              = 1;//英语keyword
+    string languageKeyword      = 2;//语言keyword
+    int32 isHot                 = 3;//1展示2不展示
+    string traceTitle           = 4;//traceTitle打点用的
+    int32 conditionType         = 5;//条件类型1collection/2category/4page
+    string conditionValue       = 6;//条件值
+}
+
+
+

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package App.Home.Index;
+option objc_class_prefix = "AppHomeIndex";
+option java_package = "com.asiainno.hekka.proto.app.home";
+
+message Request {
+
+}
+
+message Response {
+    repeated string list  = 1;
+}

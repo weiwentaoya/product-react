@@ -1,0 +1,14 @@
+syntax = "proto3";
+package App.Common.GetTitle;
+option objc_class_prefix="GetTitle";
+option java_package = "com.asiainno.hekka.proto.app.common";
+
+//url: https://****.com/common/getTitle
+message Request {
+    int32 type = 1;        // 类别: 参考Readme
+    string id = 2;         // 相应id: 参考Readme˙
+}
+
+message Response {
+    string title = 2;      // 页面标题
+}

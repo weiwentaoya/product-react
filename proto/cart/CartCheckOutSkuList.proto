@@ -1,0 +1,13 @@
+syntax = "proto3";
+package App.Cart.CartCheckOutSkuList;
+option objc_class_prefix = "CartCheckOutSkuList";
+option java_package = "com.asiainno.hekka.proto.app.cart";
+import "CartSkuList.proto";
+
+//url: https://****.com/order/cart/checkOutList
+message Request {
+}
+
+message Response {
+    repeated CartSkuList.SkuInfo skuList = 1; // 商品列表
+}

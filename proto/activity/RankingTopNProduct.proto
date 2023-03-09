@@ -1,0 +1,23 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-03-30 15:02
+ * @Description    Ranking页面的Top N 热销商品
+ */
+syntax = "proto3";
+package Activity.Ranking.RankingTopNProduct;
+option objc_class_prefix = "RankingTopNProduct";
+option java_package = "com.asiainno.hekka.proto.activity.ranking";
+
+message RankingTopNProduct {
+  //商品ID: spu的id
+  int64 productId = 1;
+  //商品名称
+  string productName = 2;
+  //商品售价
+  int64 productSalePrice = 3;
+  //商品图片链接
+  string productImgLink = 4;
+  //商品销量
+  int64 productSaleVolume = 5;
+}

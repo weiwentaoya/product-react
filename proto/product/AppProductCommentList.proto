@@ -1,0 +1,23 @@
+syntax = "proto3";
+package App.Product.AppProductCommentList;
+option objc_class_prefix = "AppProductCommentList";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "AppProductCommentInfo.proto";
+
+//app商城 商品评论列表
+//url: https://****.com/product/comment/getList
+message Request {
+    int64 spuId = 1; //spu
+    int32 commentType = 11; // 评论类型 1:文本 2:带图  3:视频
+    int32 pageNum = 12; //
+    int32 pageSize = 13; // 每页数据条数
+}
+
+message Response {
+    repeated AppProductCommentInfo.AppCommentInfo commentList = 1;//商品评论List
+    int32 imageCommentCount = 5; //带图评论数
+}
+
+
+
+

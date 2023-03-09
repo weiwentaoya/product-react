@@ -1,0 +1,16 @@
+syntax = "proto3";
+package UserProfileInfo;
+option java_package = "com.asiainno.hekka.proto.user";
+message UserProfileInfo {
+    int64 id = 1;//用户id
+    string username = 2;// 用户昵称
+    string countryCode = 3;// 国家码
+    string avatar = 4;// 头像
+    string email = 5;//邮箱
+    string language = 6;//语言
+    int32 gender = 7;//性别
+    string phone = 8;//手机号吗
+    string currency = 9;//货币
+    string zoneCode = 10;//手机区号
+    int32 emailSubscribe = 11;//手机区号
+}

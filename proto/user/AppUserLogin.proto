@@ -1,0 +1,31 @@
+syntax = "proto3";
+package AppUserLogin;
+option objc_class_prefix="AppUserLogin";
+option java_package = "com.asiainno.hekka.proto.user";
+import "UserType.proto";
+import "UserProfileInfo.proto";
+
+//url: https://****.com/user/login
+message Request {
+    UserType.BindType bindType = 1;  //第三方类型
+  //facebook H5 login code参数
+    string thirdToken = 2;//第三方token
+    string thirdId = 3;//第三方token
+    string password = 4;//密码
+    string email = 5;//邮箱
+    string tongdunId = 6;//同盾id
+    string adjustId = 7;
+    string loginDomainName = 8; // h5 facebook 登录需要传入域名  如 www.baidu.com  不要需要https://www.baidu.com
+    string recaptchaToken = 9; //校验token
+    string recaptchaAction = 10; //操作类型
+}
+
+message Response {
+    string token = 1;// 登录token
+    string refreshToken = 2;
+    UserProfileInfo.UserProfileInfo userProfileInfo = 3;
+    int32 loginType = 4;// 1 登录， 2 注册
+    bool hasSwitchNationalStore  = 5; //是否切换了国家站
+    //facebook h5登录的认证请求URL
+    string address = 6; // paypal登录是返回shipping地址
+}

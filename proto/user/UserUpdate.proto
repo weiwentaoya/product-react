@@ -1,0 +1,23 @@
+syntax = "proto3";
+package UserUpdate;
+option objc_class_prefix="UserUpdate";
+option java_package = "com.asiainno.hekka.proto.user";
+import "UserProfileInfo.proto";
+
+//url: https://****.com/user/update
+message Request {
+    string currency = 1;
+    string avatar = 2;
+    string phone = 3;
+    string username = 4;
+    string language = 5;
+    int32 gender = 6; // 1 男 2女性
+    string countryCode = 7;
+    string zoneCode = 8; // 手机区号
+    int32 emailSubscribe = 9; // 1 订阅 2 取消定于
+}
+
+message Response {
+    UserProfileInfo.UserProfileInfo userProfileInfo = 1;
+    bool isRestart = 2; //是否需要重启app
+}

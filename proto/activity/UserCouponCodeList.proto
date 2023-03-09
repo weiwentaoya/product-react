@@ -1,0 +1,18 @@
+syntax = "proto3";
+package App.Acitivity.UserCouponCodeList;
+option objc_class_prefix="UserCouponCodeList";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+import "ActivityCodeInfo.proto";
+
+// 用户的领取的券列表
+//url: https://****.com/activity/user/couponCodeList
+message Request {
+  // 1 有效列表 2 过期列表
+  int32 dataType = 1;
+  int32 page = 2;// 第几页
+}
+
+message Response {
+  repeated ActivityCodeInfo.ActivityCodeInfo list = 1;
+}
+

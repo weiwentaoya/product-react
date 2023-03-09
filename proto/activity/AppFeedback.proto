@@ -1,0 +1,15 @@
+syntax = "proto3";
+package Activity.AppFeedback;
+option objc_class_prefix = "AppFeedback";
+option java_package = "com.asiainno.hekka.proto.activity.feedback";
+/**
+  *获取feedback 地址A
+ */
+//url: https://****.com/activity/feedback/getUrl
+message Request {
+    int32 platform = 1; // 2 pc 3 h5
+}
+
+message Response {
+    string url = 1;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+package App.Order.OrderHkcDetail;
+option objc_class_prefix="OrderHkcDetail";
+option java_package = "com.asiainno.hekka.proto.app.order";
+import "OrInfo.proto";
+
+//url: https://****.com/order/getOrderHkcDetail
+//订单抵扣列表信息 url:
+message Request {
+    int64 currencyTotalPrice = 1; //币种应付
+}
+message Response {
+    OrInfo.OrderHkcDetail orderHkcDetail = 1;//订单抵扣列表信息
+}
+

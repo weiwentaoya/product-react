@@ -1,0 +1,17 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-04-08 14:14
+ * @Description    New Arrivals页面内容区域展示的Top N上架时间的商品在各个类目上的排名信息
+ */
+syntax = "proto3";
+package Activity.NewArrivals.NewArrivalsTopNOnSaleProductRank;
+option objc_class_prefix = "NewArrivalsTopNOnSaleProductRank";
+option java_package = "com.asiainno.hekka.proto.activity.newarrivals";
+
+message NewArrivalsTopNOnSaleProductRank {
+  //类目id
+  int64 cateId = 1;
+  //商品名称
+  int32 rank = 2;
+}

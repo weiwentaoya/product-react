@@ -1,0 +1,14 @@
+syntax = "proto3";
+package AddrDataInfo;
+option objc_class_prefix="AddrDataInfo";
+option java_package = "com.asiainno.hekka.proto.user.country.config";
+
+//国家下数据信息
+//url: https://****.com/user/countryCityConfig/data/info
+message Request {
+    string countryCode = 1; //国家码
+}
+
+message Response {
+    int32 flag = 1;         // 1-有州，无城市  2-有州，有城市 3-无州
+}

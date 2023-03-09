@@ -1,0 +1,15 @@
+syntax = "proto3";
+package App.Pages.PagesInfo;
+option objc_class_prefix="PagesInfo";
+option java_package = "com.asiainno.hekka.proto.app.pages";
+
+message PagesTab {
+    int64 detailId = 1; // 自定义页面配置项id
+    string tabName = 2; // tab 名称
+}
+
+//banner 图片
+message PagesBanner {
+    int64 detailId = 1; // 自定义页面配置项id
+    string img = 2;     // banner 图片
+}

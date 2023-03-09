@@ -1,0 +1,23 @@
+syntax = "proto3";
+package App.Product.AppCollectionProductList;
+option objc_class_prefix = "AppCollectionProductList";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+//获取凑单商品集合
+//url: https://****.com/product/getCollectionProductList
+message Request {
+    int64 templateId = 1; //模版ID
+    int64 collectionId = 2;//凑单商品集合ID
+    string sortType = 3; // 排序类型 Recommend/Latest/Price/TopSales
+    string sortOrder = 4; // 排序方式 asc/desc
+    bool newProduct = 5; // 新品
+    int64 priceMin = 6; // 价格起
+    int64 priceMax = 7; // 价格止
+    string sortId = 11; //排序ID
+    int32 size = 12; //
+}
+
+//返回
+message Response {
+    repeated Component.SpuInfo list = 1;//商品信息List
+}

@@ -1,0 +1,15 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-03-30 14:24
+ * @Description    Best Sellers页面顶部的一级类目
+ */
+syntax = "proto3";
+package Activity.BestSellers.BestSellersBaseCategory;
+option objc_class_prefix = "BestSellersBaseCategory";
+option java_package = "com.asiainno.hekka.proto.activity.bestsellers";
+
+message BestSellersBaseCategory {
+  int64 baseCategoryId = 1;
+  string baseCategoryName = 2;
+}

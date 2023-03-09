@@ -1,0 +1,23 @@
+syntax = "proto3";
+package App.Product.UserRecentlyProductList;
+option objc_class_prefix = "UserRecentlyProductList";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "MagicBoxProductInfo.proto";
+import "Component.proto";
+
+
+//app 用户浏览历史
+//url: https://****.com/product/user/getRecentlyProductList
+
+message Request {
+    int32 pageNum = 3;  //第几页, 从1开始
+    int32 pageSize = 4;  //每页展示数
+}
+
+message Response {
+    int32 total     = 10;
+    int32 pageNum   = 12;
+    int32 pageSize  = 13;
+    repeated App.Product.MagicBoxProductInfo.ProductInfo productInfoList = 20; //慢慢废弃，老列表，只给app用，h5使用spuInfoList
+    repeated Component.SpuInfo spuInfoList  = 30;//商品信息List 新列表，h5用，以后都在这个接口扩展
+}

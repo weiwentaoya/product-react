@@ -1,0 +1,15 @@
+syntax = "proto3";
+package App.Order.QueryDelayDeliveryShowFlag;
+option objc_class_prefix="QueryDelayDeliveryShowFlag";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+
+//url: https://****.com/order/queryDelayDeliveryShowFlag
+// app订单详情
+message Request {
+    string orderNo = 1;//订单编号
+}
+
+message Response {
+    int32 showFlag = 1; // 1:展示  0:不展示
+}

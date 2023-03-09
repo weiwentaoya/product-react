@@ -1,0 +1,50 @@
+syntax = "proto3";
+package App.Product.AppJudgeSpuInNationalStore;
+option objc_class_prefix = "AppJudgeSpuInNationalStore";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "AppProductModuleInfo.proto";
+
+//判断spu是否在本站
+//url: https://****.com/product/product/judgeSpuInNationalStore
+message Request {
+    int64 spuId = 1; // spuId 必传
+    int64 skuId = 2; // skuId 可以不传
+
+}
+
+message Response {
+
+    //spu和国家站的关系信息
+    AppProductModuleInfo.SpuNationalStoreRelationInfo spuNationalStoreRelationInfo = 1;
+}
+
+    //举例 入参: spuA/ skuA
+    //1. productIsInThisNationalStore  = 0, 商品不在本站中
+                //> 取 spuParamInNationalStoreCode : 参数中spu所属于的国家站的code 做判断是否切站
+                        //> 切站:   spuParamInNationalStoreCode + ***参数中的spuId/ skuId  -> 跳转详情
+                        //> 不切站: 去首页
+    //2. productIsInThisNationalStore = 1, 商品在本站中 (可以忽略 spuParamIsInThisNationalStore, 直接取 spuIdInThisNationalStore/skuIdInThisNationalStore 直接进行下一步)
+                //> spuParamIsInThisNationalStore = 0 : 代表 参数中的spu就是product在本站中的spu, 此时
+                        //> spuIdInThisNationalStore = spuA, skuIdInThisNationalStore = skuA
+                //> spuParamIsInThisNationalStore = 1 : 代表 参数中的spu不在本站中, product在本站中是另外的spu
+                        //> spuIdInThisNationalStore = spuB, skuIdInThisNationalStore = skuB (换成新的 spuB/skuB)
+
+
+
+
+
+
+    //横向路径1:
+//    用户已登录法国站  -> 点击美国站的商品(spuA/skuA) ->  判断法国站有没有该商品
+//    --> 有, 跳转法国站(spuB/skuB)
+//    --> 没有, 加中间页(询问用户是否跳美国站)   --
+        //    -> 确认, 去美国站 , spuA/skuA
+        //    -> 不确认, 去首页...
+
+
+
+
+
+
+
+

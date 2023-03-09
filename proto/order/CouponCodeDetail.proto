@@ -1,0 +1,18 @@
+syntax = "proto3";
+package App.Order.CouponCodeDetail;
+option objc_class_prefix="CouponCodeDetail";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+// 公用PB
+message Detail {
+  int32 codeType = 1; // 1:优惠金额 2:优惠百分比
+  int32 codeValue = 2; // 优惠值
+  int32 restrictionRule = 3; // 使用限制类型 1. 不做限制 ,2. 最小订单金额，订单内商品满足最小金额时可用计算时不包含邮费,3. 最小商品数量 订单内商品满足最小数量时可用
+  int32 restrictionRuleValue = 4; // 限制类型对应的值
+  string code = 5; // code值
+  int64 startTime = 6; // 开始时间
+  int64 endTime = 7; // 结束时间
+  int32 isNewUserCode = 8; // 0 不是 1 是 新用户code
+  bool availableFlag = 9; //  是否可选
+  int32 notAvailableCode = 10;  // 1: 与HKC互斥
+}

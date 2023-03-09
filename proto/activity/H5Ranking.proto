@@ -1,0 +1,34 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-04-08 18:54
+ * @Description    Hekka Ranking页面对应的PB
+ */
+syntax = "proto3";
+package Activity.Ranking.H5Ranking;
+option objc_class_prefix = "H5Ranking";
+option java_package = "com.asiainno.hekka.proto.activity.ranking";
+import "RankingModuleInfo.proto";
+import "Component.proto";
+
+//url: https://****.com/activity/h5ranking/index
+message Request {
+  int64 navId  = 1; //具体点击的活动导航Id，二级导航的all传一级导航的Id
+  //是否需要返回顶部的一级导航
+  bool requiredNav = 2;
+  //是否需要返回顶部的二级导航
+  bool requiredSubNav = 3;
+  /**
+    "fashion","electronic","home";
+  */
+  string pageFrom = 4;
+  int32 size = 6; //
+}
+
+message Response {
+  repeated RankingModuleInfo.NavInfo navList    = 1; //一级导航列表
+  repeated RankingModuleInfo.NavInfo subNavList = 2; //二级导航列表
+  repeated Component.SpuInfo         spuList    = 3; //商品列表
+  int64    parentNavId                          = 4; //父亲导航Id
+}
+

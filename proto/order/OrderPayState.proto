@@ -1,0 +1,21 @@
+syntax = "proto3";
+package App.Order.OrderPayState;
+option objc_class_prefix="OrderPayState";
+option java_package = "com.asiainno.hekka.proto.app.order";
+import "OrInfo.proto";
+
+//url: https://****.com/order/queryOrderSuccess
+//获取订单支付是否成功 url:
+message Request {
+    string orderNo = 1;//订单编号
+}
+message Response {
+    int32 paySuccess = 1;//是否支付成功 1未成功/2已成功/3支付失败
+    int64 userBoxId  = 2;//用户盲盒ID
+    repeated OrInfo.ItemInfo itemInfoList = 3;//购买商品信息
+    OrInfo.OrderPriceInfo orderPriceInfo = 4;//订单金额信息
+    string couponCode = 5;//订单优惠code
+    OrInfo.ReportAddressInfo reportAddressInfo = 6;//打点收货地址信息
+    string  paymentMethod     = 7;//支付方式名称
+    int32  paymentMethodId    = 8;//支付方式Id
+}

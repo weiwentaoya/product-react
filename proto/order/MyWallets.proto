@@ -1,0 +1,17 @@
+syntax = "proto3";
+package App.Order.MyWallets;
+option objc_class_prefix="AppMyWallets";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/user/account/myWallets
+//我的 my wallets  url:
+message Request {
+
+}
+message Response {
+    int32  magicBox                          = 1;//盲盒数量
+    int32  hkc                               = 2;//hkc
+    int32  coupon                            = 3;//礼券
+    string currencyExchangeRate              = 4;// hkc 兑换 指定币种汇率
+    int64  blackFridayRemainingEffectiveTime = 5; //  HKC剩余有效期, 黑五活动用
+}

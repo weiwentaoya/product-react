@@ -1,0 +1,19 @@
+syntax = "proto3";
+package App.Order.LogisticsTrack;
+option objc_class_prefix="LogisticsTrack";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/logisticsTrack/detail
+message Request {
+  string trackNumber = 1; // 物流单号
+  string orderNo = 2; // 订单编号
+}
+
+message Response {
+  repeated Detail detailList = 1;
+}
+
+message Detail {
+  int64 timestamp = 1;
+  string message = 2;
+}

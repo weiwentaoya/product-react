@@ -1,0 +1,14 @@
+syntax = "proto3";
+package UserSwitchStore;
+option objc_class_prefix="UserSwitchStore";
+option java_package = "com.asiainno.hekka.proto.user";
+
+//url: https://****.com/user/switchStore
+message Request {
+    string countryCode = 1;
+}
+
+message Response {
+    string language = 1; //推荐使用语言
+    bool isRestart = 2; //是否需要重启app
+}

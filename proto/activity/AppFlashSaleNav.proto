@@ -1,0 +1,17 @@
+syntax = "proto3";
+package Activity.AppFlashSaleNav;
+option objc_class_prefix = "AppFlashSaleNav";
+option java_package = "com.asiainno.hekka.proto.activity.flashSale";
+
+message AppFlashSaleNav {
+  /**
+    类目id
+   */
+  int64 navId = 1;
+  /**
+    类目名称
+   */
+  string navName= 2;
+
+}
+

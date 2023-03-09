@@ -1,0 +1,16 @@
+syntax = "proto3";
+package Common.DataChange;
+option objc_class_prefix = "DataChange";
+option java_package = "com.asiainno.hekka.proto.common";
+
+// url: /user/dataChange
+message Request {
+    PushToken PushToken = 1; // pushToken
+    string tongdunId = 2; // 同盾id
+}
+
+message PushToken {
+    int32 type = 1; // PushChanel值2为FCM，3为apple的APNS
+    string pushToken = 2;
+    int32 deviceType = 3; //1位安卓 2为iOS
+}

@@ -1,0 +1,21 @@
+syntax = "proto3";
+package App.Product.LiftStyleList;
+option objc_class_prefix = "LiftStyleList";
+option java_package = "com.asiainno.hekka.proto.app.product";
+
+//liftStyle 列表
+//url: https://****.com/product/liftStyle/list
+message Request {
+}
+
+message Response {
+    repeated LiftStyle list  = 1;
+}
+
+message LiftStyle {
+    int64 id = 1;
+    string img = 2;
+    string url = 3;
+    int32 sort = 4;      //排序
+}
+

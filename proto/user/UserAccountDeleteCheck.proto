@@ -1,0 +1,13 @@
+syntax = "proto3";
+package UserAccountDeleteCheck;
+option objc_class_prefix="UserAccountDeleteCheck";
+option java_package = "com.asiainno.hekka.proto.user";
+
+//url: https://****.com/user/delCheck
+message Request {
+
+}
+
+message Response {
+
+}

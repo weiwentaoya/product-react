@@ -1,0 +1,20 @@
+syntax = "proto3";
+package CountryList;
+option objc_class_prefix="CountryList";
+option java_package = "com.asiainno.hekka.proto.user.country.config";
+
+//url: https://****.com/user/countryCityConfig/countryList
+message Request {
+    int32 type = 1;         //类别 0-默认（兼容之前的返回US） 1-配置运费的全部国家 2-当前站点已配置运费国家
+}
+
+message Response {
+    repeated CountryInfo countryInfoList =1;
+}
+
+message CountryInfo {
+    string countryCode = 1;
+    string country = 2;
+    string phone = 4;       // 电话区号
+    string currency = 5;    // 货币，多个,分隔
+}

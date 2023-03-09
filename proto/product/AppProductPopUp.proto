@@ -1,0 +1,41 @@
+syntax = "proto3";
+package App.Product.AppProductPopUp;
+option objc_class_prefix = "AppProductPopUp";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+import "AppProductModuleInfo.proto";
+
+//列表页加购物车 弹框展示 商品信息(包括属性/规格等)
+//url: https://****.com/product/product/getProductPopUp
+message Request {
+    int64 spuId = 1; // spuId
+    int64 skuId = 2; //skuId
+
+}
+
+message Response {
+    int64   productId           = 1; //商品id
+    int64   spuId               = 5; //spuId
+    int64   skuId = 6;               //当前的skuId, 是哪个, 就取哪个的 价格等信息
+    int64 categoryId = 7;            //分类ID
+
+    repeated Component.Image mainPhotos  = 15; //主图地址列表
+
+    string  title               = 30; //商品标题(对应语言标题的)
+    string enTitle = 31;             //商品英文标题
+    string  systemTitle         = 32; //商品系统标题
+
+    int32 saleState = 43;    // 1: 上架  2: 下架
+
+    repeated AppProductModuleInfo.SkuDetail skuList = 47;        //商品列表
+
+    repeated AppProductModuleInfo.Option spuOptionList  = 50;   //spu维度的 属性/属性值列表
+
+    //--------------规格信息---------------------
+    AppProductModuleInfo.SpecificationInfo specificationInfo = 65;  //规格尺寸表格信息
+    repeated Component.Image specificationImgList = 66; //规格图片信息
+
+
+}
+
+

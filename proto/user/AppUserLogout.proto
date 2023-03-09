@@ -1,0 +1,17 @@
+syntax = "proto3";
+package AppUserLogout;
+option objc_class_prefix="AppUserLogout";
+option java_package = "com.asiainno.hekka.proto.user";
+
+
+//url: https://****.com/user/logout
+message Request {
+
+}
+
+
+//返回
+message Response {
+
+}
+

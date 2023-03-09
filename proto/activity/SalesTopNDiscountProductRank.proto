@@ -1,0 +1,17 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-04-08 17:30
+ * @Description    Sales页面内容区域展示的Top N折扣力度的商品在各类目上的排名信息
+ */
+syntax = "proto3";
+package Activity.Sales.SalesTopNDiscountProductRank;
+option objc_class_prefix = "SalesTopNDiscountProductRank";
+option java_package = "com.asiainno.hekka.proto.activity.sales";
+
+message SalesTopNDiscountProductRank {
+  //类目id
+  int64 cateId = 1;
+  //商品名称
+  int32 rank = 2;
+}

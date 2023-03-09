@@ -1,0 +1,14 @@
+syntax = "proto3";
+package UserSendEmail;
+option objc_class_prefix = "UserSendEmail";
+option java_package = "com.asiainno.hekka.proto.user";
+
+//url: https://****.com/user/sendEmail
+message Request {
+
+}
+
+message Response {
+
+}
+

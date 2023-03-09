@@ -1,0 +1,14 @@
+syntax = "proto3";
+package App.Product.PolicyGetUrl;
+option objc_class_prefix = "PolicyGetUrl";
+option java_package = "com.asiainno.hekka.proto.app.product";
+
+//policy url
+//url: https://****.com/product/getPolicy/url
+message Request {
+    string path = 1; //path
+}
+
+message Response {
+    string  url = 1;
+}

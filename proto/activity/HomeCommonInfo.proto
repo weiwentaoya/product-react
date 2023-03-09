@@ -1,0 +1,21 @@
+syntax = "proto3";
+package App.Acitivity.HomeCommonInfo;
+option objc_class_prefix="HomeCommonInfo";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+
+//url: https://****.com/activity/homeCommon/info
+message Request{}
+message Response {
+
+    NotificationBar topBar = 1;// 通用通知栏
+    NotificationBar freeShippingByCart = 2;//购物车满足免邮费通知栏
+    NotificationBar freeShippingDay = 3;// 包邮日
+
+}
+
+message NotificationBar {
+  string imgUrl = 1;
+  string linkUrl = 2;
+}
+
+

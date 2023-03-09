@@ -1,0 +1,13 @@
+syntax = "proto3";
+package App.Site.ShippingDetailModuleInfo;
+option objc_class_prefix = "ShippingDetailModuleInfo";
+option java_package = "com.asiainno.hekka.proto.app.site";
+
+//运费信息
+message ShippingDetailInfo {
+    string countryCode  = 1; //国家编码
+    string  shippingMethod = 2; //物流方式
+    int64  minOrderPrice = 3; //最小订单金额
+    int64  maxOrderPrice = 4; //最大订单金额
+    int64  cost = 5; //运费
+}

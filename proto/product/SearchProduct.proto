@@ -1,0 +1,42 @@
+syntax = "proto3";
+package App.Product.SearchProduct;
+option objc_class_prefix = "SearchProduct";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+
+//app商城 商品搜索
+//url: https://****.com/product/search/searchProduct
+//目前接口 只对五种情况提供数据，其他会不返回值
+// 1有searchContent(视为搜索) 2type>0的 3.navId>0的 4.conditionType大于0的 5.positionKey >0的
+message Request {
+    string searchContent        = 1; //搜索内容
+//    int32 sortType            = 2; // 排序类型
+    string sortType             = 3; // 排序类型 Recommend/Latest/Price/TopSales
+    string sortOrder            = 4; // 排序方式 asc/desc
+    bool newProduct             = 5; // 新品
+    bool promotion              = 6; // 参与special活动
+    int64 priceMin              = 7; // 价格起 不填-1
+    int64 priceMax              = 8; // 价格止 不填-1
+    string sortId               = 9; // 排序Id 分页使用
+    int32 size                  = 10; // 每页数据条数
+    int32 type                  = 11;//入口类型
+    string data                 = 12;//入口类型对应的data值
+    int64  navId                = 13;  //导航Id(后期慢慢废弃, 使用navKey)
+    int32 action                = 14; // 0上拉更多行为 1搜索行为 2排序行为 3筛选行为
+    int32 conditionType         = 15; //特殊条件 1=spuId 2=skuId
+    string conditionVal         = 16; //特殊条件值 逗号分割 (1,2,3)
+    int64 navKey                = 17;  //导航的唯一key
+    int64  collectionId         = 18;  //collectionId
+    int32  pageNum              = 31; //第几页
+    int64 positionKey           = 33;  //banner的positionKey
+    string hotSearchKey         = 34;  //热搜词的[英语]热词
+}
+
+message Response {
+    repeated Component.SpuInfo spuInfoList  = 1;//商品信息List
+    repeated Component.SpuInfo saleTestList = 2;//测款商品信息List
+}
+
+
+
+

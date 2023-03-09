@@ -1,0 +1,16 @@
+syntax = "proto3";
+package UserProfile;
+option objc_class_prefix="UserProfile";
+option java_package = "com.asiainno.hekka.proto.user";
+import "UserProfileInfo.proto";
+
+//url: https://****.com/user/profile
+message Request {
+
+}
+
+message Response {
+    UserProfileInfo.UserProfileInfo userProfileInfo = 1;
+    bool hasSwitchNationalStore  = 2; //是否切换了国家站
+}
+

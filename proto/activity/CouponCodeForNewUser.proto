@@ -1,0 +1,14 @@
+syntax = "proto3";
+package App.Acitivity.CouponCodeForNewUser;
+option objc_class_prefix="CouponCodeForNewUser";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+import "ActivityCodeInfo.proto";
+
+// 新人coupon列表
+//url: https://****.com/activity/newUserZone/couponCodeList
+message Request {}
+
+message Response {
+  repeated ActivityCodeInfo.ActivityCodeInfo list = 1;
+}
+

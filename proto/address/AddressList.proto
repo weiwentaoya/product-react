@@ -1,0 +1,13 @@
+syntax = "proto3";
+package AddressList;
+option objc_class_prefix="AddressList";
+option java_package = "com.asiainno.hekka.proto.user.address";
+import "AddressInfo.proto";
+
+//url: https://****.com/user/address/list
+message Request {
+    int32 type = 1; // 0-默认 1-标记地址在当前站点下是否可用
+}
+message Response {
+    repeated AddressInfo.AddressInfo list = 1; //列表
+}

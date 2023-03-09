@@ -1,0 +1,33 @@
+syntax = "proto3";
+package UserEmailRegisterContent;
+option objc_class_prefix="UserEmailRegisterContent";
+option java_package = "com.asiainno.hekka.proto.user";
+
+//url: https://****.com/user/email/registerContent
+message Request {
+  int64 userId = 1;
+  string sign  = 2; //签名
+  int32 platform = 3; //平台 1 app 2 pc 3 h5
+  int64 nationStoreId = 4; //国家站id
+  int32 bindType = 5;//登录方式， 参考proto/user/UserType/bindType
+  string requestId  =6; //请求id
+  string currency = 7; //币种
+  string password = 8; //用户密码
+}
+
+message Response {
+  string siteUrl = 1;
+  EmailUserInfo userInfo = 2;
+  EmailCodeInfo codeInfo  =3;
+}
+
+message EmailUserInfo {
+  string userName = 1;
+  string password = 2;
+  string email = 3;
+}
+
+message  EmailCodeInfo {
+  string code = 1;// code 码
+  string codeDiscount = 2;// 折扣值 20% 或者$20
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+package App.Order.UserRefundOrderDetail;
+option objc_class_prefix="UserRefundOrderDetail";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+import "OrInfo.proto";
+
+//url: https://****.com/order/refund/refundOrderDetail
+//app退款单详情
+message Request {
+    string refundNo = 1;//退款单号
+}
+
+message Response {
+    OrInfo.RefundOrderInfo refundOrderInfo = 1; // 退款单信息
+}

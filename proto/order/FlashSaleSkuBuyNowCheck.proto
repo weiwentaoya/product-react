@@ -1,0 +1,15 @@
+syntax = "proto3";
+package App.Order.FlashSaleSkuBuyNowCheck;
+option objc_class_prefix="FlashSaleSkuBuyNowCheck";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+
+//url: https://****.com/order/flashSaleSkuBuyNowCheck
+// app订单详情
+message Request {
+    int64 saleSkuId = 1; //  skuId
+}
+
+message Response {
+    int32 canBuy = 1; // 是否能购买 1:可以购买 2:不可以购买
+}

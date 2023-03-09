@@ -1,0 +1,16 @@
+syntax = "proto3";
+package UserEmailSubscribeStatus;
+option objc_class_prefix="UserEmailSubscribeStatus";
+option java_package = "com.asiainno.hekka.proto.user";
+
+/**
+邮件订阅/取消订阅
+ */
+//url: https://****.com/user/emailSubscribeStatus
+message Request {
+  string token = 1;
+
+}
+message Response {
+  int32 emailSubscribe = 1; // 1 订阅 2 取消订阅
+}

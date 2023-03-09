@@ -1,0 +1,16 @@
+syntax = "proto3";
+package App.Order.OrderInfoEdit;
+option objc_class_prefix = "OrderInfoEdit";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+
+//url: https://****.com/order/orderInfo/edit
+message Request {
+    string orderId = 1;//订单id
+    int32 paymentMethodId = 2; //修改支付方式id 不修改传0
+    int64 addressId = 3;//修改地址id 不修改传0
+}
+
+message Response {
+
+}

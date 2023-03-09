@@ -1,0 +1,17 @@
+syntax = "proto3";
+package Product.Product.ProductDetailForward;
+option objc_class_prefix = "ProductDetailForward";
+option java_package = "com.asiainno.hekka.proto.product.product";
+
+//商品跳转获取spuId
+//url: https:****.com/product/getNewSpuByHandle
+///url: https:****.com/product/product/getNationalStoreSpuByHandle
+message Request {
+    string handle = 5; //  老站中商品handle
+}
+
+message Response {
+    string spuId = 1;  //对应新站的spuId
+    string newHandle = 3; //商品对应的新站handle
+    string host = 8; //站点对应的域名
+}

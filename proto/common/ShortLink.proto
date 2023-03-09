@@ -1,0 +1,17 @@
+syntax = "proto3";
+package App.Common.ShortLink;
+option objc_class_prefix="ShortLink";
+option java_package = "com.asiainno.hekka.proto.app.common";
+// 获取短链服务， 注意 如果originUrl 还有utm 相关参数会被覆盖
+//url: https://****.com/common/shortLink/getLink
+message Request {
+  string originUrl = 1;
+  string utmSource = 2;
+  string utmMedium = 3;
+  string utmAction= 4;
+  string utmCampagin= 5;
+}
+
+message Response {
+  string shortLink = 1;
+}

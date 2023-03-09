@@ -1,0 +1,31 @@
+syntax = "proto3";
+option objc_class_prefix = "AddressInfo";
+option java_package = "com.asiainno.hekka.proto.user.address";
+package AddressInfo;
+
+
+//站点导航信息
+message AddressInfo {
+    int64 id=1; //地址主键 有为更新，没有就新增
+    string firstName = 2;
+    string lastName = 3;
+    string countryCode = 4;// 国家码
+    string province = 5;// 省
+    string city = 6;//城市
+    string zoneCode = 7;//手机号区号码
+    string phone = 8;//手机号
+    string address1 = 9;
+    string address2 = 10;
+    int32 isDefault = 12; // 1 为默认地址
+    string zipCode = 13; //
+    int64 userId=14;
+    string fullName = 15; //
+    int32 isEnable = 18;  // 1-可用 0-不可用
+    string  taxNum = 19;  // 税号
+    int32 taxType = 20;// 1 CPF 2 CNPJ 3 RUT
+
+    int32 marketingStatus = 21;  // 手机号营销状态 1-允许 2-不允许
+}
+
+
+

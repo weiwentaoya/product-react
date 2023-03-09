@@ -1,0 +1,24 @@
+syntax = "proto3";
+package App.Product.AppProTrendsList;
+option objc_class_prefix = "AppProTrendsList";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+
+//趋势标签列表
+//url: https://****.com/product/trends/list
+message Request {
+    int64 proTrendsId = 1;  //趋势ID
+    int32 randomNum = 2;    //随机个数
+}
+
+message Response {
+
+    Component.ProductTrendsInfo proTrendsInfo = 1;  //本趋势信息
+
+    repeated Component.ProductTrendsInfo proTrendsInfoList = 2;   //趋势列表
+
+}
+
+
+
+

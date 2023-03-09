@@ -1,0 +1,36 @@
+syntax = "proto3";
+package App.Product.SearchAdvertProduct;
+option objc_class_prefix = "SearchAdvertProduct";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+
+//app商城 商品搜索
+//url: https://****.com/product/search/searchAdvertProduct
+message Request {
+    string spuIds = 2;      //转换过后的新spuId，以","分隔
+
+    string sortType             = 3; // 排序类型 Recommend/Latest/Price/TopSales
+    string sortOrder            = 4; // 排序方式 asc/desc
+    bool newProduct             = 5; // 新品
+    int64 priceMin              = 6; // 价格起 不填-1
+    int64 priceMax              = 7; // 价格止 不填-1
+    string sortId               = 8; // 排序Id 分页使用
+    int32 size                  = 9; // 每页数据条数
+    int32 type                  = 20; //入口类型
+    string data                 = 21;//入口data
+    int64  navId                = 22;  //导航Id (后期慢慢废弃, 使用navKey)
+    int32 action                = 23; // 0上拉更多行为 1搜索行为 2排序行为 3筛选行为
+    int64 navKey                = 24;  //导航唯一的key
+    int32  pageNum              = 25; //第几页
+
+    string searchType           = 40;   //default：默认搜索  precise：精确搜索
+}
+
+message Response {
+    repeated Component.SpuInfo spuInfoList = 1;//商品信息List
+    repeated Component.SpuInfo saleTestList = 2;//测款商品信息List
+}
+
+
+
+

@@ -1,0 +1,33 @@
+syntax = "proto3";
+option objc_class_prefix = "CommonType";
+option java_package = "com.asiainno.hekka.proto.common";
+package Common.CommonType;
+
+enum LanguageType{
+    DEFAULT_TYPE =0;//不可用
+    EN = 1;         //en
+    FR = 2;         //fr
+    DE = 3;         //de
+    ES = 4;         //es
+    PL = 5;         //pl
+}
+
+enum GenderType {
+    DEFAULT_GENDER =0;//不可用
+    MAN = 1; // 男性
+    FEMALE = 2; //女性
+}
+
+enum TemplateType {
+    DEFAULT_OPTION_SELECT_TYPE = 0;  //不可用
+    PRODUCT     = 1; //商品模板
+    OPTION      = 2; //属性模板
+    CATEGORY    = 3; //类目模板
+    PRODCUT_UPDATE_PRICE = 4; //批量修改价格
+    PRODCUT_UPDATE_INVENTORY = 5; //批量修改库存
+    SPU_UPDATE_VIRTUAL_SALE = 6;  //批量修改初始销量
+    SHIPPING = 7;  //运费模版
+}
+
+
+

@@ -1,0 +1,19 @@
+syntax = "proto3";
+package App.Order.MagicBoxPlaceOrder;
+option objc_class_prefix="MagicBoxPlaceOrder";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+import "OrInfo.proto";
+
+//url: https://****.com/order/magicBox/placeOrder
+message Request {
+    int64 magicBoxTplId = 1; //魔盒模板ID
+    int32 quantity = 2; //数量
+    int64 hkc = 3; //hkc数量
+    int32 payWay = 4; //支付方式 2-Paypal 3-stripe
+    bool newUserBenefit = 5;//是否新手优惠
+    int64 paymentTotalPrice = 6;//前端计算的应付金额
+}
+message Response {
+    OrInfo.OrderInfo orderInfo = 1; //
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+package App.Acitivity.CouponCodeListForProductDetail;
+option objc_class_prefix="CouponCodeListForProductDetail";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+import "ActivityCodeInfo.proto";
+// 商品能使用的code
+//url: https://****.com/activity/productDetail/couponCodeList
+message Request {
+  int64 spuId = 1;
+}
+
+message Response {
+  repeated ActivityCodeInfo.ActivityCodeInfo list = 1;
+}

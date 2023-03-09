@@ -1,0 +1,33 @@
+syntax = "proto3";
+package ActivityCodeInfo;
+option objc_class_prefix = "ActivityCodeInfo";
+option java_package = "com.asiainno.hekka.proto.common";
+
+message ActivityCodeInfo {
+  string                code                 = 1;// code
+  int64                 startTime            = 2; //开始时间
+  int64                 endTime              = 3; //结束时间
+  int32                 codeType             = 4; // 1 fixed discount amount , 2 Fixed discount percentage
+  int32                 codeValue            = 5;
+  int32                 restrictionRule      = 6;//1. 不做限制 ,2. 最小订单金额，订单内商品满足最小金额时可用计算时不包含邮费,3. 最小商品数量 订单内商品满足最小数量时可用
+  int32                 restrictionRuleValue = 7;  // 如果是钱 单位为分
+  string                desc                 = 8; // code 描述
+  int32                 claim                = 9; // 1 领取 2 未领取
+  int32                 isFirstOrder         = 10; //1 非首单使用，  2是首单使用
+  int32                 noEndTime            = 11;//1 有结束时间， 2 没有结束时间
+  int32                 dateSettingType      = 12;//code有效时长的类型,1:有起止时间 2: 动态有效期(比如3天）
+  int32                 duration             = 13;//有效期时长
+  /**
+  1, "全站使用 mall display,
+2, "网红使用 Internet Celebrity,
+3, "拉新使用 new Guest Welfare,
+4, "Affiliate 网盟,
+5, "站内券 inside code,
+6, "定向券 Special Audience,
+7, "客服券  Customer service"
+   */
+  int32                 accessChannel        = 14;
+  int64                 codeId               =15;// codeid
+}
+
+

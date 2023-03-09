@@ -1,0 +1,28 @@
+syntax = "proto3";
+package App.navigation.AppNavigationInfo;
+option objc_class_prefix = "AppNavigationInfo";
+option java_package = "com.asiainno.hekka.proto.app.navigation";
+import "AppNavigationModuleInfo.proto";
+
+//查询导航的信息
+//url: https:****.com/product/navigation/info
+message Request {
+
+    repeated int64 navKeyList = 1;
+}
+
+
+message Response {
+    repeated  NavigationMenuInfo menuList = 1;
+}
+
+
+message NavigationMenuInfo{
+    int64 navKey = 1;
+    map<string, AppNavigationModuleInfo.NavigationMenuLanguage> languageMap = 2;   //多语言名称  key: language  value: 多语言信息
+    int32 type = 4;           //菜单类型, 5: link  1: collection  2:category
+    string content = 5;       //内容, type =5, content为 连接路径;
+    string handle = 7;   //固定格式handle
+}
+
+

@@ -1,0 +1,20 @@
+syntax = "proto3";
+package App.Product.AppProductProfileInfo;
+option objc_class_prefix = "AppProductProfileInfo";
+option java_package = "com.asiainno.hekka.proto.app.product";
+
+//查询商品附属信息
+//url: https://****.com/product/product/getProductProfileInfo
+message Request {
+    string spuId = 1; // spuId
+
+}
+
+message Response {
+
+    string  title               = 1; //商品标题(对应语言标题的)
+
+
+}
+
+

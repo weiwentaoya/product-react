@@ -1,0 +1,22 @@
+syntax = "proto3";
+package App.navigation.AppNavigationModuleInfo;
+option objc_class_prefix = "AppNavigationModuleInfo";
+option java_package = "com.asiainno.hekka.proto.app.navigation";
+
+
+message NavigationMenuLanguage{
+
+    int64 navKey = 1;
+
+    string name = 2;
+
+    string picUrl = 3;        //图片地址
+
+}
+
+message MenuBannerPositionItem{
+    int64 positionKey = 1;    // 每个position的唯一标识
+    int32 type = 3;           //类型, 5: link  1: colleciton 2: category
+    string content = 5;       //内容, type =5, 传连接地址;  type=1 传 集合ID ; type=2: 传分类ID的集合用","分隔 eg: 1,2,3
+    string picUrl = 7;        //图片地址
+}

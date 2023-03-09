@@ -1,0 +1,17 @@
+syntax = "proto3";
+package Common.CommonFile;
+option objc_class_prefix = "File";
+option java_package = "com.asiainno.hekka.proto.common";
+
+//文件包
+message FilePackage {
+    repeated  FileInfo files = 1;//文件列表
+}
+
+//文件信息
+message FileInfo {
+    string  name    = 1;//文件名称
+    string  type    = 2;//文件类型
+    uint32  size    = 3;//文件大小
+    bytes   data    = 4;//文件内容
+}

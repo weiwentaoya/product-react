@@ -1,0 +1,14 @@
+syntax = "proto3";
+package App.Magicbox.PayProcessingOrderCount;
+option objc_class_prefix = "PayProcessingOrderCount";
+option java_package = "com.asiainno.hekka.proto.app.magicbox";
+
+
+//url: /order/myMagicBox/getMyPayProcessingOrderCount
+message Request {
+    int64 userId = 1;
+}
+
+message Response {
+    int32 orderCount = 1 ; //payProcessing 中的订单数量
+}

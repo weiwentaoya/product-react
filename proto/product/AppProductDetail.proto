@@ -1,0 +1,70 @@
+syntax = "proto3";
+package App.Product.AppProductDetail;
+option objc_class_prefix = "AppProductDetail";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+import "AppProductModuleInfo.proto";
+
+//pp商品详情
+//url: https://****.com/product/product/getProductDetail
+message Request {
+    int64 spuId = 1; // spuId
+    int64 skuId = 2; //skuId
+}
+
+message Response {
+    int64  productId        = 1; //商品id
+    string handle           = 3; //商品固定格式handle
+    int64  spuId            = 5; //spuId
+    int64  skuId            = 6; //当前的skuId, 是哪个, 就取哪个的 价格等信息
+    int64  categoryId       = 7; //分类ID
+    int32  categoryType     = 8; //分类类型 1: 3c  2:fashion
+
+    string  videoUrl        = 10; //视频地址
+    Component.Image videoCover           = 11; //视频封面地址
+
+    repeated Component.Image mainPhotos  = 15; //主图地址列表
+    repeated Component.Image detailPhotos= 20; //详情图地址
+    repeated Component.Image skuPhotos   = 25; //sku图地址
+
+    string title            = 30; //商品标题(对应语言标题的)
+    string enTitle          = 31; //商品英文标题
+    string systemTitle      = 32; //商品系统标题
+
+    int64  sales            = 41; //销量(初始+真实)
+    int32  saleState        = 43; // 1: 上架  2: 下架
+
+    repeated AppProductModuleInfo.SkuDetail skuList     = 47; //商品列表
+
+    repeated AppProductModuleInfo.Option spuOptionList  = 50; //spu维度的 属性/属性值列表
+    Component.NavRankInfo navRankInfo                   = 52; //排名信息
+    Component.ProductTrendsInfo proTrendsInfo           = 53; //商品趋势信息(展示排名还是趋势信息,展示逻辑由客户端决定)
+
+    //----------------------------------
+    repeated AppProductModuleInfo.SaleOption saleOptionList = 55; //sale option
+    string description                                      = 60; // 商品描述
+    repeated Component.Image descDetailPhotos               = 61; //描述详情图地址
+
+    //--------------规格信息---------------------
+    AppProductModuleInfo.SpecificationInfo specificationInfo = 65;//规格尺寸表格信息
+    repeated Component.Image specificationImgList            = 66; //规格图片信息
+
+    int32 showVat                                            = 70; // 1: 显示  0: 不显示
+
+    //v2.1.1 h5优先 判断此对象,可能需要跳转
+    //spu和国家站的关系信息
+    AppProductModuleInfo.SpuNationalStoreRelationInfo spuNationalStoreRelationInfo = 71;
+    AppProductModuleInfo.SpuFlashSaleInfo flashSaleInfo = 72; //flash sale
+
+    //--------------int64字符串---------------------
+    string productIdString      = 101; //商品id
+    string spuIdString          = 102; //spuId
+    string skuIdString          = 103; //当前的skuId, 是哪个, 就取哪个的 价格等信息
+    string categoryIdString     = 104; //分类ID
+    string salesString          = 105; //销量(初始+真实)
+
+}
+
+
+
+

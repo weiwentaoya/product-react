@@ -1,0 +1,33 @@
+syntax = "proto3";
+package App.Acitivity.HomeRecommendTag;
+option objc_class_prefix="HomeRecommendTag";
+option java_package = "com.asiainno.hekka.proto.app.activity";
+import "Component.proto";
+// 获取推荐类目和just for you 第一列的
+//url: https://****.com/activity/homeRecommend/tagList
+message Request {
+    string sortId = 1; // 初始化是可以为空， 要用服务端返回的字符串
+    string sortId3c = 2; //
+    int64 tagId = 3; // 获取某个tab下面的数据（可以为空，进入app 不传入就是获取第一个分类的数据)
+    bool hasTag = 4;// 是否获取tag
+    bool isFirstTag = 5; // 是否是just for you
+    int32 pageSize = 6; //一页条目数量，最多20条，服务端判断超过20条设置为20条
+    int32 pageNum = 7;// 第几页 默认第一页
+    int32 platform = 8;// 支持的平台，不设置取header中的platform 1-app 2-pc 3-h5, 都不选可以为空代表全部支持
+}
+
+message Response {
+    repeated Tag tagList = 1;
+    repeated Component.SpuInfo spuInfoList =2;
+    string sortId = 3; // fashion sortId
+    string sortId3c = 4; // 3c
+    repeated Component.SpuInfo saleTestList =5; // 测款list
+}
+
+message Tag {
+    int64 tagId = 1;
+    string traceName = 2;// 埋点用的用字
+    string title = 3;// 显示用的名字
+    bool justForYou = 4; // 是否是justForYou
+}
+

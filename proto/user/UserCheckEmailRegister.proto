@@ -1,0 +1,16 @@
+syntax = "proto3";
+package UserCheckEmailRegister;
+option objc_class_prefix="UserCheckEmailRegister";
+option java_package = "com.asiainno.hekka.proto.user";
+
+/**
+  检查邮件是否注册过
+ */
+//url: https://****.com/user/checkEmailRegister
+message Request {
+  string email = 1;
+}
+message Response {
+  // true 代表注册过
+  bool  isRegistered = 1;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+package App.Order.TryCaptureOrder;
+option objc_class_prefix="TryCaptureOrder";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/tryCaptureOrder
+//订单支付成功后尝试捕获 url:
+message Request {
+    string  orderNo = 1;//订单编号
+    string  flowNo = 2;//支付单单号
+}
+message Response {
+    string  orderNo = 1;//订单编号 先忽略占位的
+    string  payUrl   = 2;//H5支付url
+    bool  reauthorize   = 3;//是否需要重新授权
+}

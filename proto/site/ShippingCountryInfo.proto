@@ -1,0 +1,14 @@
+syntax = "proto3";
+package App.Site.ShippingCountryInfo;
+option objc_class_prefix = "ShippingCountryInfo";
+option java_package = "com.asiainno.hekka.proto.app.site";
+
+//url: https://****.com/product/shipping/getShippingCountryInfo
+message Request {
+    int64 spuId = 1; //spuId
+}
+
+//返回
+message Response {
+    repeated string list = 2; //国家列表
+}

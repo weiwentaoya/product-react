@@ -1,0 +1,24 @@
+syntax = "proto3";
+package SpecialOfferInfo;
+option objc_class_prefix = "SpecialOfferInfo";
+option java_package = "com.asiainno.hekka.proto.common";
+
+
+message SpecialOfferInfo {
+  int64 id = 1;                       //
+  string idString = 3;                //
+  string type = 2;                    // 折扣类别 参考Readme
+  string title = 5;                   //
+  string showTitle = 9;               // 格式好的标题(中间梯度, 不适用于多语言, 只返回美元下的)
+  repeated SpecialOfferDiscountInfo discountList = 12;  //折扣明细
+}
+
+//优惠明细配置
+message SpecialOfferDiscountInfo {
+  int64 offerDiscountId = 1;  //
+  string offerDiscountIdString = 2;
+  int32 quantity = 4;         // 满xx数量
+  int32 totalPrice = 6;       // 满xx金额
+  int32 reduce = 8;           // 减少金额
+  int32 discount = 10;        // 折扣（%比）
+}

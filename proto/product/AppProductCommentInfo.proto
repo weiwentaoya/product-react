@@ -1,0 +1,14 @@
+syntax = "proto3";
+package App.Product.AppProductCommentInfo;
+option objc_class_prefix = "AppProductCommentInfo";
+option java_package = "com.asiainno.hekka.proto.app.product";
+import "Component.proto";
+
+message AppCommentInfo {
+    string userPhoto = 2; //用户头像
+    string userName = 3; //用户名
+    double score = 4; //评分
+    int64 date = 5; //日期
+    string content = 6;  //评论内容
+    repeated Component.Image images = 7; //评论图片
+}

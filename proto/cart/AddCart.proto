@@ -1,0 +1,25 @@
+syntax = "proto3";
+package App.Cart.AddCart;
+option objc_class_prefix = "AddCart";
+option java_package = "com.asiainno.hekka.proto.app.cart";
+//url: https://****.com/order/cart/addCart
+message Request {
+    int64  saleSkuId       = 1;
+    int32  quantity        = 2; // 数量, 要加购的数量
+    string path            = 3; // 加购路径(埋点用)
+    int32  source          = 4; // 1:商品详情 2:SpecialOffer凑单
+    string recaptchaToken  = 5; // recaptchaToken
+    string recaptchaAction = 6; // recaptchaAction
+}
+
+
+
+message Response {
+    int32 quantity = 1; // 购物车商品总数量
+    int64 saleSkuId = 2; // 埋点用
+    string usProName = 3; // 商品标题 埋点用
+    int64 usdSkuTotalPrice = 4; // 本次加购的商品单价 * 数量  埋点用
+    int64 categoryIdOne = 5; // 一级类目
+    int64 categoryIdTwo = 6; // 二级类目
+    int64 categoryIdThree = 7; // 三级类目
+}

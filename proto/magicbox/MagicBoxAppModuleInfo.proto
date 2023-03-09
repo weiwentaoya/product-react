@@ -1,0 +1,64 @@
+syntax = "proto3";
+package App.Magicbox.MagicBoxAppModuleInfo;
+option objc_class_prefix = "MagicBoxAppModuleInfo";
+option java_package = "com.asiainno.hekka.proto.app.magicbox";
+
+
+//魔盒手机端app盲盒列表信息
+message MagicBoxInfo {
+    int64 magicBoxID = 1;      //盲盒模版id
+    string magicBoxTitle = 2;  //盲盒名称名称
+    string magicBoxImage =3;   //盲盒图片
+    int64 magicBoxPrices =4;  //盲盒售价
+    double normalRate =  5;    //普通的占比
+    double goodRate =  6;      //优秀的占比
+    double excellentRate =  7; //卓越的占比
+    double legendRate =  8;    //传说的占比
+    //首单用户折扣金额(如果=0, 认为不是新人,不享受折扣, 如果不为0, 是新人,享受折扣
+    //列表页: 划线价 = (magicBoxPrices- newUserBenefitPrices)
+    //详情弹框: 划线价 = (magicBoxPrices * 数量 - newUserBenefitPrices)
+    int64 newUserBenefitPrices = 9;
+}
+
+//我的盲盒列表
+message MyMagicBoxInfo {
+    int64 boxID = 1;           //盲盒id
+    int64 magicBoxID = 7;      //盲盒模版id
+    string magicBoxTitle = 2;  //盲盒名称名称
+    string magicBoxImage =3;   //盲盒图片
+    int64 magicBoxPrices =4;  //盲盒售价
+    int32 state = 5  ;         //盲盒状态：1表示未开启，2表示开启 3，兑换HKC  4，提取订单
+    int64  openBoxTime = 6 ;   //盲盒打开时间
+}
+
+//我的盲盒详情
+message MyMagicBoxDetail {
+    int64 boxId = 1;                   // 盲盒id
+    int64 productId = 2;               //商品id
+    int64 spuId = 3;                   //开盲盒中奖商品的spuId
+    //string productName = 4;          //商品名称
+    int64 marketPrice = 5;             //商品市场价
+    int64 salePrice =  6;              //商品销售价
+    int32 type = 7;                    // 1: Legend  2:Excellent  3: good  4: Normal
+    repeated string mainPhotos = 8;    //主题地址列表
+    repeated string detailPhotos = 9;  //详情图地址
+    string videoUrl = 10;              //视频地址
+    string description = 11 ;          // 商品描述
+    string winningPicture = 12;        //中奖商品图
+    int64 magicBoxPrice =  13;         //盲盒价格
+    repeated Option optionList = 14;   //description 有值, 展示这个, 没有值, 展示 optionList
+    int64 exchangeHkc =  15;           //兑换的hkc值
+    string  title               = 16;  //商品标题
+    string  systemTitle         = 17;  //商品系统标题
+    repeated string skuPhotos   = 18;  //sku图地址
+    string  videoCover          = 19;  //视频封面地址
+    repeated string descDetailPhotos= 20; //描述详情图地址
+
+    string enBoxTitle = 21;   //英文的盲盒名称
+
+}
+
+message Option{
+    string optionName = 1;
+    repeated string optionValNameList = 2;
+}

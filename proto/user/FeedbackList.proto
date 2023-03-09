@@ -1,0 +1,28 @@
+syntax = "proto3";
+package FeedbackList;
+option objc_class_prefix="FeedbackList";
+option java_package = "com.asiainno.hekka.proto.user";
+
+//url: https://****.com/admin/feedback/list
+message Request {
+    int64 userId = 1;
+    int32 pageNum  = 2; //第几页
+    int32 pageSize = 3; //每页长度
+}
+
+message Response {
+    repeated FeedbackInfo feedbackList = 1;
+    int32 total = 2; //总条数
+}
+
+message FeedbackInfo {
+    int64 id = 1;
+    int32 type=2;
+    string description = 3;
+    string photoList = 4;
+    int64 userId  = 5;
+    int64 createTime = 6;
+    string userAgent = 7;
+    string errorDesc = 8;
+    int64 feedbackTime = 9;// 反馈时间
+}

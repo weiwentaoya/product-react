@@ -1,0 +1,16 @@
+syntax = "proto3";
+package AddressSearch;
+option objc_class_prefix="AddressSearch";
+option java_package = "com.asiainno.hekka.proto.user.country.config";
+import "AddrModelInfo.proto";
+
+//从谷歌查询地址
+//url: https://****.com/user/countryCityConfig/search/address
+message Request {
+    string query = 1;       //搜索关键词
+    string countryCode = 2; //国家码
+}
+
+message Response {
+    repeated AddrModelInfo.GoogleAddr list = 1;
+}
