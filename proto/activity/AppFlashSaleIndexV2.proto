@@ -1,0 +1,36 @@
+syntax = "proto3";
+package Activity.AppFlashSaleIndexV2;
+option objc_class_prefix = "AppFlashSaleIndexV2";
+option java_package = "com.asiainno.hekka.proto.activity.flashSale";
+
+import "Component.proto";
+/**
+  首页
+ */
+//url: https://****.com/activity/flashSale/indexV2
+message Request {}
+
+message Response {
+
+   int64 startTime = 1;
+  /**
+    flash sale 列表
+   */
+  int64 endTime = 2;
+
+  /**
+    标题
+   */
+  string title = 3;
+
+  int64 flashId = 4;
+
+  /**
+    spu 列表 fashion
+   */
+  repeated Component.SpuInfo fashionSpuList =5;
+
+  repeated Component.SpuInfo electronicSpuList =6;
+
+
+}

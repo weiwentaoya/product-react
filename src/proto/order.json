@@ -3444,6 +3444,73 @@
                   }
                 }
               }
+            },
+            "YotpoCheckout": {
+              "options": {
+                "objc_class_prefix": "YotpoCheckout",
+                "java_package": "com.asiainno.hekka.proto.app.order"
+              },
+              "nested": {
+                "Request": {
+                  "fields": {
+                    "source": {
+                      "type": "int32",
+                      "id": 1
+                    },
+                    "addressId": {
+                      "type": "int64",
+                      "id": 2
+                    },
+                    "shippingMethodId": {
+                      "type": "int32",
+                      "id": 3
+                    },
+                    "paymentMethodId": {
+                      "type": "int32",
+                      "id": 4
+                    },
+                    "couponCode": {
+                      "type": "string",
+                      "id": 5
+                    },
+                    "hkcRatio": {
+                      "type": "int32",
+                      "id": 6
+                    },
+                    "spuId": {
+                      "type": "int64",
+                      "id": 7
+                    },
+                    "saleSkuId": {
+                      "type": "int64",
+                      "id": 8
+                    },
+                    "skuQuantity": {
+                      "type": "int32",
+                      "id": 9
+                    },
+                    "specialOfferId": {
+                      "type": "int64",
+                      "id": 10
+                    },
+                    "specialOfferLadderId": {
+                      "type": "int64",
+                      "id": 11
+                    },
+                    "joinSpecialOfferFlag": {
+                      "type": "int32",
+                      "id": 12
+                    },
+                    "autoSelectCouponCodeFlag": {
+                      "type": "int32",
+                      "id": 13
+                    }
+                  }
+                },
+                "Response": {
+                  "fields": {}
+                }
+              }
             }
           }
         },

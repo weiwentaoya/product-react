@@ -191,6 +191,47 @@
             }
           }
         },
+        "AppFlashSaleIndexV2": {
+          "options": {
+            "objc_class_prefix": "AppFlashSaleIndexV2",
+            "java_package": "com.asiainno.hekka.proto.activity.flashSale"
+          },
+          "nested": {
+            "Request": {
+              "fields": {}
+            },
+            "Response": {
+              "fields": {
+                "startTime": {
+                  "type": "int64",
+                  "id": 1
+                },
+                "endTime": {
+                  "type": "int64",
+                  "id": 2
+                },
+                "title": {
+                  "type": "string",
+                  "id": 3
+                },
+                "flashId": {
+                  "type": "int64",
+                  "id": 4
+                },
+                "fashionSpuList": {
+                  "rule": "repeated",
+                  "type": "Component.SpuInfo",
+                  "id": 5
+                },
+                "electronicSpuList": {
+                  "rule": "repeated",
+                  "type": "Component.SpuInfo",
+                  "id": 6
+                }
+              }
+            }
+          }
+        },
         "AppFlashSaleList": {
           "options": {
             "objc_class_prefix": "AppFlashSaleList",
@@ -670,6 +711,61 @@
                     "productId": {
                       "type": "int64",
                       "id": 6
+                    }
+                  }
+                }
+              }
+            },
+            "HotSalesIndexV2": {
+              "options": {
+                "objc_class_prefix": "HotSalesIndexV2",
+                "java_package": "com.asiainno.hekka.proto.activity.hotsales"
+              },
+              "nested": {
+                "Request": {
+                  "fields": {
+                    "platform": {
+                      "type": "int32",
+                      "id": 1
+                    }
+                  }
+                },
+                "Response": {
+                  "fields": {
+                    "fashionList": {
+                      "rule": "repeated",
+                      "type": "HotSalesSecondaryCategory.HotSalesSecondaryCategory",
+                      "id": 1
+                    },
+                    "electronicList": {
+                      "rule": "repeated",
+                      "type": "HotSalesSecondaryCategory.HotSalesSecondaryCategory",
+                      "id": 2
+                    },
+                    "bannerList": {
+                      "rule": "repeated",
+                      "type": "BestSellerBanner",
+                      "id": 3
+                    }
+                  }
+                },
+                "BestSellerBanner": {
+                  "fields": {
+                    "id": {
+                      "type": "int64",
+                      "id": 1
+                    },
+                    "imgUrl": {
+                      "type": "string",
+                      "id": 2
+                    },
+                    "protocol": {
+                      "type": "string",
+                      "id": 3
+                    },
+                    "title": {
+                      "type": "string",
+                      "id": 4
                     }
                   }
                 }
@@ -1434,6 +1530,36 @@
                       "rule": "repeated",
                       "type": "MainPosition",
                       "id": 3
+                    },
+                    "homeMiddle1": {
+                      "rule": "repeated",
+                      "type": "Banner",
+                      "id": 4
+                    },
+                    "homeMiddle2": {
+                      "rule": "repeated",
+                      "type": "Banner",
+                      "id": 5
+                    },
+                    "homeMiddle3": {
+                      "rule": "repeated",
+                      "type": "Banner",
+                      "id": 6
+                    },
+                    "homeMiddle41": {
+                      "rule": "repeated",
+                      "type": "Banner",
+                      "id": 7
+                    },
+                    "homeMiddle42": {
+                      "rule": "repeated",
+                      "type": "Banner",
+                      "id": 8
+                    },
+                    "homeMiddle5": {
+                      "rule": "repeated",
+                      "type": "Banner",
+                      "id": 9
                     }
                   }
                 },

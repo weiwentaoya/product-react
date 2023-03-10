@@ -1,0 +1,31 @@
+.sticky-wrap{
+  position: sticky;
+  background: #ffffff;
+  top: 0;
+  height: 44px;
+  line-height: 44px;
+  padding: 0 12px;
+  z-index: 1;
+  span{
+    margin-right: 24px;
+    font-size: 14px;
+    font-family: Roboto, Roboto-Medium;
+    font-weight: 500;
+    text-align: left;
+    color: #74788a;
+  }
+  .active{
+    color: #000000;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 2px;
+      background: #000000;
+    }
+  }
+}

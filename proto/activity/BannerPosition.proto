@@ -21,6 +21,12 @@ message Response {
     repeated Banner topBannerList = 1;
     repeated Banner bottomBannerList = 2;
     repeated MainPosition mainPositionList = 3;
+    repeated Banner homeMiddle1 = 4;
+    repeated Banner homeMiddle2 = 5;
+    repeated Banner homeMiddle3 = 6;
+    repeated Banner homeMiddle41 = 7;
+    repeated Banner homeMiddle42 = 8;
+    repeated Banner homeMiddle5 = 9;
 }
 
 message Banner {
@@ -37,5 +43,4 @@ message MainPosition {
     string protocol = 4;// 1 数据集页面 2 h5
     string traceName = 5;
 }
-
 

@@ -1,7 +1,9 @@
 import React from 'react'
-import { NavBar, Toast } from 'antd-mobile'
+import { Toast } from 'antd-mobile'
 import BottomBar from '../components/core/BottomBar'
+import NavBar from '../components/core/NavBar'
 import './default.less'
+// import './default.scss'
 
 
 const layout = props => {

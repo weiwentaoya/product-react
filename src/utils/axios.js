@@ -14,7 +14,11 @@ const instance = axios.create({
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
-  
+  config.headers.platform = 3
+  config.headers.language = 'en'
+  config.headers.countryCode = 'US'
+  config.headers.currency = 'USD'
+  config.headers.gender = 2
   return config;
 }, function (error) {
   // 对请求错误做些什么

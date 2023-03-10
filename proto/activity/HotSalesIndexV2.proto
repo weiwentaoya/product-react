@@ -1,0 +1,29 @@
+/**
+ * @Project        hekka-protobuf
+ * @Author         Lanxiaowei
+ * @CreateDate     2022-03-30 11:53
+ * @Description    Type the description of the protobuf file over here.
+ */
+syntax = "proto3";
+package Activity.HotSales.HotSalesIndexV2;
+option objc_class_prefix = "HotSalesIndexV2";
+option java_package = "com.asiainno.hekka.proto.activity.hotsales";
+import "HotSalesSecondaryCategory.proto";
+
+//url: https://****.com/activity/hotsales/indexV2
+message Request {
+    int32 platform = 1; // 平台 2 pc 3 h5
+}
+
+message Response {
+  repeated HotSalesSecondaryCategory.HotSalesSecondaryCategory fashionList = 1;
+  repeated HotSalesSecondaryCategory.HotSalesSecondaryCategory electronicList = 2;
+  repeated BestSellerBanner bannerList = 3;
+}
+
+message BestSellerBanner {
+   int64 id = 1;
+   string imgUrl = 2;
+   string protocol =  3;
+   string title = 4;// banner title
+}

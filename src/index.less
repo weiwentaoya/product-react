@@ -1,0 +1,62 @@
+
+@maxWidth: 768px;
+
+html {
+  position: relative;
+  max-width: @maxWidth;
+  background: #f0f1f6;
+  margin: auto;
+  font-family: 'Montserrat', PingFang SC, ProximaNova, system-ui, -apple-system,
+    Roboto, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+}
+
+body {
+  font-family: 'Montserrat', PingFang SC, ProximaNova, system-ui, -apple-system,
+    Roboto, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+div,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: none;
+}
+
+img[src=''],
+img:not([src]) {
+  opacity: 0;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: ' ';
+  clear: both;
+  height: 0;
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+package App.Order.YotpoCheckout;
+option objc_class_prefix = "YotpoCheckout";
+option java_package = "com.asiainno.hekka.proto.app.order";
+
+//url: https://****.com/order/yotpo/checkout
+message Request {
+  int32  source               = 1; // SKU数据来源    1: 购物车  2: 商品详情页
+  int64  addressId            = 2; // 收货地址ID 可空
+  int32  shippingMethodId     = 3; // 邮寄方式ID
+  int32  paymentMethodId      = 4; // 支付方式ID
+  string couponCode           = 5; // CouponCode码 可空
+  int32  hkcRatio             = 6; // hkc抵扣比例 可空
+  int64  spuId                = 7; // source=2时传
+  int64  saleSkuId            = 8; // source=2时传
+  int32  skuQuantity          = 9; // 购买SKU的数量, source=2时传 默认是1
+  int64  specialOfferId       = 10; // specialOffer活动ID 【商品详情页过来必传，没有值传-1】
+  int64  specialOfferLadderId = 11; //  specialOffer阶梯ID
+  int32  joinSpecialOfferFlag = 12; //  是否让SpecialOffer参与到计算逻辑中来 1:是 2:否 默认值:1
+  int32  autoSelectCouponCodeFlag = 13; //  是否自动选中CouponCode 默认自动选中 0:自动选中 1:不自动选中
+}
+
+message Response {
+}
