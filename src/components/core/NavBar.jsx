@@ -1,10 +1,13 @@
 import React from 'react'
 import './NavBar.less'
+import { Link } from 'react-router-dom';
 export default function NavBar() {
   return (
     <div className='nav-bar__wrap'>
       <span className="hekka-font hekka-more"></span>
-      <img className='nav-bar__logo' src={require('@/static/logo.png')} alt="" />
+      <Link to="/" className='nav-bar__logo'>
+      <img src={require('@/static/logo.png')} alt="" />
+      </Link>
       <div className='nav-bar__occupy'></div>
       <span className="hekka-font hekka-search1"></span>
       <span className="hekka-font hekka-bag"></span>
