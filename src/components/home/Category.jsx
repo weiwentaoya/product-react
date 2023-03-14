@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+
 import Img from '../core/Img'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Grid, Pagination } from "swiper";
@@ -8,7 +10,7 @@ import "swiper/css/pagination";
 import './Category.less'
 
 
-export default function Category({category = []}) {
+export default function Category({category}) {
   return (
     category.length>0?
     <div className='shop-category__wrap'>
@@ -44,4 +46,11 @@ export default function Category({category = []}) {
     </div>
     : ''
   )
+}
+
+Category.propTypes = {
+  category: PropTypes.array.isRequired
+}
+Category.defaultProps = {
+  category: []
 }

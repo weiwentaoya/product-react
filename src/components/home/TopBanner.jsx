@@ -1,11 +1,9 @@
 import React from 'react'
 import { Swiper } from 'antd-mobile'
 import Img from '../core/Img';
+import PropTypes from 'prop-types'
 
-
-export default function TopBanner(props) {
-  console.log(props);
-  const { banner = [] } = props
+export default function TopBanner({banner}) {
   return (
     <Swiper autoplay loop>
       {
@@ -17,4 +15,11 @@ export default function TopBanner(props) {
       }
     </Swiper>
   )
+}
+
+TopBanner.propTypes = {
+  banner: PropTypes.array.isRequired
+}
+TopBanner.defaultProps = {
+  banner: []
 }

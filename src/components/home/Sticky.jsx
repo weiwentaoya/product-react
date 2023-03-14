@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 export default function Sticky() {
   const nav = ['HOME', 'FASHION', 'ELECTRONICS']
   const state = useSelector(state => state)
-  console.log(state)
   const active = useMemo(() => {
     switch (state.router
       .location.pathname) {
@@ -19,7 +18,7 @@ export default function Sticky() {
       default:
         return 'HOME'
     }
-  }, [])
+  }, [state.router.location.pathname])
   return (
     <div className='sticky-wrap'>
       {

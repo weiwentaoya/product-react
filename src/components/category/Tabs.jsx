@@ -1,6 +1,5 @@
 import React from 'react'
 import { TabWrap } from './TabsStyle'
-console.log(TabWrap);
 export default function Tabs({menuList, menuId, change}) {
   return (
     <TabWrap>
