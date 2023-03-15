@@ -42,3 +42,26 @@ export const hotsalesIndexV2 = (params)=>{
     Activity
   )
 }
+
+// Fashion,2=Electronic Best Sellers
+      
+export const hotsalesIndex = (params)=>{
+  return request(
+    'activity/hotsales/index',
+    params,
+    'HotSalesIndex.Request',
+    'HotSalesIndex.Response',
+    Activity
+  )
+}
+
+// 首页banner
+export const recommendCommonTagList = (params)=>{
+  return request(
+    'activity/recommendCommon/tagList',
+    params,
+    'RecommendCommonTag.Request',
+    'RecommendCommonTag.Response',
+    Activity
+  )
+}

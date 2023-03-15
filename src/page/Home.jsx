@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 // import { useSelector } from 'react-redux'
 import Layout from '../layout/default'
-import { bannerPositionList, homeRecommendTagList } from '../api/activity'
+import { bannerPositionList, homeRecommendTagList, hotsalesIndexV2 } from '../api/activity'
 import TopBanner from '../components/home/TopBanner'
 import Server from '../components/home/Server'
 import NewArrivals from '../components/home/NewArrivals'
@@ -30,9 +30,18 @@ const Home = () => {
       { hasTag: true, platform: 3 }
     )
     setTagList(tagList)
-
   }
+
+  const [hotsales, setHotsales] = useState({})
+  
+  const getHotsalesIndexV2 = async () => {
+    const res = await hotsalesIndexV2({platform: 3})
+    setHotsales(res)
+  }
+
+
   useEffect(() => {
+    getHotsalesIndexV2()
     getBannerPositionList()
     getHomeRecommendTagList()
   },[])
@@ -45,14 +54,14 @@ const Home = () => {
       <Category category={homeInfo.mainPositionList} />
       <Container>
         <TopBanner banner={homeInfo.homeMiddle2}/>
-        <BestSellers />
+        <BestSellers hotsales={hotsales} />
         <div className='home-middle__4'>
         <TopBanner banner={homeInfo.homeMiddle41}/>
         <div className='c'></div>
         <TopBanner banner={homeInfo.homeMiddle42}/>
         </div>
         <TopBanner banner={homeInfo.homeMiddle5}/>
-        <TagList tagList={tagList} />
+        <TagList tagList={tagList} request={homeRecommendTagList}/>
       </Container>
     </Layout>
   )

@@ -19,6 +19,12 @@
     font-family: Roboto, Roboto-Regular;
     font-weight: 400;
     color: #000000;
+    display: -webkit-box;
+    word-break: break-word;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 14px;
     margin: 5px 0 20px;
   }
@@ -43,11 +49,11 @@
     align-items: center;
   }
   .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{
-    width: auto;
+    // width: auto;
     left: 50%;
     transform: translateX(-50%);
     .swiper-pagination-bullet{
-      width: 24px;
+      width: 12px;
       height: 2px;
       background: #d9dbe2;
       margin: 0;

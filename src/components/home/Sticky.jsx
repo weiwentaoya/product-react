@@ -18,12 +18,13 @@ export default function Sticky() {
       default:
         return 'HOME'
     }
-  }, [state.router.location.pathname])
+  }, [ ])
   return (
     <div className='sticky-wrap'>
       {
+        
         nav.map(el => {
-          return <Link key={el} to={'/' + el.toLocaleLowerCase()} className={el === active?'active':''}>{el}</Link>
+          return <Link key={el} to={'/' + (el !== 'HOME'? el.toLocaleLowerCase():'')} className={el === active?'active':''}>{el}</Link>
         })
       }
     </div>

@@ -2,6 +2,8 @@ import React from 'react'
 import Img from './Img'
 import './ProductItem.less'
 import PropTypes from 'prop-types';
+import { formatPrice } from '../../utils/format';
+
 
 function ProductItem({ productInfo, showInfo, type }) {
   const { rank, title, marketPrice } = showInfo
@@ -29,15 +31,19 @@ function ProductItem({ productInfo, showInfo, type }) {
           : ''
       }
       <div className="sale-price">
-        <span>{productInfo.salePrice}</span>
+        <span>{
+          formatPrice(productInfo.salePrice)
+        }</span>
         {
           marketPrice ?
-            <del>{productInfo.marketPrice}</del>
+            <del>{
+              formatPrice(productInfo.marketPrice)
+            }</del>
             : ''
         }
       </div>
       {
-        rank ?
+        rank && productInfo.rankInfo.rank > 0 ?
           <div className="top">
             <div>Top {productInfo.rankInfo.rank}</div>
             {/* in */}

@@ -11,12 +11,12 @@ import BestSellers from '../components/home/BestSellers'
 import TagList from '../components/home/TagList';
 
 
-export default function Fashion() {
+export default function Electronic() {
 
   const [homeInfo, setHomeInfo] = useState({})
   const getBannerPositionList = async () => {
     const res = await bannerPositionList(
-      { position: 1, platform: 3 }
+      { position: 2, platform: 3 }
     )
     setHomeInfo(res)
   }
@@ -24,14 +24,14 @@ export default function Fashion() {
   const [hotsales, setHotsales] = useState({})
   
   const getHotsalesIndex = async () => {
-    const res = await hotsalesIndex({productBaseType: 1})
+    const res = await hotsalesIndex({productBaseType: 2})
     setHotsales({fashionList: res.categoryList})
   }
 
   const [tagList, setTagList] = useState([])
   const getRecommendCommonTagList = async () => {
     const { tagList } = await recommendCommonTagList(
-      { hasTag: true, platform: 3, position: 1 }
+      { hasTag: true, platform: 3, position: 2 }
     )
     setTagList(tagList)
 

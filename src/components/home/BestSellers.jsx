@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Swiper } from 'antd-mobile'
 import styled from 'styled-components';
-import ProductItem from '@/components/core/ProductItem';
 
 import PropTypes from 'prop-types'
-import { hotsalesIndexV2 } from '@/api/activity'
 import Img from '../core/Img';
 
-const BestSellers = props => {
-
-  const [hotsales, setHotsales] = useState({})
+const BestSellers = ({hotsales}) => {
   
-  const getHotsalesIndexV2 = async () => {
-    const res = await hotsalesIndexV2({platform: 3})
-    setHotsales(res)
-  }
-  useEffect(()=>{
-    getHotsalesIndexV2()
-    
-  },[])
   return (
     <Container>
       <div className="best-sellers__header">
@@ -83,7 +71,12 @@ const BestSellers = props => {
   )
 }
 
-BestSellers.propTypes = {}
+BestSellers.propTypes = {
+  hotsales: PropTypes.object
+}
+BestSellers.defaultProps = {
+  hotsales: {}
+}
 
 const Container = styled.div`
   .best-sellers__header{

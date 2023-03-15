@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
-import { homeRecommendTagList } from '@/api/activity'
 import ProductList from '../core/ProductList';
 
-const TagList = ({ tagList }) => {
+const TagList = ({ tagList, request }) => {
   const [activeTag, setActiveTag] = useState(0)
   useEffect(() => {
     setActiveTag(tagList[0]?.tagId || 0)
   }, [tagList])
+
+  
   return (
     <Container>
       <div className="tag-list">
@@ -18,7 +19,7 @@ const TagList = ({ tagList }) => {
               key={el.tagId}
               className={`tag ${el.tagId === activeTag ? 'active' : ''}`}
               onClick={() => { setActiveTag(el.tagId) }}
-            >{el.title}</div>
+            >{el.title || el.tagName}</div>
           })
         }
       </div>
@@ -27,7 +28,7 @@ const TagList = ({ tagList }) => {
           activeTag?
           <ProductList
             requestConfig={{
-              request: homeRecommendTagList,
+              request,
               params: {
                 hasTag: false,
                 isFirstTag: true,
@@ -49,10 +50,11 @@ const TagList = ({ tagList }) => {
 }
 
 TagList.propTypes = {
-  tagList: PropTypes.array.isRequired
+  tagList: PropTypes.array.isRequired,
+  request: PropTypes.func.isRequired
 }
 TagList.defaultProps = {
-  tagList: []
+  tagList: [],
 }
 
 export const Container = styled.div`
