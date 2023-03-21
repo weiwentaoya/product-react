@@ -2,6 +2,7 @@ import React from 'react'
 import { Toast } from 'antd-mobile'
 import BottomBar from '../components/core/BottomBar'
 import NavBar from '../components/core/NavBar'
+import NotificationBar from '../components/core/NotificationBar'
 import './default.less'
 // import './default.scss'
 
@@ -14,6 +15,7 @@ const layout = props => {
     })
   return (
     <div className='page-container__wrap'>
+      <NotificationBar/>
       <NavBar onBack={back}>layout</NavBar>
       <div className='page-main__wrap'>
         {props.children}

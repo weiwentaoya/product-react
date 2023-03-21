@@ -16,7 +16,7 @@ function Placeholder({perch}) {
   return <img src={perchType[perch]} alt='hekka' style={{maxWidth: '100%'}} />
 }
 
-export default function Img({src, perch}) {
+export default function Img({src, perch, fit}) {
   let imgUrl = ''
   if (src.startsWith('http')) {
     imgUrl = src
@@ -24,14 +24,16 @@ export default function Img({src, perch}) {
     imgUrl = CDN + src
   }
   return (
-    <Image lazy alt='hekka' src={imgUrl} fit="contain" placeholder={<Placeholder perch={perch} />} style={{width: '100%', height: '100%',background: '#f8f8f8'}}/>
+    <Image lazy alt='hekka' src={imgUrl} fit={fit} placeholder={<Placeholder perch={perch} />} style={{width: '100%', height: '100%',background: '#f8f8f8'}}/>
   )
 }
 
 Img.propTypes = {
   src: PropTypes.string.isRequired,
-  perch: PropTypes.string
+  perch: PropTypes.string,
+  fit: PropTypes.string
 }
 Img.defaultProps = {
-  perch: 'rectangle'
+  perch: 'rectangle',
+  fit: 'contain'
 }

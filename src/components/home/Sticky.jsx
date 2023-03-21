@@ -18,7 +18,7 @@ export default function Sticky() {
       default:
         return 'HOME'
     }
-  }, [ ])
+  }, [ state ])
   return (
     <div className='sticky-wrap'>
       {

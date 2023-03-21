@@ -65,3 +65,14 @@ export const recommendCommonTagList = (params)=>{
     Activity
   )
 }
+
+// 首页banner
+export const homeCommonInfo = (params)=>{
+  return request(
+    'activity/homeCommon/info',
+    params,
+    'HomeCommonInfo.Request',
+    'HomeCommonInfo.Response',
+    Activity
+  )
+}
