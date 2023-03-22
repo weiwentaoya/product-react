@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import Layout from '../layout/default'
-import { navigationList } from '../api/product'
+import { navigationList } from '../api/navigation'
 import Tabs from '../components/category/Tabs'
 import Slidebar from '../components/category/Slidebar'
 import styled from 'styled-components';

@@ -7,6 +7,7 @@ import Electronics from './page/Electronics'
 import Me from './page/Me'
 import Category from './page/Category'
 import Cart from './page/Cart'
+import Product from './page/Product'
 
 const routes = () => {
   return (
@@ -18,6 +19,7 @@ const routes = () => {
         <Route path='/me' element={<Me />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/category' element={<Category />} />
+        <Route path='/product/:id' element={<Product />} />
       </Routes>
     </BrowserRouter>
   )

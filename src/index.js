@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'connected-react-router'
 import Routes from './routes';
-import store from './store'
+import store, { history } from './store'
 import './index.less'
 import './static/fonts/iconfont.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
+    {/* <ConnectedRouter history={history}>  */}
+    {/* ConnectedRouter传递history对象作为props */}
     <Routes/>
+    {/* </ConnectedRouter> */}
   </Provider>
 );
 

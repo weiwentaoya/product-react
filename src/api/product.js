@@ -1,15 +1,25 @@
-import Product from '../proto/navigation.json'
+import Product from '../proto/product.json'
 import request from '../utils/request'
 
 
-//导航列表
-export const navigationList = (params)=>{
+
+//商品详情
+export const getProductDetail = (params)=>{
   return request(
-    'product/navigation/list',
+    'product/product/getProductDetail',
     params,
-    'AppNavigationList.Request',
-    'AppNavigationList.Response',
+    'AppProductDetail.Request',
+    'AppProductDetail.Response',
     Product
   )
 }
-
+//商品详情
+export const detailPromotionProductList = (params)=>{
+  return request(
+    'product/list/detailPromotionProductList',
+    params,
+    'DetailPromotionProductList.Request',
+    'DetailPromotionProductList.Response',
+    Product
+  )
+}

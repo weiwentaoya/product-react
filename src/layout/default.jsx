@@ -7,7 +7,8 @@ import './default.less'
 // import './default.scss'
 
 
-const layout = props => {
+const layout =  ({ children }) => {
+  const Bottom = children.find(el=>el.props.slot === 'bottom') ||  <BottomBar/>
   const back = () =>
     Toast.show({
       content: '点击了 返回区域',
@@ -18,9 +19,11 @@ const layout = props => {
       <NotificationBar/>
       <NavBar onBack={back}>layout</NavBar>
       <div className='page-main__wrap'>
-        {props.children}
+        {children.filter(el => !el.props.slot)}
       </div>
-      <BottomBar></BottomBar>
+      {
+        Bottom
+      }
     </div>
   )
 }
