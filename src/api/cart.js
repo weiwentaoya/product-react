@@ -2,7 +2,7 @@ import Cart from '../proto/cart.json'
 import request from '../utils/request'
 
 
-//导航列表
+//购物车数量
 export const cartCartLen = (params)=>{
   return request(
     'order/cart/cartLen',
@@ -23,3 +23,5 @@ export const cartAddCart = (params)=>{
     Cart
   )
 }
+
+

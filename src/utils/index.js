@@ -11,7 +11,7 @@ export function transformPBReq(params, headers, reqType, protoRoot) {
   const Message = Root.lookupType(reqType)
   // 创建新消息
   const message = Message.create(params)
-  headers.params = params
+  // headers.params = params
   // 将消息编码到 Uint8Array（浏览器）或 Buffer（节点）
   const data = Message.encode(message).finish()
   return data;

@@ -1,34 +1,21 @@
 import React from 'react'
+import { useSelector } from "react-redux"
+import { TabBar } from 'antd-mobile'
 import {
   AppOutline,
   TruckOutline,
   UnorderedListOutline,
   UserOutline
 } from 'antd-mobile-icons'
-import { Badge } from 'antd-mobile'
 
-export const Tabs = [
-  {
-    key: '/',
-    title: 'Home',
-    icon: <AppOutline />,
-    badge: Badge.dot
-  },
-  {
-    key: '/category',
-    title: 'Category',
-    icon: <UnorderedListOutline />,
-    badge: '5'
-  },
-  {
-    key: '/cart',
-    title: 'Cart',
-    icon: <TruckOutline />,
-    badge: '99+'
-  },
-  {
-    key: '/me',
-    title: 'Me',
-    icon: <UserOutline />
-  }
-]
+const TabsConfig = () => {
+  const cart = useSelector((state) => state.cart)
+  return <>
+    <TabBar.Item key='/' icon={<AppOutline />} title='Home' />
+    <TabBar.Item key='/category' icon={<UnorderedListOutline />} title='Category' />
+    <TabBar.Item key='/cart' icon={<TruckOutline />} title='Cart' badge={cart.quantity} />
+    <TabBar.Item key='/me' icon={<UserOutline />} title='Me' />
+    </>
+}
+
+export default TabsConfig

@@ -1,20 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { homeCommonInfo } from "../../api/activity"
+import notifyAction from "../../store/actions/notify.action"
+// import { homeCommonInfo } from "../../api/activity"
 import styled from "styled-components"
 import Img from "../core/Img"
-import { useEffect } from "react"
 
 const NotificationBar = (props) => {
 	const notify = useSelector((state) => state.notify)
 	const dispatch = useDispatch()
-	const homeInfo = async () => {
-		const { topBar } = await homeCommonInfo()
-		dispatch({ type: "notify", payload: topBar })
-	}
 	useEffect(() => {
-		homeInfo()
-	}, [ ])
+		dispatch(notifyAction.homeCommonInfo())
+		
+	}, [])
+
+	// console.log("dispatch", dispatch)
 
 	return (
 		<Container>

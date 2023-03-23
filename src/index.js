@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
+import './utils/init'
+// import { ConnectedRouter } from 'connected-react-router'
 import Routes from './routes';
-import store, { history } from './store'
+import store from './store'
 import './index.less'
 import './static/fonts/iconfont.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));

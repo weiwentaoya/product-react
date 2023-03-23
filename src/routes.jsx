@@ -10,6 +10,7 @@ import Cart from './page/Cart'
 import Product from './page/Product'
 
 const routes = () => {
+  console.log('routes render');
   return (
     <BrowserRouter>
       <Routes>

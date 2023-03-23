@@ -1,8 +1,7 @@
-import { NOTIFY_BANNER } from '../action-type'
+import { CART_QUANTITY } from '../action-type'
 
 const initial = {
-  imgUrl: '',
-  linkUrl: null
+  quantity: 0
 }
 
 
@@ -10,7 +9,7 @@ export default function notifyReducer(state = initial, action) {
   state = {...state}
   const { type, payload } = action
   switch (type) {
-    case NOTIFY_BANNER:
+    case CART_QUANTITY:
       state = { ...payload}
       break;
       default:
