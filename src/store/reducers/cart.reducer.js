@@ -4,7 +4,6 @@ const initial = {
   quantity: 0
 }
 
-
 export default function notifyReducer(state = initial, action) {
   state = {...state}
   const { type, payload } = action

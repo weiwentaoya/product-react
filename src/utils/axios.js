@@ -2,6 +2,8 @@ import axios from "axios";
 import { API } from "./config";
 import Cookies from 'js-cookie'
 import { v4 as uuidv4, v5 as uuidv5 } from 'uuid'
+import store from '../store'; // 引入 Redux store
+
 const instance = axios.create({
   baseURL: API,
   timeout: 5000,
@@ -23,6 +25,9 @@ instance.interceptors.request.use(function (config) {
   const rId = [prefix, timer, uuid4, uuid5].join('.')
   config.headers.requestId = rId
 
+  const user = store.getState().user
+  config.headers.userToken = user.token || ''
+
   config.headers.platform = 3
   config.headers.language = 'en'
   config.headers.countryCode = 'US'
@@ -40,8 +45,17 @@ instance.interceptors.response.use(function (response) {
   // debugger
   // 2xx 范围内的状态码都会触发该函数。
   // 对响应数据做点什么
+  if (response.data.code !== 1) {
+    console.log(
+      '%c ↓ API Response: ' + response.config.url,
+      'background: #ee0a24; padding: 4px; color: #fff; border-radius: 4px; margin-bottom: 10px; border: 4px solid #e7818c',
+      '\n',
+      response.data
+    )
+    return
+  }
   console.log(
-    '%c ↓ API Response: ' + response.config.url,
+    '%c ↓ API Response Error: ' + response.config.url,
     'background: #CDDEFF; padding: 4px; color: #1C6DD0; border-radius: 4px; margin-bottom: 10px; border: 4px solid #A2D2FF',
     '\n',
     response.data.data.value

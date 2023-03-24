@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { cartAddCart } from "../../api/cart"
 import { useDispatch } from "react-redux"
 import cartAction from "../../store/actions/cart.action"
-
+import Login from '../../plugins/login'
 const ProductBtn = ({ product }) => {
 	const params = {
 		saleSkuId: product?.skuList?.[0].skuId,
@@ -25,7 +25,7 @@ const ProductBtn = ({ product }) => {
 	}
 	return (
 		<Container>
-			<div className="btn">Buy Now</div>
+			<div className="btn" onClick={()=>{Login.open()}}>Buy Now</div>
 			<div className="c"></div>
 			<div className="btn" onClick={handleAddCart}>
 				Add to cart
