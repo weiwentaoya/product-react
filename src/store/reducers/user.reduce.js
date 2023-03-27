@@ -4,11 +4,11 @@ import Cookies from 'js-cookie'
 const initial = {}
 
 
-const cookieOptions = {
-  maxAge: 60 * 60 * 24 * 7,
-  path: '/',
-  sameSite: 'Lax'
-}
+// const cookieOptions = {
+//   maxAge: 60 * 60 * 24 * 7,
+//   path: '/',
+//   sameSite: 'Lax'
+// }
 
 
 export default function userReducer(state = initial, action) {

@@ -9,8 +9,9 @@ const NotificationBar = (props) => {
 	const notify = useSelector((state) => state.notify)
 	const dispatch = useDispatch()
 	useEffect(() => {
-		dispatch(notifyAction.homeCommonInfo())
-		
+		if (!notify.imgUrl) {
+			dispatch(notifyAction.homeCommonInfo())
+		}
 	}, [])
 
 	// console.log("dispatch", dispatch)

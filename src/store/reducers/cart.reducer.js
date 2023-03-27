@@ -1,7 +1,7 @@
 import { CART_QUANTITY } from '../action-type'
 
 const initial = {
-  quantity: 0
+  quantity: -1
 }
 
 export default function notifyReducer(state = initial, action) {

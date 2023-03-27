@@ -1,12 +1,19 @@
-import React from "react"
-import { useSelector } from "react-redux"
+import React, {useEffect} from "react"
+import { useSelector, useDispatch } from "react-redux"
+import cartAction from '../../store/actions/cart.action';
+
 import { Badge } from "antd-mobile"
 import "./NavBar.less"
 import { Link } from "react-router-dom"
 
 export default function NavBar({onBack}) {
 	const cart = useSelector((state) => state.cart)
-  
+  const dispatch = useDispatch()
+  useEffect(()=>{
+		if (cart.quantity < 0) {
+			dispatch(cartAction.cartCartLen())
+		}
+  },[])
 	return (
 		<div className="nav-bar__wrap">
 			<span className="hekka-font hekka-back" onClick={onBack}></span>
