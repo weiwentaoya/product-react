@@ -4,10 +4,14 @@ import { Provider } from 'react-redux'
 import './utils/init'
 // import { ConnectedRouter } from 'connected-react-router'
 import Routes from './routes';
-import store from './store'
+// import store from './store'
+import store from './store-rtk'
 import './index.less'
 import './static/fonts/iconfont.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+
 root.render(
   <Provider store={store}>
     {/* <ConnectedRouter history={history}>  */}

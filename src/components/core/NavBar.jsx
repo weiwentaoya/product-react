@@ -1,6 +1,6 @@
 import React, {useEffect} from "react"
 import { useSelector, useDispatch } from "react-redux"
-import cartAction from '../../store/actions/cart.action';
+import { getCartLen } from '../../store-rtk/features/cartSlice';
 
 import { Badge } from "antd-mobile"
 import "./NavBar.less"
@@ -11,7 +11,7 @@ export default function NavBar({onBack}) {
   const dispatch = useDispatch()
   useEffect(()=>{
 		if (cart.quantity < 0) {
-			dispatch(cartAction.cartCartLen())
+			dispatch(getCartLen())
 		}
   },[])
 	return (
@@ -24,7 +24,7 @@ export default function NavBar({onBack}) {
 			<div className="nav-bar__occupy"></div>
 			<span className="hekka-font hekka-search1"></span>
 			{
-        cart.quantity > 0 ? (
+        cart.quantity > -1 ? (
           <Badge content={cart.quantity}>
             <span className="hekka-font hekka-bag"></span>
           </Badge>
@@ -32,7 +32,6 @@ export default function NavBar({onBack}) {
           <span className="hekka-font hekka-bag"></span>
         )
       }
-
 			<div className="nav-bar__customer">
 				<span className="hekka-font hekka-support1"></span>
 				<span className="nav-bar__date">24/7</span>

@@ -13,7 +13,6 @@ const BottomBar = () => {
   const navigate = useNavigate()
 
   const handlePathChange = val => {
-    console.log(val);
     navigate(val)
   }
   const location = useLocation()

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import notifyAction from "../../store/actions/notify.action"
-// import { homeCommonInfo } from "../../api/activity"
+import { getHomeInfo } from "../../store-rtk/features/notifySlice"
 import styled from "styled-components"
 import Img from "../core/Img"
 
@@ -10,7 +9,7 @@ const NotificationBar = (props) => {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		if (!notify.imgUrl) {
-			dispatch(notifyAction.homeCommonInfo())
+			dispatch(getHomeInfo())
 		}
 	}, [])
 

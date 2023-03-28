@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie'
 import { v4 as uuidv4 } from 'uuid'
-import store from '../store'
-import userActions from '../store/actions/user.action'
+import store from '../store-rtk'
+// import userActions from '../store/actions/user.action'
+import { setRefreshToken, setUserInfo, setUserToken} from '../store-rtk/features/userSlice'
 
 const CID = Cookies.get('__hk_cid')
 if (!CID) {
@@ -13,8 +14,8 @@ if (!CID) {
 }
 
 const token =Cookies.get('__hk_token')
-token && store.dispatch(userActions.userToken(token))
+token && store.dispatch(setUserToken(token))
 const userProfileInfo =Cookies.get('__hk_u_info')
-userProfileInfo && store.dispatch(userActions.userInfo(userProfileInfo))
+userProfileInfo && store.dispatch(setUserInfo(JSON.parse(userProfileInfo)))
 const refreshToken =Cookies.get('__hk_refreshToken')
-refreshToken && store.dispatch(userActions.userRefreshToken(refreshToken))
+refreshToken && store.dispatch(setRefreshToken(refreshToken))
