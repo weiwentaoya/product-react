@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from "react"
 import BackNavBar from "../components/core/BackNavBar"
 import CartList from "../components/cart/CartList"
 import BottomBtn from "../components/cart/BottomBtn"
+import Layout from '../layout/default'
 import { useSelector, useDispatch } from "react-redux"
 import styled from "styled-components"
 import { getCartList } from "../store-rtk/features/cartSlice"
@@ -32,8 +33,10 @@ const Cart = () => {
 	})
 
 	return (
+    <Layout>
+			<BackNavBar slot="navBar" title="Shopping Bag"></BackNavBar>
+
 		<Container>
-			<BackNavBar title="Shopping Bag"></BackNavBar>
 			<div className="content">
 				<CartList cartList={cartList} />
 				<div className="unavailable-title">
@@ -45,11 +48,12 @@ const Cart = () => {
 			</div>
 			<BottomBtn className="bottom-btn" cartInfo={cartInfo} total={total} />
 		</Container>
+    </Layout>
 	)
 }
 
 export const Container = styled.div`
-	height: 100vh;
+	height: 100%;
 	background: #fff;
 	display: flex;
 	flex-direction: column;
